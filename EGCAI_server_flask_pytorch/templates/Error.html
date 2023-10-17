@@ -1,0 +1,38 @@
+<!document html>
+<title>Upload</title>
+<style type="text/css">
+	table{
+	   border: 1px solid black;
+	}
+	th{
+		background-color:#AE0;
+	}
+	td {
+		padding: 5px;
+		border-top: 1px solid black;
+	}
+	#main{
+		width:400px;
+	   	margin: 0 auto;
+	}
+	.name{
+		width:120px;
+	}
+	.center{
+		text-align:center;
+	}
+	#main img{
+		width: 350px;
+		height:150px;
+	}
+	
+</style>
+
+<body>
+	<div id="main">
+		<h1>Error!</h1>
+		<img src="{{url_for('static', filename='error.png')}} "  />
+		<br><br>
+		<a href="./">back</a>
+	</div>
+</body>

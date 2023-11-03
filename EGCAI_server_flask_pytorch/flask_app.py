@@ -60,7 +60,7 @@ def predict(image_path, model):
     return postprocess(output)
 
 
-stain_A2B_model = load_model('./nn/Norm2EGC_params_0464000.pt')
+stain_A2B_model = load_model('./nn/params.pt')
 
 print('Load Model Success!')
 

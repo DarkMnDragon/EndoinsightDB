@@ -23,7 +23,7 @@ print("Loading stain_A2B_model model...")
 
 def load_model(path_to_model):
     model = ResnetGenerator(input_nc=3, output_nc=3, ngf=64, n_blocks=4, img_size=256,
-                            light=True).to(device)
+                            light=False).to(device)
     filename = os.path.join(path_to_model)
     map_location = device
     params = torch.load(filename, map_location=map_location)
@@ -55,7 +55,7 @@ def predict(image_path, model):
     image = preprocess(image_path, transform, device)
     with torch.no_grad():
         output = model(image)
-    output = output[0]
+        output = output[0]
 
     return postprocess(output)
 
@@ -94,7 +94,8 @@ def upload_image():
         try:
             output_image = predict(uploadedFile, stain_A2B_model)
             # Convert the numpy array image to PIL image
-            output_image_pil = Image.fromarray((output_image * 255).astype(np.uint8))
+            output_image_pil = Image.fromarray(
+                (output_image * 255).astype(np.uint8))
 
             # Define the directory for saving the output images
             output_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'output')
@@ -106,7 +107,8 @@ def upload_image():
             output_image_pil.save(output_image_path)
 
             # Construct the URL for the output image
-            output_image_url = request.url_root + os.path.relpath(output_image_path, start=os.getcwd())
+            output_image_url = request.url_root + \
+                os.path.relpath(output_image_path, start=os.getcwd())
 
             return jsonify({"msg": "success", "image_url": output_image_url})
 
@@ -120,7 +122,8 @@ def upload_image():
 @app.route('/upload/output/<filename>')
 def send_image(filename):
     return send_from_directory('upload/output', filename)
-    
+
+
 @app.route('/')
 def welcome():
     return 'Welcome to the Flask App!'

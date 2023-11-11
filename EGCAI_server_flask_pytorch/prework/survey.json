@@ -1,10 +1,26 @@
 {
-  "Surveys": {
-    "Survey_id": 1,
-    "Title": "问卷调查",
-    "Description": "",
-    "Date": "2023-11-03"
-  },
+  "Surveys": [
+    {
+      "Survey_id": 1,
+      "Title": "问卷调查",
+      "Description": "",
+      "Date": "2023-11-03"
+    }
+  ],
+  "Input_type": [
+    {
+      "Input_type_id": 0,
+      "Name": "填空"
+    },
+    {
+      "Input_type_id": 1,
+      "Name": "单选"
+    },
+    {
+      "Input_type_id": 2,
+      "Name": "多选"
+    }
+  ],
   "Question": [
     {
       "Question_id": 1,
@@ -21,7 +37,7 @@
     {
       "Question_id": 3,
       "Text": "您的民族是?",
-      "Input_type_id": 1,
+      "Input_type_id": 0,
       "Survey_id": 1
     },
     {
@@ -403,20 +419,6 @@
       "Survey_id": 1
     }
   ],
-  "Input_type": [
-    {
-      "Input_type_id": 0,
-      "Name": "填空"
-    },
-    {
-      "Input_type_id": 1,
-      "Name": "单选"
-    },
-    {
-      "Input_type_id": 2,
-      "Name": "多选"
-    }
-  ],
   "Options": [
     {
       "Option_id": 1,
@@ -430,451 +432,441 @@
     },
     {
       "Option_id": 3,
-      "option_text": "汉族",
-      "Question_id": 3
-    },
-    {
-      "Option_id": 4,
-      "option_text": "其他",
-      "Question_id": 3
-    },
-    {
-      "Option_id": 5,
       "option_text": "是",
       "Question_id": 13
     },
     {
-      "Option_id": 6,
+      "Option_id": 4,
       "option_text": "否",
       "Question_id": 13
     },
     {
-      "Option_id": 7,
+      "Option_id": 5,
       "option_text": "小于一个月",
+      "Question_id": 16
+    },
+    {
+      "Option_id": 6,
+      "option_text": "一个月到半年",
+      "Question_id": 16
+    },
+    {
+      "Option_id": 7,
+      "option_text": "半年到三年",
       "Question_id": 16
     },
     {
       "Option_id": 8,
-      "option_text": "一个月到半年",
+      "option_text": "三年以上",
       "Question_id": 16
     },
     {
       "Option_id": 9,
-      "option_text": "半年到三年",
-      "Question_id": 16
-    },
-    {
-      "Option_id": 10,
-      "option_text": "三年以上",
-      "Question_id": 16
-    },
-    {
-      "Option_id": 11,
       "option_text": "小于一个月",
       "Question_id": 18
     },
     {
-      "Option_id": 12,
+      "Option_id": 10,
       "option_text": "一个月到半年",
       "Question_id": 18
     },
     {
-      "Option_id": 13,
+      "Option_id": 11,
       "option_text": "半年到三年",
       "Question_id": 18
     },
     {
-      "Option_id": 14,
+      "Option_id": 12,
       "option_text": "三年以上",
       "Question_id": 18
     },
     {
-      "Option_id": 15,
+      "Option_id": 13,
       "option_text": "是",
       "Question_id": 19
     },
     {
-      "Option_id": 16,
+      "Option_id": 14,
       "option_text": "已根除",
       "Question_id": 22
     },
     {
-      "Option_id": 17,
+      "Option_id": 15,
       "option_text": "根除失败",
       "Question_id": 22
     },
     {
-      "Option_id": 18,
+      "Option_id": 16,
       "option_text": "未根除",
       "Question_id": 22
     },
     {
-      "Option_id": 19,
+      "Option_id": 17,
       "option_text": "否",
       "Question_id": 19
     },
     {
-      "Option_id": 20,
+      "Option_id": 18,
       "option_text": "不详",
       "Question_id": 19
     },
     {
-      "Option_id": 21,
+      "Option_id": 19,
       "option_text": "是",
+      "Question_id": 25
+    },
+    {
+      "Option_id": 20,
+      "option_text": "否",
+      "Question_id": 25
+    },
+    {
+      "Option_id": 21,
+      "option_text": "不详",
       "Question_id": 25
     },
     {
       "Option_id": 22,
-      "option_text": "否",
+      "option_text": "高盐",
       "Question_id": 25
     },
     {
       "Option_id": 23,
-      "option_text": "不详",
+      "option_text": "高糖",
       "Question_id": 25
     },
     {
       "Option_id": 24,
-      "option_text": "高盐",
-      "Question_id": 26
+      "option_text": "高油",
+      "Question_id": 25
     },
     {
       "Option_id": 25,
-      "option_text": "高糖",
-      "Question_id": 26
+      "option_text": "喜烫食",
+      "Question_id": 25
     },
     {
       "Option_id": 26,
-      "option_text": "高油",
-      "Question_id": 26
+      "option_text": "喜烟熏食物",
+      "Question_id": 25
     },
     {
       "Option_id": 27,
-      "option_text": "喜烫食",
-      "Question_id": 26
+      "option_text": "喜油炸食物",
+      "Question_id": 25
     },
     {
       "Option_id": 28,
-      "option_text": "喜烟熏食物",
-      "Question_id": 26
+      "option_text": "喜腌菜",
+      "Question_id": 25
     },
     {
       "Option_id": 29,
-      "option_text": "喜油炸食物",
-      "Question_id": 26
+      "option_text": "喜红肉或加工肉类",
+      "Question_id": 25
     },
     {
       "Option_id": 30,
-      "option_text": "喜腌菜",
-      "Question_id": 26
+      "option_text": "以上均无",
+      "Question_id": 25
     },
     {
       "Option_id": 31,
-      "option_text": "喜红肉或加工肉类",
-      "Question_id": 26
+      "option_text": "长期不吃早餐",
+      "Question_id": 25
     },
     {
       "Option_id": 32,
-      "option_text": "以上均无",
-      "Question_id": 26
+      "option_text": "少食蔬果",
+      "Question_id": 25
     },
     {
       "Option_id": 33,
-      "option_text": "长期不吃早餐",
-      "Question_id": 27
+      "option_text": "饮食不规律",
+      "Question_id": 25
     },
     {
       "Option_id": 34,
-      "option_text": "少食蔬果",
-      "Question_id": 27
+      "option_text": "暴饮暴食",
+      "Question_id": 25
     },
     {
       "Option_id": 35,
-      "option_text": "饮食不规律",
-      "Question_id": 27
+      "option_text": "吃饭速度快",
+      "Question_id": 25
     },
     {
       "Option_id": 36,
-      "option_text": "暴饮暴食",
-      "Question_id": 27
+      "option_text": "吃剩饭菜",
+      "Question_id": 25
     },
     {
       "Option_id": 37,
-      "option_text": "吃饭速度快",
-      "Question_id": 27
+      "option_text": "以上均无",
+      "Question_id": 25
     },
     {
       "Option_id": 38,
-      "option_text": "吃剩饭菜",
-      "Question_id": 27
-    },
-    {
-      "Option_id": 39,
-      "option_text": "以上均无",
-      "Question_id": 27
-    },
-    {
-      "Option_id": 40,
       "option_text": "吸烟，未戒",
       "Question_id": 28
     },
     {
-      "Option_id": 41,
+      "Option_id": 39,
       "option_text": "吸过烟，已戒",
       "Question_id": 28
     },
     {
-      "Option_id": 42,
+      "Option_id": 40,
       "option_text": "从不吸烟",
       "Question_id": 28
     },
     {
-      "Option_id": 43,
+      "Option_id": 41,
       "option_text": "喝酒，未戒",
       "Question_id": 34
     },
     {
-      "Option_id": 44,
+      "Option_id": 42,
       "option_text": "经常",
       "Question_id": 36
     },
     {
-      "Option_id": 45,
+      "Option_id": 43,
       "option_text": "偶尔",
       "Question_id": 36
     },
     {
-      "Option_id": 46,
+      "Option_id": 44,
       "option_text": "以前喝，已戒",
       "Question_id": 34
     },
     {
-      "Option_id": 47,
+      "Option_id": 45,
       "option_text": "经常",
       "Question_id": 40
     },
     {
-      "Option_id": 48,
+      "Option_id": 46,
       "option_text": "偶尔",
       "Question_id": 40
     },
     {
-      "Option_id": 49,
+      "Option_id": 47,
       "option_text": "从不喝酒",
       "Question_id": 34
     },
     {
-      "Option_id": 50,
+      "Option_id": 48,
       "option_text": "不详",
       "Question_id": 34
     },
     {
-      "Option_id": 51,
+      "Option_id": 49,
       "option_text": "有",
+      "Question_id": 44
+    },
+    {
+      "Option_id": 50,
+      "option_text": "无",
+      "Question_id": 44
+    },
+    {
+      "Option_id": 51,
+      "option_text": "不详",
       "Question_id": 44
     },
     {
       "Option_id": 52,
-      "option_text": "无",
+      "option_text": "高血压",
       "Question_id": 44
     },
     {
       "Option_id": 53,
-      "option_text": "不详",
+      "option_text": "冠心病",
       "Question_id": 44
     },
     {
       "Option_id": 54,
-      "option_text": "高血压",
-      "Question_id": 49
+      "option_text": "糖尿病",
+      "Question_id": 44
     },
     {
       "Option_id": 55,
-      "option_text": "冠心病",
-      "Question_id": 49
+      "option_text": "慢性阻塞性肺部疾病",
+      "Question_id": 44
     },
     {
       "Option_id": 56,
-      "option_text": "糖尿病",
-      "Question_id": 49
+      "option_text": "慢性心力衰竭",
+      "Question_id": 44
     },
     {
       "Option_id": 57,
-      "option_text": "慢性阻塞性肺部疾病",
-      "Question_id": 49
+      "option_text": "慢性肾衰",
+      "Question_id": 44
     },
     {
       "Option_id": 58,
-      "option_text": "慢性心力衰竭",
-      "Question_id": 49
+      "option_text": "甲亢",
+      "Question_id": 44
     },
     {
       "Option_id": 59,
-      "option_text": "慢性肾衰",
-      "Question_id": 49
+      "option_text": "甲减",
+      "Question_id": 44
     },
     {
       "Option_id": 60,
-      "option_text": "甲亢",
-      "Question_id": 49
+      "option_text": "胃炎",
+      "Question_id": 44
     },
     {
       "Option_id": 61,
-      "option_text": "甲减",
-      "Question_id": 49
+      "option_text": "消化性溃疡",
+      "Question_id": 44
     },
     {
       "Option_id": 62,
-      "option_text": "胃炎",
-      "Question_id": 50
+      "option_text": "胃食管反流病",
+      "Question_id": 44
     },
     {
       "Option_id": 63,
-      "option_text": "消化性溃疡",
-      "Question_id": 50
+      "option_text": "胃癌",
+      "Question_id": 44
     },
     {
       "Option_id": 64,
-      "option_text": "胃食管反流病",
-      "Question_id": 50
+      "option_text": "食管癌",
+      "Question_id": 44
     },
     {
       "Option_id": 65,
-      "option_text": "胃癌",
-      "Question_id": 50
+      "option_text": "炎症性肠病",
+      "Question_id": 44
     },
     {
       "Option_id": 66,
-      "option_text": "食管癌",
-      "Question_id": 50
+      "option_text": "结直肠癌",
+      "Question_id": 44
     },
     {
       "Option_id": 67,
-      "option_text": "炎症性肠病",
-      "Question_id": 50
+      "option_text": "胰腺癌",
+      "Question_id": 44
     },
     {
       "Option_id": 68,
-      "option_text": "结直肠癌",
-      "Question_id": 50
+      "option_text": "肝炎",
+      "Question_id": 44
     },
     {
       "Option_id": 69,
-      "option_text": "胰腺癌",
-      "Question_id": 50
+      "option_text": "肝硬化",
+      "Question_id": 44
     },
     {
       "Option_id": 70,
-      "option_text": "肝炎",
-      "Question_id": 50
+      "option_text": "胃炎",
+      "Question_id": 44
     },
     {
       "Option_id": 71,
-      "option_text": "肝硬化",
-      "Question_id": 50
+      "option_text": "消化性溃疡",
+      "Question_id": 44
     },
     {
       "Option_id": 72,
-      "option_text": "胃炎",
-      "Question_id": 51
+      "option_text": "胃食管反流病",
+      "Question_id": 44
     },
     {
       "Option_id": 73,
-      "option_text": "消化性溃疡",
-      "Question_id": 51
+      "option_text": "胃癌",
+      "Question_id": 44
     },
     {
       "Option_id": 74,
-      "option_text": "胃食管反流病",
-      "Question_id": 51
+      "option_text": "食管癌",
+      "Question_id": 44
     },
     {
       "Option_id": 75,
-      "option_text": "胃癌",
-      "Question_id": 51
+      "option_text": "炎症性肠病",
+      "Question_id": 44
     },
     {
       "Option_id": 76,
-      "option_text": "食管癌",
-      "Question_id": 51
+      "option_text": "结直肠癌",
+      "Question_id": 44
     },
     {
       "Option_id": 77,
-      "option_text": "炎症性肠病",
-      "Question_id": 51
+      "option_text": "胰腺癌",
+      "Question_id": 44
     },
     {
       "Option_id": 78,
-      "option_text": "结直肠癌",
-      "Question_id": 51
+      "option_text": "有",
+      "Question_id": 52
     },
     {
       "Option_id": 79,
-      "option_text": "胰腺癌",
-      "Question_id": 51
+      "option_text": "无",
+      "Question_id": 52
     },
     {
       "Option_id": 80,
-      "option_text": "有",
+      "option_text": "不详",
       "Question_id": 52
     },
     {
       "Option_id": 81,
-      "option_text": "无",
-      "Question_id": 52
-    },
-    {
-      "Option_id": 82,
-      "option_text": "不详",
-      "Question_id": 52
-    },
-    {
-      "Option_id": 83,
       "option_text": "有",
       "Question_id": 57
     },
     {
-      "Option_id": 84,
+      "Option_id": 82,
       "option_text": "无",
       "Question_id": 57
     },
     {
-      "Option_id": 85,
+      "Option_id": 83,
       "option_text": "不详",
       "Question_id": 57
     },
     {
-      "Option_id": 86,
+      "Option_id": 84,
       "option_text": "是",
       "Question_id": 60
     },
     {
-      "Option_id": 87,
+      "Option_id": 85,
       "option_text": "否",
       "Question_id": 60
     },
     {
-      "Option_id": 88,
+      "Option_id": 86,
       "option_text": "非常大",
       "Question_id": 66
     },
     {
-      "Option_id": 89,
+      "Option_id": 87,
       "option_text": "有点大",
       "Question_id": 66
     },
     {
-      "Option_id": 90,
+      "Option_id": 88,
       "option_text": "一般",
       "Question_id": 66
     },
     {
-      "Option_id": 91,
+      "Option_id": 89,
       "option_text": "没有",
       "Question_id": 66
     },
     {
-      "Option_id": 92,
+      "Option_id": 90,
       "option_text": "不详",
       "Question_id": 66
     }
@@ -889,383 +881,773 @@
     {
       "Logic_id": 2,
       "Parent_question_id": 2,
-      "Parent_option_id": 0,
+      "Parent_option_id": 2,
       "Child_question_id": 3
     },
     {
       "Logic_id": 3,
+      "Parent_question_id": 2,
+      "Parent_option_id": 1,
+      "Child_question_id": 3
+    },
+    {
+      "Logic_id": 4,
       "Parent_question_id": 3,
       "Parent_option_id": 0,
       "Child_question_id": 4
     },
     {
-      "Logic_id": 4,
+      "Logic_id": 5,
       "Parent_question_id": 4,
       "Parent_option_id": 0,
       "Child_question_id": 5
     },
     {
-      "Logic_id": 5,
+      "Logic_id": 6,
       "Parent_question_id": 5,
       "Parent_option_id": 0,
       "Child_question_id": 6
     },
     {
-      "Logic_id": 6,
+      "Logic_id": 7,
       "Parent_question_id": 6,
       "Parent_option_id": 0,
       "Child_question_id": 7
     },
     {
-      "Logic_id": 7,
+      "Logic_id": 8,
       "Parent_question_id": 7,
       "Parent_option_id": 0,
       "Child_question_id": 8
     },
     {
-      "Logic_id": 8,
+      "Logic_id": 9,
       "Parent_question_id": 8,
       "Parent_option_id": 0,
       "Child_question_id": 9
     },
     {
-      "Logic_id": 9,
+      "Logic_id": 10,
       "Parent_question_id": 9,
       "Parent_option_id": 0,
       "Child_question_id": 10
     },
     {
-      "Logic_id": 10,
+      "Logic_id": 11,
       "Parent_question_id": 10,
       "Parent_option_id": 0,
       "Child_question_id": 11
     },
     {
-      "Logic_id": 11,
+      "Logic_id": 12,
       "Parent_question_id": 11,
       "Parent_option_id": 0,
       "Child_question_id": 12
     },
     {
-      "Logic_id": 12,
+      "Logic_id": 13,
       "Parent_question_id": 12,
       "Parent_option_id": 0,
       "Child_question_id": 13
     },
     {
-      "Logic_id": 13,
-      "Parent_question_id": 13,
-      "Parent_option_id": 5,
-      "Child_question_id": 14
-    },
-    {
       "Logic_id": 14,
       "Parent_question_id": 13,
-      "Parent_option_id": 6,
-      "Child_question_id": 15
+      "Parent_option_id": 3,
+      "Child_question_id": 14
     },
     {
       "Logic_id": 15,
       "Parent_question_id": 13,
-      "Parent_option_id": 6,
-      "Child_question_id": 16
+      "Parent_option_id": 4,
+      "Child_question_id": 15
     },
     {
       "Logic_id": 16,
-      "Parent_question_id": 16,
+      "Parent_question_id": 15,
       "Parent_option_id": 0,
-      "Child_question_id": 17
+      "Child_question_id": 16
     },
     {
       "Logic_id": 17,
+      "Parent_question_id": 16,
+      "Parent_option_id": 8,
+      "Child_question_id": 17
+    },
+    {
+      "Logic_id": 18,
+      "Parent_question_id": 16,
+      "Parent_option_id": 7,
+      "Child_question_id": 17
+    },
+    {
+      "Logic_id": 19,
+      "Parent_question_id": 16,
+      "Parent_option_id": 6,
+      "Child_question_id": 17
+    },
+    {
+      "Logic_id": 20,
+      "Parent_question_id": 16,
+      "Parent_option_id": 5,
+      "Child_question_id": 17
+    },
+    {
+      "Logic_id": 21,
       "Parent_question_id": 17,
       "Parent_option_id": 0,
       "Child_question_id": 18
     },
     {
-      "Logic_id": 18,
+      "Logic_id": 22,
       "Parent_question_id": 18,
+      "Parent_option_id": 12,
+      "Child_question_id": 19
+    },
+    {
+      "Logic_id": 23,
+      "Parent_question_id": 18,
+      "Parent_option_id": 11,
+      "Child_question_id": 19
+    },
+    {
+      "Logic_id": 24,
+      "Parent_question_id": 18,
+      "Parent_option_id": 10,
+      "Child_question_id": 19
+    },
+    {
+      "Logic_id": 25,
+      "Parent_question_id": 18,
+      "Parent_option_id": 9,
+      "Child_question_id": 19
+    },
+    {
+      "Logic_id": 26,
+      "Parent_question_id": 14,
       "Parent_option_id": 0,
       "Child_question_id": 19
     },
     {
-      "Logic_id": 19,
+      "Logic_id": 27,
       "Parent_question_id": 19,
-      "Parent_option_id": 15,
+      "Parent_option_id": 13,
       "Child_question_id": 20
     },
     {
-      "Logic_id": 20,
-      "Parent_question_id": 19,
-      "Parent_option_id": 15,
+      "Logic_id": 28,
+      "Parent_question_id": 20,
+      "Parent_option_id": 0,
       "Child_question_id": 21
     },
     {
-      "Logic_id": 21,
-      "Parent_question_id": 19,
-      "Parent_option_id": 15,
+      "Logic_id": 29,
+      "Parent_question_id": 21,
+      "Parent_option_id": 0,
       "Child_question_id": 22
     },
     {
-      "Logic_id": 22,
+      "Logic_id": 30,
       "Parent_question_id": 22,
-      "Parent_option_id": 0,
+      "Parent_option_id": 14,
       "Child_question_id": 23
     },
     {
-      "Logic_id": 23,
+      "Logic_id": 31,
       "Parent_question_id": 23,
       "Parent_option_id": 0,
       "Child_question_id": 24
     },
     {
-      "Logic_id": 24,
+      "Logic_id": 32,
+      "Parent_question_id": 19,
+      "Parent_option_id": 18,
+      "Child_question_id": 25
+    },
+    {
+      "Logic_id": 33,
+      "Parent_question_id": 19,
+      "Parent_option_id": 17,
+      "Child_question_id": 25
+    },
+    {
+      "Logic_id": 34,
+      "Parent_question_id": 22,
+      "Parent_option_id": 16,
+      "Child_question_id": 25
+    },
+    {
+      "Logic_id": 35,
+      "Parent_question_id": 22,
+      "Parent_option_id": 15,
+      "Child_question_id": 25
+    },
+    {
+      "Logic_id": 36,
       "Parent_question_id": 24,
       "Parent_option_id": 0,
       "Child_question_id": 25
     },
     {
-      "Logic_id": 25,
+      "Logic_id": 37,
       "Parent_question_id": 25,
-      "Parent_option_id": 0,
+      "Parent_option_id": 21,
       "Child_question_id": 26
     },
     {
-      "Logic_id": 26,
-      "Parent_question_id": 26,
-      "Parent_option_id": 0,
+      "Logic_id": 38,
+      "Parent_question_id": 25,
+      "Parent_option_id": 20,
+      "Child_question_id": 26
+    },
+    {
+      "Logic_id": 39,
+      "Parent_question_id": 25,
+      "Parent_option_id": 19,
+      "Child_question_id": 26
+    },
+    {
+      "Logic_id": 40,
+      "Parent_question_id": 25,
+      "Parent_option_id": 30,
       "Child_question_id": 27
     },
     {
-      "Logic_id": 27,
-      "Parent_question_id": 27,
-      "Parent_option_id": 0,
+      "Logic_id": 41,
+      "Parent_question_id": 25,
+      "Parent_option_id": 29,
+      "Child_question_id": 27
+    },
+    {
+      "Logic_id": 42,
+      "Parent_question_id": 25,
+      "Parent_option_id": 28,
+      "Child_question_id": 27
+    },
+    {
+      "Logic_id": 43,
+      "Parent_question_id": 25,
+      "Parent_option_id": 27,
+      "Child_question_id": 27
+    },
+    {
+      "Logic_id": 44,
+      "Parent_question_id": 25,
+      "Parent_option_id": 26,
+      "Child_question_id": 27
+    },
+    {
+      "Logic_id": 45,
+      "Parent_question_id": 25,
+      "Parent_option_id": 25,
+      "Child_question_id": 27
+    },
+    {
+      "Logic_id": 46,
+      "Parent_question_id": 25,
+      "Parent_option_id": 24,
+      "Child_question_id": 27
+    },
+    {
+      "Logic_id": 47,
+      "Parent_question_id": 25,
+      "Parent_option_id": 23,
+      "Child_question_id": 27
+    },
+    {
+      "Logic_id": 48,
+      "Parent_question_id": 25,
+      "Parent_option_id": 22,
+      "Child_question_id": 27
+    },
+    {
+      "Logic_id": 49,
+      "Parent_question_id": 25,
+      "Parent_option_id": 37,
       "Child_question_id": 28
     },
     {
-      "Logic_id": 28,
+      "Logic_id": 50,
+      "Parent_question_id": 25,
+      "Parent_option_id": 36,
+      "Child_question_id": 28
+    },
+    {
+      "Logic_id": 51,
+      "Parent_question_id": 25,
+      "Parent_option_id": 35,
+      "Child_question_id": 28
+    },
+    {
+      "Logic_id": 52,
+      "Parent_question_id": 25,
+      "Parent_option_id": 34,
+      "Child_question_id": 28
+    },
+    {
+      "Logic_id": 53,
+      "Parent_question_id": 25,
+      "Parent_option_id": 33,
+      "Child_question_id": 28
+    },
+    {
+      "Logic_id": 54,
+      "Parent_question_id": 25,
+      "Parent_option_id": 32,
+      "Child_question_id": 28
+    },
+    {
+      "Logic_id": 55,
+      "Parent_question_id": 25,
+      "Parent_option_id": 31,
+      "Child_question_id": 28
+    },
+    {
+      "Logic_id": 56,
       "Parent_question_id": 28,
-      "Parent_option_id": 40,
+      "Parent_option_id": 38,
       "Child_question_id": 29
     },
     {
-      "Logic_id": 29,
-      "Parent_question_id": 28,
-      "Parent_option_id": 40,
+      "Logic_id": 57,
+      "Parent_question_id": 29,
+      "Parent_option_id": 0,
       "Child_question_id": 30
     },
     {
-      "Logic_id": 30,
+      "Logic_id": 58,
       "Parent_question_id": 28,
-      "Parent_option_id": 41,
+      "Parent_option_id": 39,
       "Child_question_id": 31
     },
     {
-      "Logic_id": 31,
-      "Parent_question_id": 28,
-      "Parent_option_id": 41,
+      "Logic_id": 59,
+      "Parent_question_id": 31,
+      "Parent_option_id": 0,
       "Child_question_id": 32
     },
     {
-      "Logic_id": 32,
-      "Parent_question_id": 28,
-      "Parent_option_id": 41,
+      "Logic_id": 60,
+      "Parent_question_id": 32,
+      "Parent_option_id": 0,
       "Child_question_id": 33
     },
     {
-      "Logic_id": 33,
+      "Logic_id": 61,
+      "Parent_question_id": 28,
+      "Parent_option_id": 40,
+      "Child_question_id": 34
+    },
+    {
+      "Logic_id": 62,
       "Parent_question_id": 33,
       "Parent_option_id": 0,
       "Child_question_id": 34
     },
     {
-      "Logic_id": 34,
+      "Logic_id": 63,
+      "Parent_question_id": 30,
+      "Parent_option_id": 0,
+      "Child_question_id": 34
+    },
+    {
+      "Logic_id": 64,
       "Parent_question_id": 34,
-      "Parent_option_id": 43,
+      "Parent_option_id": 41,
       "Child_question_id": 35
     },
     {
-      "Logic_id": 35,
-      "Parent_question_id": 34,
-      "Parent_option_id": 43,
+      "Logic_id": 65,
+      "Parent_question_id": 35,
+      "Parent_option_id": 0,
       "Child_question_id": 36
     },
     {
-      "Logic_id": 36,
+      "Logic_id": 66,
       "Parent_question_id": 36,
-      "Parent_option_id": 44,
+      "Parent_option_id": 42,
       "Child_question_id": 37
     },
     {
-      "Logic_id": 37,
+      "Logic_id": 67,
+      "Parent_question_id": 36,
+      "Parent_option_id": 43,
+      "Child_question_id": 38
+    },
+    {
+      "Logic_id": 68,
       "Parent_question_id": 37,
       "Parent_option_id": 0,
       "Child_question_id": 38
     },
     {
-      "Logic_id": 38,
+      "Logic_id": 69,
       "Parent_question_id": 34,
-      "Parent_option_id": 46,
+      "Parent_option_id": 44,
       "Child_question_id": 39
     },
     {
-      "Logic_id": 39,
-      "Parent_question_id": 34,
-      "Parent_option_id": 46,
+      "Logic_id": 70,
+      "Parent_question_id": 39,
+      "Parent_option_id": 0,
       "Child_question_id": 40
     },
     {
-      "Logic_id": 40,
+      "Logic_id": 71,
       "Parent_question_id": 40,
-      "Parent_option_id": 47,
+      "Parent_option_id": 45,
       "Child_question_id": 41
     },
     {
-      "Logic_id": 41,
+      "Logic_id": 72,
+      "Parent_question_id": 40,
+      "Parent_option_id": 46,
+      "Child_question_id": 42
+    },
+    {
+      "Logic_id": 73,
       "Parent_question_id": 41,
       "Parent_option_id": 0,
       "Child_question_id": 42
     },
     {
-      "Logic_id": 42,
+      "Logic_id": 74,
       "Parent_question_id": 42,
       "Parent_option_id": 0,
       "Child_question_id": 43
     },
     {
-      "Logic_id": 43,
+      "Logic_id": 75,
+      "Parent_question_id": 34,
+      "Parent_option_id": 48,
+      "Child_question_id": 44
+    },
+    {
+      "Logic_id": 76,
+      "Parent_question_id": 34,
+      "Parent_option_id": 47,
+      "Child_question_id": 44
+    },
+    {
+      "Logic_id": 77,
       "Parent_question_id": 43,
       "Parent_option_id": 0,
       "Child_question_id": 44
     },
     {
-      "Logic_id": 44,
+      "Logic_id": 78,
+      "Parent_question_id": 38,
+      "Parent_option_id": 0,
+      "Child_question_id": 44
+    },
+    {
+      "Logic_id": 79,
       "Parent_question_id": 44,
-      "Parent_option_id": 51,
+      "Parent_option_id": 49,
       "Child_question_id": 45
     },
     {
-      "Logic_id": 45,
-      "Parent_question_id": 44,
-      "Parent_option_id": 51,
+      "Logic_id": 80,
+      "Parent_question_id": 45,
+      "Parent_option_id": 0,
       "Child_question_id": 46
     },
     {
-      "Logic_id": 46,
-      "Parent_question_id": 44,
-      "Parent_option_id": 51,
+      "Logic_id": 81,
+      "Parent_question_id": 46,
+      "Parent_option_id": 0,
       "Child_question_id": 47
     },
     {
-      "Logic_id": 47,
-      "Parent_question_id": 44,
-      "Parent_option_id": 51,
+      "Logic_id": 82,
+      "Parent_question_id": 47,
+      "Parent_option_id": 0,
       "Child_question_id": 48
     },
     {
-      "Logic_id": 48,
+      "Logic_id": 83,
+      "Parent_question_id": 44,
+      "Parent_option_id": 51,
+      "Child_question_id": 49
+    },
+    {
+      "Logic_id": 84,
+      "Parent_question_id": 44,
+      "Parent_option_id": 50,
+      "Child_question_id": 49
+    },
+    {
+      "Logic_id": 85,
       "Parent_question_id": 48,
       "Parent_option_id": 0,
       "Child_question_id": 49
     },
     {
-      "Logic_id": 49,
-      "Parent_question_id": 49,
-      "Parent_option_id": 0,
+      "Logic_id": 86,
+      "Parent_question_id": 44,
+      "Parent_option_id": 59,
       "Child_question_id": 50
     },
     {
-      "Logic_id": 50,
-      "Parent_question_id": 50,
-      "Parent_option_id": 0,
+      "Logic_id": 87,
+      "Parent_question_id": 44,
+      "Parent_option_id": 58,
+      "Child_question_id": 50
+    },
+    {
+      "Logic_id": 88,
+      "Parent_question_id": 44,
+      "Parent_option_id": 57,
+      "Child_question_id": 50
+    },
+    {
+      "Logic_id": 89,
+      "Parent_question_id": 44,
+      "Parent_option_id": 56,
+      "Child_question_id": 50
+    },
+    {
+      "Logic_id": 90,
+      "Parent_question_id": 44,
+      "Parent_option_id": 55,
+      "Child_question_id": 50
+    },
+    {
+      "Logic_id": 91,
+      "Parent_question_id": 44,
+      "Parent_option_id": 54,
+      "Child_question_id": 50
+    },
+    {
+      "Logic_id": 92,
+      "Parent_question_id": 44,
+      "Parent_option_id": 53,
+      "Child_question_id": 50
+    },
+    {
+      "Logic_id": 93,
+      "Parent_question_id": 44,
+      "Parent_option_id": 52,
+      "Child_question_id": 50
+    },
+    {
+      "Logic_id": 94,
+      "Parent_question_id": 44,
+      "Parent_option_id": 69,
       "Child_question_id": 51
     },
     {
-      "Logic_id": 51,
-      "Parent_question_id": 51,
-      "Parent_option_id": 0,
+      "Logic_id": 95,
+      "Parent_question_id": 44,
+      "Parent_option_id": 68,
+      "Child_question_id": 51
+    },
+    {
+      "Logic_id": 96,
+      "Parent_question_id": 44,
+      "Parent_option_id": 67,
+      "Child_question_id": 51
+    },
+    {
+      "Logic_id": 97,
+      "Parent_question_id": 44,
+      "Parent_option_id": 66,
+      "Child_question_id": 51
+    },
+    {
+      "Logic_id": 98,
+      "Parent_question_id": 44,
+      "Parent_option_id": 65,
+      "Child_question_id": 51
+    },
+    {
+      "Logic_id": 99,
+      "Parent_question_id": 44,
+      "Parent_option_id": 64,
+      "Child_question_id": 51
+    },
+    {
+      "Logic_id": 100,
+      "Parent_question_id": 44,
+      "Parent_option_id": 63,
+      "Child_question_id": 51
+    },
+    {
+      "Logic_id": 101,
+      "Parent_question_id": 44,
+      "Parent_option_id": 62,
+      "Child_question_id": 51
+    },
+    {
+      "Logic_id": 102,
+      "Parent_question_id": 44,
+      "Parent_option_id": 61,
+      "Child_question_id": 51
+    },
+    {
+      "Logic_id": 103,
+      "Parent_question_id": 44,
+      "Parent_option_id": 60,
+      "Child_question_id": 51
+    },
+    {
+      "Logic_id": 104,
+      "Parent_question_id": 44,
+      "Parent_option_id": 77,
       "Child_question_id": 52
     },
     {
-      "Logic_id": 52,
+      "Logic_id": 105,
+      "Parent_question_id": 44,
+      "Parent_option_id": 76,
+      "Child_question_id": 52
+    },
+    {
+      "Logic_id": 106,
+      "Parent_question_id": 44,
+      "Parent_option_id": 75,
+      "Child_question_id": 52
+    },
+    {
+      "Logic_id": 107,
+      "Parent_question_id": 44,
+      "Parent_option_id": 74,
+      "Child_question_id": 52
+    },
+    {
+      "Logic_id": 108,
+      "Parent_question_id": 44,
+      "Parent_option_id": 73,
+      "Child_question_id": 52
+    },
+    {
+      "Logic_id": 109,
+      "Parent_question_id": 44,
+      "Parent_option_id": 72,
+      "Child_question_id": 52
+    },
+    {
+      "Logic_id": 110,
+      "Parent_question_id": 44,
+      "Parent_option_id": 71,
+      "Child_question_id": 52
+    },
+    {
+      "Logic_id": 111,
+      "Parent_question_id": 44,
+      "Parent_option_id": 70,
+      "Child_question_id": 52
+    },
+    {
+      "Logic_id": 112,
       "Parent_question_id": 52,
-      "Parent_option_id": 80,
+      "Parent_option_id": 78,
       "Child_question_id": 53
     },
     {
-      "Logic_id": 53,
-      "Parent_question_id": 52,
-      "Parent_option_id": 80,
+      "Logic_id": 113,
+      "Parent_question_id": 53,
+      "Parent_option_id": 0,
       "Child_question_id": 54
     },
     {
-      "Logic_id": 54,
-      "Parent_question_id": 52,
-      "Parent_option_id": 80,
+      "Logic_id": 114,
+      "Parent_question_id": 54,
+      "Parent_option_id": 0,
       "Child_question_id": 55
     },
     {
-      "Logic_id": 55,
-      "Parent_question_id": 52,
-      "Parent_option_id": 80,
+      "Logic_id": 115,
+      "Parent_question_id": 55,
+      "Parent_option_id": 0,
       "Child_question_id": 56
     },
     {
-      "Logic_id": 56,
+      "Logic_id": 116,
+      "Parent_question_id": 52,
+      "Parent_option_id": 80,
+      "Child_question_id": 57
+    },
+    {
+      "Logic_id": 117,
+      "Parent_question_id": 52,
+      "Parent_option_id": 79,
+      "Child_question_id": 57
+    },
+    {
+      "Logic_id": 118,
       "Parent_question_id": 56,
       "Parent_option_id": 0,
       "Child_question_id": 57
     },
     {
-      "Logic_id": 57,
+      "Logic_id": 119,
       "Parent_question_id": 57,
-      "Parent_option_id": 83,
+      "Parent_option_id": 81,
       "Child_question_id": 58
     },
     {
-      "Logic_id": 58,
-      "Parent_question_id": 57,
-      "Parent_option_id": 83,
+      "Logic_id": 120,
+      "Parent_question_id": 58,
+      "Parent_option_id": 0,
       "Child_question_id": 59
     },
     {
-      "Logic_id": 59,
+      "Logic_id": 121,
+      "Parent_question_id": 57,
+      "Parent_option_id": 83,
+      "Child_question_id": 60
+    },
+    {
+      "Logic_id": 122,
+      "Parent_question_id": 57,
+      "Parent_option_id": 82,
+      "Child_question_id": 60
+    },
+    {
+      "Logic_id": 123,
       "Parent_question_id": 59,
       "Parent_option_id": 0,
       "Child_question_id": 60
     },
     {
-      "Logic_id": 60,
+      "Logic_id": 124,
       "Parent_question_id": 60,
-      "Parent_option_id": 86,
+      "Parent_option_id": 84,
       "Child_question_id": 61
     },
     {
-      "Logic_id": 61,
-      "Parent_question_id": 60,
-      "Parent_option_id": 86,
+      "Logic_id": 125,
+      "Parent_question_id": 61,
+      "Parent_option_id": 0,
       "Child_question_id": 62
     },
     {
-      "Logic_id": 62,
-      "Parent_question_id": 60,
-      "Parent_option_id": 86,
+      "Logic_id": 126,
+      "Parent_question_id": 62,
+      "Parent_option_id": 0,
       "Child_question_id": 63
     },
     {
-      "Logic_id": 63,
-      "Parent_question_id": 60,
-      "Parent_option_id": 86,
+      "Logic_id": 127,
+      "Parent_question_id": 63,
+      "Parent_option_id": 0,
       "Child_question_id": 64
     },
     {
-      "Logic_id": 64,
-      "Parent_question_id": 60,
-      "Parent_option_id": 86,
+      "Logic_id": 128,
+      "Parent_question_id": 64,
+      "Parent_option_id": 0,
       "Child_question_id": 65
     },
     {
-      "Logic_id": 65,
+      "Logic_id": 129,
+      "Parent_question_id": 60,
+      "Parent_option_id": 85,
+      "Child_question_id": 66
+    },
+    {
+      "Logic_id": 130,
       "Parent_question_id": 65,
       "Parent_option_id": 0,
       "Child_question_id": 66

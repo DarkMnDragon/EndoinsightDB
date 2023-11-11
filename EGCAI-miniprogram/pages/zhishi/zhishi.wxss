@@ -1,0 +1,8 @@
+/* pages/zhishi/zhishi.wxss */
+.btn1 {
+  width: 100%;
+  margin-top: 20rpx;
+  background-color: rgb(62, 197, 118);
+  color: rgb(20, 13, 13);
+  border-radius: 98rpx; 
+}

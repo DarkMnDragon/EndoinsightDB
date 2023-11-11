@@ -1,0 +1,912 @@
+{
+  "Surveys": {
+    "Survey_id": 1,
+    "Title": "问卷调查",
+    "Description": "",
+    "Date": "2023-11-03"
+  },
+  "Questions": [
+    {
+      "Question_id": 1,
+      "Index": 1,
+      "Text": "姓名",
+      "Input_type_id": 3,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 2,
+      "Index": 2,
+      "Text": "您的性别是？",
+      "Input_type_id": 1,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 3,
+      "Index": 3,
+      "Text": "您的民族是？",
+      "Input_type_id": 1,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 4,
+      "Index": 4,
+      "Text": "您的身份证号是？",
+      "Input_type_id": 3,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 5,
+      "Index": 5,
+      "Text": "您的出生年月日是？",
+      "Input_type_id": 3,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 6,
+      "Index": 6,
+      "Text": "您的联系电话？",
+      "Input_type_id": 3,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 7,
+      "Index": 7,
+      "Text": "您的身高是？",
+      "Input_type_id": 3,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 8,
+      "Index": 8,
+      "Text": "您的体重是？",
+      "Input_type_id": 3,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 9,
+      "Index": 9,
+      "Text": "您是否长期居住于出生地？",
+      "Input_type_id": 1,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 10,
+      "Index": 10,
+      "Text": "您是否有过幽门螺旋杆菌",
+      "Input_type_id": 3,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 11,
+      "Index": 11,
+      "Text": "您是否有龋齿",
+      "Input_type_id": 3,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 12,
+      "Index": 12,
+      "Text": "您的饮食口味偏好是？",
+      "Input_type_id": 2,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 13,
+      "Index": 13,
+      "Text": "您是否存在以下饮食习惯？",
+      "Input_type_id": 2,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 14,
+      "Index": 14,
+      "Text": "您吸烟吗？",
+      "Input_type_id": 1,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 15,
+      "Index": 15,
+      "Text": "您饮酒吗？",
+      "Input_type_id": 1,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 16,
+      "Index": 16,
+      "Text": "您是否有长期在吃的药物 ？",
+      "Input_type_id": 1,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 17,
+      "Index": 17,
+      "Text": "您现在是否患有以下某种疾病？",
+      "Input_type_id": 2,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 18,
+      "Index": 18,
+      "Text": "您现在是否患有以下某种疾病？",
+      "Input_type_id": 2,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 19,
+      "Index": 19,
+      "Text": "您过去是否患有以下某种疾病？",
+      "Input_type_id": 2,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 20,
+      "Index": 20,
+      "Text": "您是否做过手术？",
+      "Input_type_id": 1,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 21,
+      "Index": 21,
+      "Text": "您的一级亲属中是否有人患过肿瘤？",
+      "Input_type_id": 1,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 22,
+      "Index": 22,
+      "Text": "您是否有确诊的精神疾病",
+      "Input_type_id": 3,
+      "Survey_id": 1
+    },
+    {
+      "Question_id": 23,
+      "Index": 23,
+      "Text": "您自我评价精神压力情况是？",
+      "Input_type_id": 1,
+      "Survey_id": 1
+    }
+  ],
+  "Input_type": [
+    {
+      "Input_type_id": 1,
+      "Name": "单选"
+    },
+    {
+      "Input_type_id": 2,
+      "Name": "多选"
+    },
+    {
+      "Input_type_id": 3,
+      "Name": "填空"
+    }
+  ],
+  "Options": [
+    {
+      "Option_id": 1,
+      "option_text": "男",
+      "Question_id": 2
+    },
+    {
+      "Option_id": 2,
+      "option_text": "女",
+      "Question_id": 2
+    },
+    {
+      "Option_id": 3,
+      "option_text": "年？",
+      "Question_id": 5
+    },
+    {
+      "Option_id": 4,
+      "option_text": "月？",
+      "Question_id": 5
+    },
+    {
+      "Option_id": 5,
+      "option_text": "日？",
+      "Question_id": 5
+    },
+    {
+      "Option_id": 6,
+      "option_text": "患者本人电话号码？（填空）",
+      "Question_id": 6
+    },
+    {
+      "Option_id": 7,
+      "option_text": "家属称呼？（填空）",
+      "Question_id": 6
+    },
+    {
+      "Option_id": 8,
+      "option_text": "家属电话号码？（填空）",
+      "Question_id": 6
+    },
+    {
+      "Option_id": 9,
+      "option_text": "是",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 10,
+      "option_text": "家庭住址 ？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 11,
+      "option_text": "省？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 12,
+      "option_text": "市？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 13,
+      "option_text": "县？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 14,
+      "option_text": "街道？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 15,
+      "option_text": "小区？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 16,
+      "option_text": "否",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 17,
+      "option_text": "长期居住地地区名称？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 18,
+      "option_text": "省？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 19,
+      "option_text": "市？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 20,
+      "option_text": "县？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 21,
+      "option_text": "居住时长？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 22,
+      "option_text": "年？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 23,
+      "option_text": "月？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 24,
+      "option_text": "出生地地区名称？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 25,
+      "option_text": "省？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 26,
+      "option_text": "市？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 27,
+      "option_text": "县？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 28,
+      "option_text": "居住时长？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 29,
+      "option_text": "年？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 30,
+      "option_text": "月？（填空）",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 31,
+      "option_text": "不详",
+      "Question_id": 9
+    },
+    {
+      "Option_id": 32,
+      "option_text": "是",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 33,
+      "option_text": "是否根除？（单选）",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 34,
+      "option_text": "已根除",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 35,
+      "option_text": "确诊时间？（填空）",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 36,
+      "option_text": "根除完成时间？（填空）",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 37,
+      "option_text": "根除失败",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 38,
+      "option_text": "确诊时间？（填空）",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 39,
+      "option_text": "未根除",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 40,
+      "option_text": "确诊时间？（填空）",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 41,
+      "option_text": "否",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 42,
+      "option_text": "不详",
+      "Question_id": 10
+    },
+    {
+      "Option_id": 43,
+      "option_text": "是",
+      "Question_id": 11
+    },
+    {
+      "Option_id": 44,
+      "option_text": "否",
+      "Question_id": 11
+    },
+    {
+      "Option_id": 45,
+      "option_text": "不详",
+      "Question_id": 11
+    },
+    {
+      "Option_id": 46,
+      "option_text": "高盐",
+      "Question_id": 12
+    },
+    {
+      "Option_id": 47,
+      "option_text": "高糖",
+      "Question_id": 12
+    },
+    {
+      "Option_id": 48,
+      "option_text": "高油",
+      "Question_id": 12
+    },
+    {
+      "Option_id": 49,
+      "option_text": "喜烫食",
+      "Question_id": 12
+    },
+    {
+      "Option_id": 50,
+      "option_text": "喜烟熏食物",
+      "Question_id": 12
+    },
+    {
+      "Option_id": 51,
+      "option_text": "喜油炸食物",
+      "Question_id": 12
+    },
+    {
+      "Option_id": 52,
+      "option_text": "喜腌菜",
+      "Question_id": 12
+    },
+    {
+      "Option_id": 53,
+      "option_text": "喜红肉或加工肉类",
+      "Question_id": 12
+    },
+    {
+      "Option_id": 54,
+      "option_text": "以上均无",
+      "Question_id": 12
+    },
+    {
+      "Option_id": 55,
+      "option_text": "长期不吃早餐",
+      "Question_id": 13
+    },
+    {
+      "Option_id": 56,
+      "option_text": "少食蔬果",
+      "Question_id": 13
+    },
+    {
+      "Option_id": 57,
+      "option_text": "饮食不规律",
+      "Question_id": 13
+    },
+    {
+      "Option_id": 58,
+      "option_text": "暴饮暴食",
+      "Question_id": 13
+    },
+    {
+      "Option_id": 59,
+      "option_text": "吃饭速度快",
+      "Question_id": 13
+    },
+    {
+      "Option_id": 60,
+      "option_text": "吃剩饭菜",
+      "Question_id": 13
+    },
+    {
+      "Option_id": 61,
+      "option_text": "以上均无",
+      "Question_id": 13
+    },
+    {
+      "Option_id": 62,
+      "option_text": "吸烟，未戒",
+      "Question_id": 14
+    },
+    {
+      "Option_id": 63,
+      "option_text": "吸烟？年（填空）",
+      "Question_id": 14
+    },
+    {
+      "Option_id": 64,
+      "option_text": "平均？支/天（填空）",
+      "Question_id": 14
+    },
+    {
+      "Option_id": 65,
+      "option_text": "吸过烟，已戒",
+      "Question_id": 14
+    },
+    {
+      "Option_id": 66,
+      "option_text": "吸烟？年（填空）",
+      "Question_id": 14
+    },
+    {
+      "Option_id": 67,
+      "option_text": "平均？支/天（填空）",
+      "Question_id": 14
+    },
+    {
+      "Option_id": 68,
+      "option_text": "戒烟？年（填空）",
+      "Question_id": 14
+    },
+    {
+      "Option_id": 69,
+      "option_text": "从不吸烟",
+      "Question_id": 14
+    },
+    {
+      "Option_id": 70,
+      "option_text": "喝酒，未戒",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 71,
+      "option_text": "饮酒？年（填空）",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 72,
+      "option_text": "饮酒频率？（单选）",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 73,
+      "option_text": "经常",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 74,
+      "option_text": "平均？ml/天（填空）",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 75,
+      "option_text": "偶尔",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 76,
+      "option_text": "饮什么酒？（填空）",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 77,
+      "option_text": "以前喝，已戒",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 78,
+      "option_text": "饮酒？年（填空）",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 79,
+      "option_text": "饮酒频率？（单选）",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 80,
+      "option_text": "经常",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 81,
+      "option_text": "平均？ml/天（填空）",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 82,
+      "option_text": "偶尔",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 83,
+      "option_text": "饮什么酒？（填空）",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 84,
+      "option_text": "戒酒？年（填空）",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 85,
+      "option_text": "从不喝酒",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 86,
+      "option_text": "不详",
+      "Question_id": 15
+    },
+    {
+      "Option_id": 87,
+      "option_text": "有",
+      "Question_id": 16
+    },
+    {
+      "Option_id": 88,
+      "option_text": "药物具体名称？（填空）",
+      "Question_id": 16
+    },
+    {
+      "Option_id": 89,
+      "option_text": "剂量？（填空）",
+      "Question_id": 16
+    },
+    {
+      "Option_id": 90,
+      "option_text": "服用时间？（填空）",
+      "Question_id": 16
+    },
+    {
+      "Option_id": 91,
+      "option_text": "服用原因？（填空）",
+      "Question_id": 16
+    },
+    {
+      "Option_id": 92,
+      "option_text": "无",
+      "Question_id": 16
+    },
+    {
+      "Option_id": 93,
+      "option_text": "不详",
+      "Question_id": 16
+    },
+    {
+      "Option_id": 94,
+      "option_text": "高血压",
+      "Question_id": 17
+    },
+    {
+      "Option_id": 95,
+      "option_text": "冠心病",
+      "Question_id": 17
+    },
+    {
+      "Option_id": 96,
+      "option_text": "糖尿病",
+      "Question_id": 17
+    },
+    {
+      "Option_id": 97,
+      "option_text": "慢性阻塞性肺部疾病",
+      "Question_id": 17
+    },
+    {
+      "Option_id": 98,
+      "option_text": "慢性心力衰竭",
+      "Question_id": 17
+    },
+    {
+      "Option_id": 99,
+      "option_text": "慢性肾衰",
+      "Question_id": 17
+    },
+    {
+      "Option_id": 100,
+      "option_text": "甲亢",
+      "Question_id": 17
+    },
+    {
+      "Option_id": 101,
+      "option_text": "甲减",
+      "Question_id": 17
+    },
+    {
+      "Option_id": 102,
+      "option_text": "其它？（填空）",
+      "Question_id": 17
+    },
+    {
+      "Option_id": 103,
+      "option_text": "胃炎",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 104,
+      "option_text": "消化性溃疡",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 105,
+      "option_text": "胃食管反流病",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 106,
+      "option_text": "胃癌",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 107,
+      "option_text": "食管癌",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 108,
+      "option_text": "炎症性肠病",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 109,
+      "option_text": "结直肠癌",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 110,
+      "option_text": "胰腺癌",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 111,
+      "option_text": "肝炎",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 112,
+      "option_text": "肝硬化",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 113,
+      "option_text": "其它？（填空）",
+      "Question_id": 18
+    },
+    {
+      "Option_id": 114,
+      "option_text": "胃炎",
+      "Question_id": 19
+    },
+    {
+      "Option_id": 115,
+      "option_text": "消化性溃疡",
+      "Question_id": 19
+    },
+    {
+      "Option_id": 116,
+      "option_text": "胃食管反流病",
+      "Question_id": 19
+    },
+    {
+      "Option_id": 117,
+      "option_text": "胃癌",
+      "Question_id": 19
+    },
+    {
+      "Option_id": 118,
+      "option_text": "食管癌",
+      "Question_id": 19
+    },
+    {
+      "Option_id": 119,
+      "option_text": "炎症性肠病",
+      "Question_id": 19
+    },
+    {
+      "Option_id": 120,
+      "option_text": "结直肠癌",
+      "Question_id": 19
+    },
+    {
+      "Option_id": 121,
+      "option_text": "胰腺癌",
+      "Question_id": 19
+    },
+    {
+      "Option_id": 122,
+      "option_text": "其它？（填空）",
+      "Question_id": 19
+    },
+    {
+      "Option_id": 123,
+      "option_text": "有",
+      "Question_id": 20
+    },
+    {
+      "Option_id": 124,
+      "option_text": "疾病名称？（填空）",
+      "Question_id": 20
+    },
+    {
+      "Option_id": 125,
+      "option_text": "手术时间？（填空）",
+      "Question_id": 20
+    },
+    {
+      "Option_id": 126,
+      "option_text": "手术方式？（填空）",
+      "Question_id": 20
+    },
+    {
+      "Option_id": 127,
+      "option_text": "无",
+      "Question_id": 20	
+    },
+    {
+      "Option_id": 128,
+      "option_text": "不详",
+      "Question_id": 20
+    },
+    {
+      "Option_id": 129,
+      "option_text": "有",
+      "Question_id": 21
+    },
+    {
+      "Option_id": 130,
+      "option_text": "称谓（与本人关系）？（填空）",
+      "Question_id": 21
+    },
+    {
+      "Option_id": 131,
+      "option_text": "肿瘤详细名称（仅填写一级亲属）？（填空）",
+      "Question_id": 21
+    },
+    {
+      "Option_id": 132,
+      "option_text": "无",
+      "Question_id": 21
+    },
+    {
+      "Option_id": 133,
+      "option_text": "不详",
+      "Question_id": 21
+    },
+    {
+      "Option_id": 134,
+      "option_text": "是",
+      "Question_id": 22
+    },
+    {
+      "Option_id": 135,
+      "option_text": "疾病具体名称？（填空）",
+      "Question_id": 22
+    },
+    {
+      "Option_id": 136,
+      "option_text": "疾病严重程度？（填空）",
+      "Question_id": 22
+    },
+    {
+      "Option_id": 137,
+      "option_text": "病程时间？（填空）",
+      "Question_id": 22
+    },
+    {
+      "Option_id": 138,
+      "option_text": "治疗措施？（填空）",
+      "Question_id": 22
+    },
+    {
+      "Option_id": 139,
+      "option_text": "目前状况？（填空）",
+      "Question_id": 22
+    },
+    {
+      "Option_id": 140,
+      "option_text": "否",
+      "Question_id": 22
+    },
+    {
+      "Option_id": 141,
+      "option_text": "非常大",
+      "Question_id": 23
+    },
+    {
+      "Option_id": 142,
+      "option_text": "有点大",
+      "Question_id": 23
+    },
+    {
+      "Option_id": 143,
+      "option_text": "一般",
+      "Question_id": 23
+    },
+    {
+      "Option_id": 144,
+      "option_text": "没有",
+      "Question_id": 23
+    },
+    {
+      "Option_id": 145,
+      "option_text": "不详",
+      "Question_id": 23
+    }
+  ]
+}

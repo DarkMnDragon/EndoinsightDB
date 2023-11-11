@@ -127,8 +127,3 @@ def send_image(filename):
 @app.route('/')
 def welcome():
     return 'Welcome to the Flask App!'
-
-
-if __name__ == "__main__":
-    app.debug = False
-    app.run(host='0.0.0.0', port=9999)

@@ -1,16 +1,16 @@
-# EndoinsightDB: Deployment at WestChina Hospital
+# EndoinsightDB
 
 ## Overview
-EndoinsightDB is a database management system tailored for the Gastrointestinal Endoscopy Center at WestChina Hospital. This project is developed as part of the SCU Database course in 2023.
+EndoinsightDB is a custom-developed database management system tailored for the Gastrointestinal Endoscopy Center at WestChina Hospital. This project is an integral part of the SCU Database curriculum for the year 2023.
 
 ## Purpose
-The system is designed to manage and analyze endoscopic medical data efficiently. It aims to streamline data handling in a clinical setting, improving both the quality of patient care and the ease of conducting medical research.
+EndoinsightDB's main goal is to efficiently collect and process questionnaires, while enabling effective and real-time machine learning data analysis. It is specifically designed to optimize data processing in clinical settings, enhancing patient care and facilitating medical research. Additionally, the system is equipped to generate educational and warning images, thereby providing a more comprehensive data interpretation experience.
 
 ## Deployment
-This application will be deployed at the Gastrointestinal Endoscopy Center of WestChina Hospital, providing a practical solution to the center's data management needs.
+Slated for deployment at WestChina Hospital's Gastrointestinal Endoscopy Center, EndoinsightDB is uniquely suited to address the specific data management needs of the center.
 
 ## Contribution
-This project represents a collaborative effort between SCU students and the medical professionals at WestChina Hospital. It is a step towards integrating advanced database solutions in healthcare.
+This project is a joint effort by SCU students and faculty from the Computer Science Department, along with the dedicated professionals at WestChina Hospital. It reflects a modest yet significant step in integrating advanced database technology with healthcare.
 
 ## Contact
-For more information or queries regarding EndoinsightDB, please contact 1598744255@qq.com.
+For more details or queries regarding EndoinsightDB, please contact [1598744255@qq.com](mailto:1598744255@qq.com).

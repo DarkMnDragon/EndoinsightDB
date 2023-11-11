@@ -1,19 +1,17 @@
 {
-  "Users": {
+  "Users": [{
     "User_id": "user123",
     "username": "example_user",
     "password_hashed": "hashed_password_example",
     "last_login_time": "2023-11-03T10:00:00Z"
-  },
-  "Responses": {
+  }],
+  "Responses": [{
     "Response_id": "response1",
     "Time": "2023-11-03T10:00:00Z",
-    "Input_image": null,
-    "Predict_image": null,
     "Score": null,
     "User_id": "user123",
-    "Survey_id": "survey1"
-  },
+    "Survey_id": 1
+  }],
   "Question_responses": [
     {
       "Question_response_id": "qr1",

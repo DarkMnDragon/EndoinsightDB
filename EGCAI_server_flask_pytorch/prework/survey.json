@@ -4,7 +4,9 @@
       "Survey_id": 1,
       "Title": "问卷调查",
       "Description": "",
-      "Date": "2023-11-03"
+      "Date": "2023-11-03",
+      "first_question_id": 1,
+      "last_question_id": 66
     }
   ],
   "Input_type": [
@@ -21,7 +23,7 @@
       "Name": "多选"
     }
   ],
-  "Question": [
+  "Questions": [
     {
       "Question_id": 1,
       "Text": "您的姓名是?",

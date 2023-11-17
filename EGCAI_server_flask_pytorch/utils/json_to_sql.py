@@ -4,7 +4,7 @@ import json
 def generate_insert_statements(table_name, data_entries):
     if not data_entries:
         return None
-    base_statement = f"INSERT INTO {table_name} ({', '.join(data_entries[0].keys())}) VALUES "
+    base_statement = f"INSERT INTO {table_name} ({', '.join(data_entries.keys())}) VALUES "
     value_statements = []
     for entry in data_entries:
         values = [str(entry[key]) if isinstance(entry[key], int)

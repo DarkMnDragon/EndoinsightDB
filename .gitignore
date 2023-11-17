@@ -5,7 +5,6 @@
 .vs/
 .idea/
 /**/.idea/
-/**/app.py
 /**/init_db.py
 
 # Gradle cache directory

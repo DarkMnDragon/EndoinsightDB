@@ -65,7 +65,7 @@
 
    1. api ：`PUT base_url/api/basic_info`
 
-   2. 请求体：
+   2. 请求体参数：
 
       | 参数名                     | 类型    | 描述               |
       | -------------------------- | ------- | ------------------ |
@@ -96,6 +96,19 @@
           "homeplace": "四川省成都市"
       }
       ```
+
+   3. 响应体参数：
+
+      ```json
+      {
+          "message": "success",
+          "error": {
+              "type": ""
+          }
+      }
+      ```
+
+      
 
 3. 获取预测疾病问卷首页 - 绑定引导页上某个疾病问卷按钮，创建问卷实例（数据库端），服务器端返回问卷 `response_id`
 
@@ -152,25 +165,24 @@
 
       | 参数名           | 类型  | 描述                           |
       | ---------------- | ----- | ------------------------------ |
-      | user_id          | int   | 用户id                         |
-      | response_id      | int   | 响应id                         |
+      | user_id          | Text  | 用户id                         |
+      | response_id      | Text  | 响应id                         |
       | type_id          | int   | 题目类型id                     |
       | text             | Text  | 把数字、日期统一为文本传给后端 |
       | selected_options | array | 选择选项数组                   |
       
       ```json
       {
-          "user_id": 123,
-          "response_id": 123456,
+          "user_id": 'xdsgasgfsa',
+          "response_id": '324dsagsg2',
           "type_id": 2,
-          "text": "xxx",
-          "option_num": 4,
-          "selected_options": [1, 3, 4]
+          "text": "xxx",i
+          "selected_options": [0, 2, 3]// 注意0开始编号
       }
       ```
       
    4. 响应参数：
-
+   
       ```json
       // 请求成功
       {
@@ -194,7 +206,7 @@
           //}
       }
       ```
-
+   
 5. 获取下一题序号、题目和选项 - 绑定：下一题按钮 & 问卷首页的问卷开始按钮。前端逻辑下一题时，先判断提交答案的 `message==success`，否则提示先提交选择当前问题
 
    1. api：`POST base_url/api/surveys/{survey_id}/questions/{question_id}/next_question`
@@ -236,6 +248,15 @@
            "hist_text": "历史文本回答",
            "hist_options": [1, 3],
            "is_last_question": false
+       }
+   }
+   
+   
+   {
+       "message": "fail",
+       "error": {
+           "type": "NoMatching",
+           "description": "问题编号不匹配" 
        }
    }
    ```
@@ -309,8 +330,8 @@
 
       ```json
       {
-          "user_id": 123,
-          "response_id": 123456
+          "user_id": 'afsd',
+          "response_id": '1231sfas'
       }
       ```
 

@@ -127,7 +127,7 @@ void solve()
             }
         }
     }
-    cout << "{\n  \"Surveys\": [\n    {\n      \"Survey_id\": 1,\n      \"Title\": \"问卷调查\",\n      \"Description\": \"\",\n      \"Date\": \"2023-11-03\"\n    }\n  ],\n";
+    cout << "{\n  \"Surveys\": [\n    {\n      \"Survey_id\": 1,\n      \"Title\": \"问卷调查\",\n      \"Description\": \"\",\n      \"Date\": \"2023-11-03\",\n      \"first_question_id\": 1,\n      \"last_question_id\": 66\n    }\n  ],\n";
     cout << "  \"Input_type\": [\n    {\n      \"Input_type_id\": 0,\n      \"Name\": \"填空\"\n    },\n    {\n      \"Input_type_id\": 1,\n      \"Name\": \"单选\"\n    },\n    {\n      \"Input_type_id\": 2,\n      \"Name\": \"多选\"\n    }\n  ],\n";
     cout << "  \"Questions\": [" << endl;
     For(i, 1, totq)

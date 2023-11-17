@@ -1,8 +1,8 @@
-CREATE TABLE Surveys (
-      Survey_id INT PRIMARY KEY,
-      Title VARCHAR(255),
-      Description TEXT,
-      Date DATE
+CREATE TABLE surveys (
+      survey_id INT PRIMARY KEY,
+      title VARCHAR(255),
+      description TEXT,
+      date DATE
     
 );
 
@@ -40,12 +40,20 @@ CREATE TABLE Question_logic (
     
 );
 
-CREATE TABLE Users (
-      User_id INT PRIMARY KEY,
-      usename VARCHAR(255),
-      password_hashed VARCHAR(255),
-      last_login_time TIMESTAMP
-    
+
+CREATE TABLE users (
+    user_id INT PRIMARY KEY,
+    name VARCHAR(255),
+    sex VARCHAR(10),
+    nation VARCHAR(50),
+    ID_number VARCHAR(18),
+    birthday DATE,
+    phone_number VARCHAR(20),
+    family_member_phone_number VARCHAR(20),
+    height INT,
+    weight INT,
+    homeplace VARCHAR(100),
+    last_login_time TIMESTAMP
 );
 
 CREATE TABLE Image_responses (
@@ -88,4 +96,14 @@ CREATE TABLE Selected_option (
     
 );
 
+CREATE TABLE list (
+      list_id INT PRIMARY KEY,
+      parent_question_id INT,
+      child_question_id INT,
+      response_id INT,
+      FOREIGN KEY (parent_question_id) REFERENCES questions(question_id),
+      FOREIGN KEY (child_question_id) REFERENCES questions(question_id),
+      FOREIGN KEY (response_id) REFERENCES responses(response_id)
+);
+	
 

@@ -1,10 +1,10 @@
-INSERT INTO Surveys (Survey_id, Title, Description, Date) VALUES (1, '问卷调查', '', '2023-11-03');
+INSERT INTO surveys (survey_id, title, description, date, first_question_id, last_question_id) VALUES (1, '疾病预测问卷调查', '', '2023-11-03', 1, 66);
 
-INSERT INTO Input_type (Input_type_id, Name) VALUES (0, '填空'),
+INSERT INTO input_type (type_id, name) VALUES (0, '填空'),
 (1, '单选'),
 (2, '多选');
 
-INSERT INTO Questions (Question_id, Text, Input_type_id, Survey_id) VALUES (1, '您的姓名是?', 0, 1),
+INSERT INTO questions (question_id, question_text, type_id, survey_id) VALUES (1, '您的姓名是?', 0, 1),
 (2, '您的性别是?', 1, 1),
 (3, '您的民族是?', 0, 1),
 (4, '您的身份证号是?', 0, 1),
@@ -71,7 +71,7 @@ INSERT INTO Questions (Question_id, Text, Input_type_id, Survey_id) VALUES (1, '
 (65, '目前状况?', 0, 1),
 (66, '您自我评价精神压力情况是?', 1, 1);
 
-INSERT INTO Options (Option_id, option_text, Question_id) VALUES (1, '男', 2),
+INSERT INTO options (option_id, option_text, question_id) VALUES (1, '男', 2),
 (2, '女', 2),
 (3, '是', 13),
 (4, '否', 13),
@@ -162,7 +162,7 @@ INSERT INTO Options (Option_id, option_text, Question_id) VALUES (1, '男', 2),
 (89, '没有', 66),
 (90, '不详', 66);
 
-INSERT INTO Question_logic (Logic_id, Parent_question_id, Parent_option_id, Child_question_id) VALUES (1, 1, 0, 2),
+INSERT INTO question_logic (logic_id, parent_question_id, parent_option_id, child_question_id) VALUES (1, 1, 0, 2),
 (2, 2, 2, 3),
 (3, 2, 1, 3),
 (4, 3, 0, 4),

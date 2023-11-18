@@ -2,47 +2,49 @@ CREATE TABLE surveys (
       survey_id INT PRIMARY KEY,
       title VARCHAR(255),
       description TEXT,
-      date DATE
+      date DATE,
+      first_question_id INT,
+      last_question_id INT
+
+);
+
+CREATE TABLE input_type (
+      type_id INT PRIMARY KEY,
+      name VARCHAR(50)
     
 );
 
-CREATE TABLE Input_type (
-      Input_type_id INT PRIMARY KEY,
-      Name VARCHAR(50)
+CREATE TABLE questions (
+      question_id INT PRIMARY KEY,
+      question_text VARCHAR(255),
+      type_id INT,
+      survey_id INT,
+      FOREIGN KEY (type_id) REFERENCES input_type(type_id),
+      FOREIGN KEY (survey_id) REFERENCES surveys(survey_id)
     
 );
 
-CREATE TABLE Questions (
-      Question_id INT PRIMARY KEY,
-      Text VARCHAR(255),
-      Input_type_id INT,
-      Survey_id INT,
-      FOREIGN KEY (Input_type_id) REFERENCES Input_type(Input_type_id),
-      FOREIGN KEY (Survey_id) REFERENCES Surveys(Survey_id)
-    
-);
-
-CREATE TABLE Options (
-      Option_id INT PRIMARY KEY,
+CREATE TABLE options (
+      option_id INT PRIMARY KEY,
       option_text VARCHAR(255),
-      Question_id INT,
-      FOREIGN KEY (Question_id) REFERENCES Questions(Question_id)
+      question_id INT,
+      FOREIGN KEY (question_id) REFERENCES questions(question_id)
     
 );
 
-CREATE TABLE Question_logic (
-      Logic_id INT PRIMARY KEY,
-      Parent_question_id INT,
-      Parent_option_id INT,
-      Child_question_id INT,
-      FOREIGN KEY (Parent_question_id) REFERENCES Questions(Question_id),
-      FOREIGN KEY (Child_question_id) REFERENCES Questions(Question_id)
+CREATE TABLE question_logic (
+      logic_id INT PRIMARY KEY,
+      parent_question_id INT,
+      parent_option_id INT,
+      child_question_id INT,
+      FOREIGN KEY (parent_question_id) REFERENCES questions(question_id),
+      FOREIGN KEY (child_question_id) REFERENCES questions(question_id)
     
 );
 
 
 CREATE TABLE users (
-    user_id INT PRIMARY KEY,
+    user_id VARCHAR(255) PRIMARY KEY,
     name VARCHAR(255),
     sex VARCHAR(10),
     nation VARCHAR(50),
@@ -56,51 +58,51 @@ CREATE TABLE users (
     last_login_time TIMESTAMP
 );
 
-CREATE TABLE Image_responses (
-      Image_responses_id INT PRIMARY KEY,
-      Time TIMESTAMP,
-      Input_image BYTEA,
-      Predict_image BYTEA,
-      User_id INT,
-      FOREIGN KEY (User_id) REFERENCES Users(User_id)
+CREATE TABLE image_responses (
+      image_responses_id INT PRIMARY KEY,
+      time TIMESTAMP,
+      input_image BYTEA,
+      predict_image BYTEA,
+      user_id VARCHAR(255),
+      FOREIGN KEY (user_id) REFERENCES users(user_id)
     
 );
 
-CREATE TABLE Responses (
-      Response_id INT PRIMARY KEY,
-      Time TIMESTAMP,
-      Score INT,
-      User_id INT,
-      Survey_id INT,
-      FOREIGN KEY (User_id) REFERENCES Users(User_id),
-      FOREIGN KEY (Survey_id) REFERENCES Surveys(Survey_id) 
+CREATE TABLE responses (
+      response_id VARCHAR(255) PRIMARY KEY,
+      time TIMESTAMP,
+      user_id VARCHAR(255),
+      survey_id INT,
+      current_question_id INT,
+      FOREIGN KEY (user_id) REFERENCES users(user_id),
+      FOREIGN KEY (survey_id) REFERENCES surveys(survey_id) 
     
 );
 
-CREATE TABLE Question_responses (
-      Question_response_id INT PRIMARY KEY,
-      Answer TEXT,
-      Response_id INT,
-      Question_id INT,
-      FOREIGN KEY (Response_id) REFERENCES Responses(Response_id),
-      FOREIGN KEY (Question_id) REFERENCES Questions(Question_id) 
+CREATE TABLE question_responses (
+      question_response_id VARCHAR(255) PRIMARY KEY,
+      answer TEXT,
+      response_id VARCHAR(255),
+      question_id INT,
+      FOREIGN KEY (response_id) REFERENCES responses(response_id),
+      FOREIGN KEY (question_id) REFERENCES questions(question_id) 
     
 );
 
-CREATE TABLE Selected_option (
-      Selected_option_id INT PRIMARY KEY,
-      Question_response_id INT,
-      Option_id INT,
-      FOREIGN KEY (Question_response_id) REFERENCES Question_responses(Question_response_id),
-      FOREIGN KEY (Option_id) REFERENCES Options(Option_id) 
+CREATE TABLE selected_option (
+      selected_option_id VARCHAR(255) PRIMARY KEY,
+      question_response_id VARCHAR(255),
+      option_id INT,
+      FOREIGN KEY (question_response_id) REFERENCES question_responses(question_response_id),
+      FOREIGN KEY (option_id) REFERENCES options(option_id) 
     
 );
 
-CREATE TABLE list (
-      list_id INT PRIMARY KEY,
+CREATE TABLE lists (
+      list_id VARCHAR(255) PRIMARY KEY,
       parent_question_id INT,
       child_question_id INT,
-      response_id INT,
+      response_id VARCHAR(255),
       FOREIGN KEY (parent_question_id) REFERENCES questions(question_id),
       FOREIGN KEY (child_question_id) REFERENCES questions(question_id),
       FOREIGN KEY (response_id) REFERENCES responses(response_id)

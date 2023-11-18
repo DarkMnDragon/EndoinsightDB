@@ -1,0 +1,1 @@
+INSERT INTO users (ID_number, birthday, family_member_phone_number, height, homeplace, name, nation, phone_number, sex, user_id, weight) VALUES ('430111200212231718', '2002-12-23', '18670098651', 193, '\u6e56\u5357\u7701\u957f\u6c99\u5e02\u5929\u5fc3\u533a', 'Lucas', '\u6c49\u65cf', '19176691718', '\u7537', 'lucasQAQ', 75);

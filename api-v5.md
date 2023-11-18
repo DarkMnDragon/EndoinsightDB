@@ -176,7 +176,7 @@
           "user_id": 'xdsgasgfsa',
           "response_id": '324dsagsg2',
           "type_id": 2,
-          "text": "xxx",i
+          "text": "xxx",
           "selected_options": [0, 2, 3]// 注意0开始编号
       }
       ```

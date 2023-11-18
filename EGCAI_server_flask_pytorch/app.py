@@ -36,6 +36,7 @@ def get_db_connection():
 @ app.route('/api/surveys/<survey_id>/end_survey', methods=['POST'])
 def end_survey(survey_id):
     response = request.get_json()
+    survey_id = int(survey_id)
     conn = get_db_connection()
     cur = conn.cursor()
     response_id = response.get('response_id')

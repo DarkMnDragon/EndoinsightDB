@@ -127,43 +127,43 @@ void solve()
             }
         }
     }
-    cout << "{\n  \"Surveys\": [\n    {\n      \"Survey_id\": 1,\n      \"Title\": \"问卷调查\",\n      \"Description\": \"\",\n      \"Date\": \"2023-11-03\",\n      \"first_question_id\": 1,\n      \"last_question_id\": 66\n    }\n  ],\n";
-    cout << "  \"Input_type\": [\n    {\n      \"Input_type_id\": 0,\n      \"Name\": \"填空\"\n    },\n    {\n      \"Input_type_id\": 1,\n      \"Name\": \"单选\"\n    },\n    {\n      \"Input_type_id\": 2,\n      \"Name\": \"多选\"\n    }\n  ],\n";
-    cout << "  \"Questions\": [" << endl;
+    cout << "{\n  \"surveys\": [\n    {\n      \"survey_id\": 1,\n      \"title\": \"疾病预测问卷调查\",\n      \"description\": \"\",\n      \"date\": \"2023-11-03\",\n      \"first_question_id\": 1,\n      \"last_question_id\": 66\n    }\n  ],\n";
+    cout << "  \"input_type\": [\n    {\n      \"type_id\": 0,\n      \"name\": \"填空\"\n    },\n    {\n      \"type_id\": 1,\n      \"name\": \"单选\"\n    },\n    {\n      \"type_id\": 2,\n      \"name\": \"多选\"\n    }\n  ],\n";
+    cout << "  \"questions\": [" << endl;
     For(i, 1, totq)
     {
         cout << "    " << '{' << endl;
-        cout << "      \"Question_id\": " << q[i].id << ',' << endl;
-        cout << "      \"Text\": \"" << q[i].text << "\"," << endl;
-        cout << "      \"Input_type_id\": " << q[i].input_type_id << ',' << endl;
-        cout << "      \"Survey_id\": " << q[i].survey_id << endl;
+        cout << "      \"question_id\": " << q[i].id << ',' << endl;
+        cout << "      \"question_text\": \"" << q[i].text << "\"," << endl;
+        cout << "      \"type_id\": " << q[i].input_type_id << ',' << endl;
+        cout << "      \"survey_id\": " << q[i].survey_id << endl;
         if (i != totq)
             cout << "    }," << endl;
         else
             cout << "    }" << endl;
     }
     cout << "  ]," << endl;
-    cout << "  \"Options\": [" << endl;
+    cout << "  \"options\": [" << endl;
     For(i, 1, toto)
     {
         cout << "    " << '{' << endl;
-        cout << "      \"Option_id\": " << o[i].id << ',' << endl;
+        cout << "      \"option_id\": " << o[i].id << ',' << endl;
         cout << "      \"option_text\": \"" << o[i].opt << "\"," << endl;
-        cout << "      \"Question_id\": " << o[i].question_id << endl;
+        cout << "      \"question_id\": " << o[i].question_id << endl;
         if (i != toto)
             cout << "    }," << endl;
         else
             cout << "    }" << endl;
     }
     cout << "  ]," << endl;
-    cout << "  \"Question_logic\": [" << endl;
+    cout << "  \"question_logic\": [" << endl;
     For(i, 1, totql)
     {
         cout << "    " << '{' << endl;
-        cout << "      \"Logic_id\": " << ql[i].id << ',' << endl;
-        cout << "      \"Parent_question_id\": " << ql[i].Parent_question_id << ',' << endl;
-        cout << "      \"Parent_option_id\": " << ql[i].Parent_option_id << ',' << endl;
-        cout << "      \"Child_question_id\": " << ql[i].Child_question_id << endl;
+        cout << "      \"logic_id\": " << ql[i].id << ',' << endl;
+        cout << "      \"parent_question_id\": " << ql[i].Parent_question_id << ',' << endl;
+        cout << "      \"parent_option_id\": " << ql[i].Parent_option_id << ',' << endl;
+        cout << "      \"child_question_id\": " << ql[i].Child_question_id << endl;
         if (i != totql)
             cout << "    }," << endl;
         else

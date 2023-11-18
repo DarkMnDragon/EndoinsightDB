@@ -1,0 +1,11 @@
+{
+    "Responses": {
+    	"Response_id": 1,
+	"Time": "2023-11-03T10:00:00Z",
+        "Score": 0,
+    	"User_id": 123,
+    	"Survey_id": 1
+    }
+    
+}
+

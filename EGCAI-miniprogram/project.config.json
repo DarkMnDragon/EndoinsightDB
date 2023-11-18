@@ -20,11 +20,11 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "condition": false
+    "condition": false,
+    "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.7.7",
-  "appid": "wx900d72df0e1450c3",
   "projectname": "miniprogram-2",
   "cloudfunctionTemplateRoot": "",
   "condition": {},

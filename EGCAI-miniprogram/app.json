@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#889df1",
+    "navigationBarTitleText": "EndoinsigheDB",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}
+=======
 {
   "pages":[
    
@@ -49,3 +63,4 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
+>>>>>>> a8eef7dcbae9c7b495f2ab45deeee64d60734428

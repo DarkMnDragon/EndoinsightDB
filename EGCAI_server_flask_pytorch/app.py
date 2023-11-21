@@ -16,11 +16,11 @@ def check(cur, table, id_name, table_id):
     if type(table_id) == int:
         s = s + str(table_id)  # 如果table_id是整数，直接添加
     else:
-        s = s + '\'' + table_id + '\'' # 如果table_id不是整数，添加引号后再添加
+        s = s + '\'' + table_id + '\''  # 如果table_id不是整数，添加引号后再添加
     cur.execute(s)
     res = cur.fetchall()
     # 检查查询结果，如果没有记录，返回0；否则返回1
-    if(len(res) == 0):
+    if (len(res) == 0):
         return 0
     else:
         return 1
@@ -37,16 +37,16 @@ def get_db_connection():
 @ app.route('/api/surveys/<survey_id>/end_survey', methods=['POST'])
 def end_survey(survey_id):
     response = request.get_json()
-    survey_id = int(survey_id) # 将survey_id转换为整数
+    survey_id = int(survey_id)  # 将survey_id转换为整数
     conn = get_db_connection()
     cur = conn.cursor()
     response_id = response.get('response_id')
     user_id = response.get('user_id')
     # 检查survey_id, user_id, 和response_id是否在相应的数据库表中存在
-    if(check(cur, 'surveys', 'survey_id', survey_id) == 0 or
+    if (check(cur, 'surveys', 'survey_id', survey_id) == 0 or
        check(cur, 'users', 'user_id', user_id) == 0 or
        check(cur, 'responses', 'response_id', response_id) == 0
-       ):
+        ):
         cur.close()
         conn.close()
         error_info = {'type': 'InvalidData', 'description': '提供数据不正确'}
@@ -105,7 +105,7 @@ def getPreviousQuestion(survey_id, question_id):
     options_text = []
     for previous_question_option in previous_question_options:
         options_text.append(previous_question_option[1])
-    
+
     # 获取之前选择的答案
     cur.execute('select * from question_responses '
                 'where response_id=%s and question_id=%s',
@@ -113,7 +113,7 @@ def getPreviousQuestion(survey_id, question_id):
                 )
     question_response_before = cur.fetchall()[0]
     hist_text = question_response_before[1]
-   
+
     # 获取之前选择的选项
     cur.execute('select * from selected_option '
                 'where question_response_id=%s',
@@ -123,7 +123,7 @@ def getPreviousQuestion(survey_id, question_id):
     options_before = cur.fetchall()
     for option_before in options_before:
         hist_options.append(option_before[2])
-    
+
     # 检查是否为第一个问题
     cur.execute('select first_question_id from surveys '
                 'where survey_id=%s',
@@ -146,7 +146,7 @@ def getPreviousQuestion(survey_id, question_id):
         'hist_options': hist_options,
         'is_first_question': is_first_question
     }
-    
+
     # 更新链表
     cur.execute('delete from lists where list_id=%s',
                 (list_id,)
@@ -338,7 +338,7 @@ def submit(survey_id, question_id):
     cur = conn.cursor()
 
     # 检查是否在相应的数据库表中存在
-    if(check(cur, 'surveys', 'survey_id', survey_id) == 0 or
+    if (check(cur, 'surveys', 'survey_id', survey_id) == 0 or
        check(cur, 'questions', 'question_id', question_id) == 0 or
        check(cur, 'users', 'user_id', user_id) == 0 or
        check(cur, 'responses', 'response_id', response_id) == 0 or
@@ -422,7 +422,7 @@ def submit(survey_id, question_id):
                                              response_list})
         cur.execute(question_response_sql)
         conn.commit()
-    
+
     # 如果问题类型是选择题，则插入选择的选项
     if response.get('type_id') == 1 or response.get('type_id') == 2:
         cur.execute('select row_to_json(t) from('
@@ -462,13 +462,13 @@ def createSurveyInstance(survey_id):
     user_id = response.get('user_id')
     conn = get_db_connection()
     cur = conn.cursor()
-    
+
     # 检查用户信息是否存在
     cur.execute('select row_to_json(t) from('
                 'select * from users where users.user_id=%s'
                 ') t', (user_id,))
     basic_info = cur.fetchall()
-    if(len(basic_info) == 0):
+    if (len(basic_info) == 0):
         cur.close()
         conn.close()
         error_info = {'type': 'NoUserInfo', 'description': '无该用户'}
@@ -493,7 +493,7 @@ def createSurveyInstance(survey_id):
     response_sql = json_to_sql({'responses': response_list})
     cur.execute(response_sql)
     conn.commit()
-    
+
     # 获取调查问卷的标题和描述
     cur.execute('select title, description from surveys where '
                 'surveys.survey_id={}'.format(survey_id))
@@ -536,11 +536,12 @@ def getBasicInfo(user_id):
                 ') t', (user_id,))
     basic_info = cur.fetchall()
     # 检查是否找到了用户信息
-    if(len(basic_info) == 0):
+    if (len(basic_info) == 0):
         cur.close()
         conn.close()
         error_info = {'type': 'NoUserInfo', 'description': '无该用户'}
-        return jsonify({'message': 'fail', 'error': error_info}) # 如果没有找到用户，返回错误信息
+        # 如果没有找到用户，返回错误信息
+        return jsonify({'message': 'fail', 'error': error_info})
 
     cur.close()
     conn.close()

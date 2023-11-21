@@ -2,7 +2,7 @@ import os
 import json
 import psycopg2
 from flask import Flask, render_template, request, url_for, redirect, jsonify
-import image_process
+# import image_process
 from flask_cors import CORS
 from utils.json_to_sql import json_to_sql
 import hashlib
@@ -28,13 +28,13 @@ def check(cur, table, id_name, table_id):
 
 def get_db_connection():
     conn = psycopg2.connect(host='localhost',
-                            database='endo',
+                            database='Endo',
                             user='endo',
-                            password='123456')
+                            password='endo')
     return conn
 
 
-@ app.route('/api/surveys/<survey_id>/end_survey', methods=['POST'])
+@ app.route('/api/surveys/<survey_id>/end_survey/', methods=['POST'])
 def end_survey(survey_id):
     response = request.get_json()
     survey_id = int(survey_id) # 将survey_id转换为整数
@@ -55,7 +55,7 @@ def end_survey(survey_id):
     return jsonify({'message': 'success'})  # 返回成功信息
 
 
-@ app.route('/api/surveys/<survey_id>/questions/<question_id>/previous_question',
+@ app.route('/api/surveys/<survey_id>/questions/<question_id>/previous_question/',
             methods=['POST'])
 def getPreviousQuestion(survey_id, question_id):
     response = request.get_json()
@@ -166,7 +166,7 @@ def getPreviousQuestion(survey_id, question_id):
     return jsonify({'msg': 'success', 'data': data})
 
 
-@ app.route('/api/surveys/<survey_id>/questions/<question_id>/next_question',
+@ app.route('/api/surveys/<survey_id>/questions/<question_id>/next_question/',
             methods=['POST'])
 def getNextQuestion(survey_id, question_id):
     response = request.get_json()
@@ -325,7 +325,7 @@ def getNextQuestion(survey_id, question_id):
     return jsonify({'msg': 'success', 'data': data})
 
 
-@ app.route('/api/surveys/<survey_id>/questions/<question_id>/submit',
+@app.route('/api/surveys/<survey_id>/questions/<question_id>/submit/',
             methods=['POST'])
 def submit(survey_id, question_id):
     response = request.get_json()
@@ -455,96 +455,157 @@ def submit(survey_id, question_id):
     return jsonify({'message': 'success'})
 
 
-@ app.route('/api/surveys/<survey_id>/new_survey_instance', methods=['POST'])
+@app.route('/api/surveys/<survey_id>/new_survey_instance', methods=['POST'])
 def createSurveyInstance(survey_id):
     response = request.get_json()
     survey_id = int(survey_id)
     user_id = response.get('user_id')
+    jargon = response.get('jargon')
+    if jargon != 'DeepLeiarning':
+        return jsonify({'message': 'fail', 'error': {'type': 'InvalidAccess', 'description': '非法访问'}}), 403
+    # 删除 data 中的 jargon 键
+    if 'jargon' in response:
+        del response['jargon']
+    
     conn = get_db_connection()
     cur = conn.cursor()
     
     # 检查用户信息是否存在
-    cur.execute('select row_to_json(t) from('
-                'select * from users where users.user_id=%s'
-                ') t', (user_id,))
-    basic_info = cur.fetchall()
-    if(len(basic_info) == 0):
+    def user_exists(cursor, user_id):
+        cursor.execute('SELECT 1 FROM users WHERE user_id = %s', (user_id,))
+        return cursor.fetchone() is not None
+    if not user_exists(cur, user_id):
         cur.close()
         conn.close()
-        error_info = {'type': 'NoUserInfo', 'description': '无该用户'}
-        return jsonify({'message': 'fail', 'error': error_info})
+        return jsonify({'message': 'fail', 'error': {'type': 'NoUserInfo', 'description': '无该用户'}})
 
     # 生成唯一的 response_id
-    m = hashlib.sha256()
-    user_id = response.get('user_id').encode('utf-8')
-    time = response.get('time').encode('utf-8')
-    m.update(user_id)
-    m.update(time)
-    response_id = m.hexdigest()
+    def generate_response_id(user_id, timestamp):
+        m = hashlib.sha256()
+        m.update(user_id.encode('utf-8'))
+        m.update(timestamp.encode('utf-8'))
+        return m.hexdigest()
+    response_id = generate_response_id(user_id, response.get('time'))
+
 
     # 设置 response 的初始值
     response['current_question_id'] = 0
     response['survey_id'] = survey_id
     response['response_id'] = response_id
-    response_list = []
-    response_list.append(response)
-
-    # 插入新的 response 记录
-    response_sql = json_to_sql({'responses': response_list})
+    response_sql = json_to_sql({'responses': [response]})
     cur.execute(response_sql)
     conn.commit()
-    
+
     # 获取调查问卷的标题和描述
-    cur.execute('select title, description from surveys where '
-                'surveys.survey_id={}'.format(survey_id))
-    cur_list = cur.fetchall()
-    msg = {}
-    msg['response_id'] = response_id
-    msg['title'] = cur_list[0][0]
-    msg['description'] = cur_list[0][1]
+    cur.execute('SELECT title, description FROM surveys WHERE survey_id = %s', (survey_id,))
+    survey_info = cur.fetchone()
 
     cur.close()
     conn.close()
-    return jsonify({'message': 'success', 'data': msg})
+
+    if survey_info is None:
+        return jsonify({'message': 'fail', 'error': {'type': 'NoSurvey', 'description': '调查问卷不存在'}})
+
+    # 构建并返回成功的响应消息，返回问卷首页标题、内容
+    return jsonify({
+        'message': 'success',
+        'data': {
+            'response_id': response_id,
+            'title': survey_info[0],
+            'description': survey_info[1]
+        }
+    })
 
 
-@ app.route('/api/basic_info', methods=['POST'])
-def postBasicInfo():
-    response = []
-    response.append(request.get_json())
+@app.route('/api/update_basic_info', methods=['POST'])
+def updateBasicInfo():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    jargon = data.get('jargon')
 
-    # 将 response 列表转换为 SQL 语句，准备插入到 users 表中
-    response_sql = json_to_sql({'users': response})
+    # 验证 jargon
+    if jargon != 'DeepLeiarning':
+        return jsonify({'message': 'fail', 'error': {'type': 'InvalidAccess', 'description': '非法访问'}}), 403
+
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute(response_sql)
-    conn.commit()
 
-    cur.close()
-    conn.close()
-    return jsonify({'message': 'success'})
-
-
-@ app.route('/api/basic_info/<user_id>', methods=['GET'])
-def getBasicInfo(user_id):
-    conn = get_db_connection()
-    cur = conn.cursor()
-
-    # 执行 SQL 查询以获取指定用户 ID 的基本信息
-    cur.execute('select row_to_json(t) from('
-                'select * from users where users.user_id=%s'
-                ') t', (user_id,))
-    basic_info = cur.fetchall()
-    # 检查是否找到了用户信息
-    if(len(basic_info) == 0):
+    # 检查 user_id 是否存在
+    cur.execute('SELECT 1 FROM users WHERE user_id = %s', (user_id,))
+    if cur.fetchone() is None:
         cur.close()
         conn.close()
-        error_info = {'type': 'NoUserInfo', 'description': '无该用户'}
-        return jsonify({'message': 'fail', 'error': error_info}) # 如果没有找到用户，返回错误信息
+        return jsonify({'message': 'fail', 'error': {'type': 'NoUser', 'description': '用户不存在'}}), 404
+
+    # 删除 data 中的 jargon 键
+    if 'jargon' in data:
+        del data['jargon']
+
+    # 准备 SQL 更新语句
+    try:
+        update_parts = ', '.join([f"{key} = %s" for key in data if key != 'user_id'])
+        values = tuple(data[key] for key in data if key != 'user_id')
+        response_sql = f"UPDATE users SET {update_parts} WHERE user_id = %s;"
+        values += (data['user_id'],)
+        cur.execute(response_sql, values)
+        conn.commit()
+    except Exception as e:
+        conn.rollback()
+        cur.close()
+        conn.close()
+        return jsonify({'message': 'fail', 'error': {'type': 'SQL Error', 'description': str(e)}}), 500
+    
+    cur.execute('SELECT row_to_json(t) FROM (SELECT * FROM users WHERE user_id=%s) t', (user_id,))
+    basic_info = cur.fetchone()
 
     cur.close()
     conn.close()
-    return jsonify({'message': 'seccess', 'data': basic_info})
+
+    # 检查是否查询到数据
+    if basic_info:
+        # 直接返回第一个元素，因为 fetchone() 返回的是单个结果
+        return jsonify({'message': 'success', 'data': basic_info[0]}), 200
+    else:
+        # 处理未查询到数据的情况
+        return jsonify({'message': 'fail', 'error': 'No data found for user_id'}), 404
+
+    
+@app.route('/api/get_basic_info', methods=['POST'])
+def getBasicInfo():
+    data = request.get_json()
+    user_id = data.get('user_id')
+    jargon = data.get('jargon')
+    # 验证 jargon
+    if jargon != 'DeepLeiarning':
+        return jsonify({'message': 'fail', 'error': {'type': 'InvalidAccess', 'description': '非法访问'}}), 403
+
+    conn = get_db_connection()
+    cur = conn.cursor()
+
+    try:
+        # 执行 SQL 查询以获取指定用户 ID 的基本信息
+        cur.execute('SELECT row_to_json(t) FROM (SELECT * FROM users WHERE user_id=%s) t', (user_id,))
+        basic_info = cur.fetchall()
+
+        # 检查是否找到了用户信息
+        if len(basic_info) == 0:
+            # 用户不存在，创建新用户
+            cur.execute('INSERT INTO users (user_id) VALUES (%s)', (user_id,))
+            conn.commit()
+            info = {'type': 'UserCreated', 'description': '新用户创建成功'}
+            return jsonify({'message': 'success', 'data': info}), 201
+
+        else:
+            # 用户存在，返回用户信息
+            return jsonify({'message': 'success', 'data': basic_info[0]}), 200
+
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'message': 'fail', 'error': {'type': 'DatabaseError', 'description': str(e)}}), 500
+
+    finally:
+        cur.close()
+        conn.close()
 
 
 if __name__ == "__main__":

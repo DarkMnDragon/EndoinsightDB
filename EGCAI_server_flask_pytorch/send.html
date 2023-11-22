@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send JSON to Server</title>
+</head>
+<body>
+    <h1>Send JSON to Server</h1>
+    <textarea id="url" rows="1" cols="100">http://127.0.0.1:9999/</textarea><br>
+    <textarea id="jsonData" rows="10" cols="50">{"key": "value"}</textarea><br>
+    <button onclick="sendJSON()">Send JSON</button>
+    <p id="response"></p>
+
+    <script>
+        function sendJSON() {
+            let data = document.getElementById('jsonData').value;
+            fetch(document.getElementById('url').value, { // 替换为您的服务器 URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('response').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
+
+

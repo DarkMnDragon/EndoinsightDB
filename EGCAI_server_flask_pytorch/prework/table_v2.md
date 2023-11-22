@@ -1,8 +1,8 @@
-surveys($\underline{survey\_id}$, title, description, date, first_question_id, last_question_id)
+surveys($\underline{survey\_type}$, title, description, date, first_question_id, last_question_id)
 
-input_type($\underline{type\_id}$, name)
+question_type_map($\underline{question\_type}$, name)
 
-questions($\underline{question\_id}$, question_text,  **type_id**, **survey\_id**)
+questions($\underline{question\_id}$, question_text,  **question_type**, **survey\_id**)
 
 options($\underline{option\_id}$, option_text, **question_id**)
 
@@ -14,9 +14,9 @@ image_responses($\underline{image\_responses\_id}$, time, input_image, predict_i
 
 responses($\underline{response\_id}$, time, **user_id**, **survey_id**, current_question_id)
 
-question_responses($\underline{question\_response\_id}$, answer, **response_id**, **question_id**)
+question_answers($\underline{question\_answers\_id}$, answer, **response_id**, **question_id**)
 
-selected_option($\underline{selected\_option\_id}$,  **question_response_id**, **option_id**)
+selected_option($\underline{selected\_option\_id}$,  **question_answers_id**, **option_id**)
 
 lists($\underline{list\_id}$, **parent_question_id**, **child_question_id**, **response_id**)
 

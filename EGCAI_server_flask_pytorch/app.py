@@ -1,5 +1,6 @@
 import os
 import json
+import traceback
 import psycopg2
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 # import image_process
@@ -10,6 +11,20 @@ import hashlib
 app = Flask(__name__)
 CORS(app)
 
+app.debug = True
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # 获取完整的错误堆栈
+    tb = traceback.format_exc()
+
+    # 构建错误响应
+    response = {
+        "error": str(e),
+        "traceback": tb,
+        "description": "服务器端发生错误，请检查服务器日志以获取更多信息。"
+    }
+    return jsonify(response), 500
 
 def check(cur, table, id_name, table_id):
     s = 'select %s from %s where %s.%s=' % (id_name, table, table, id_name)
@@ -28,9 +43,9 @@ def check(cur, table, id_name, table_id):
 
 def get_db_connection():
     conn = psycopg2.connect(host='localhost',
-                            database='endo',
+                            database='Endo',
                             user='endo',
-                            password='123456')
+                            password='endo')
     return conn
 
 
@@ -185,7 +200,7 @@ def getPreviousQuestion(survey_id, question_id):
 
     # 更新当前问题编号
     cur.execute('update responses '
-                'set current_question_id=%s'
+                'set current_question_id=%s '
                 'where response_id=%s', (previous_question_id, response_id)
                 )
     conn.commit()
@@ -345,7 +360,7 @@ def getNextQuestion(survey_id, question_id):
 
     # 更改当前问题编号
     cur.execute('update responses '
-                'set current_question_id=%s'
+                'set current_question_id=%s '
                 'where response_id=%s', (next_question_id, response_id)
                 )
     conn.commit()
@@ -498,6 +513,7 @@ def submit(survey_id, question_id):
             response_list.append(select_option)
             select_option_sql = json_to_sql(
                 {'selected_option': response_list})
+            print(response_list)
             cur.execute(select_option_sql)
             conn.commit()
     cur.close()
@@ -758,4 +774,4 @@ def getBasicInfo():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host='0.0.0.0', port=9999)
+    app.run(host='0.0.0.0', port=8080)

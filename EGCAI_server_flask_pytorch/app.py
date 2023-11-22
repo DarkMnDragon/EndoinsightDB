@@ -230,7 +230,7 @@ def getNextQuestion(survey_id, question_id):
     question_response_before = ()
     if cur_list:
         question_response_before = cur_list[0]
-    if len(question_response_before) == 0:
+    if current_question_id != 0 and len(question_response_before) == 0:
         error_info = {'type': "Invalid Operation", 'description': '未提交本题答案'}
         cur.close()
         conn.close()
@@ -549,6 +549,7 @@ def createSurveyInstance(survey_id):
                     (current_question_id, )
                     )
         cur_list = cur.fetchall()
+        print(cur_list)
         question_text, type_id = cur_list[0]
         cur.execute('select * from options '
                     'where options.question_id=%s',

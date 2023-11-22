@@ -54,8 +54,7 @@ CREATE TABLE users (
     family_member_phone_number VARCHAR(20),
     height INT,
     weight INT,
-    homeplace VARCHAR(100),
-    last_login_time TIMESTAMP
+    homeplace VARCHAR(100)
 );
 
 CREATE TABLE image_responses (

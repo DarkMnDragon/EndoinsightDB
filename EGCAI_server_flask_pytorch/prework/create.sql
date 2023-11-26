@@ -52,8 +52,6 @@ CREATE TABLE users (
     birthday DATE,
     phone_number VARCHAR(20),
     family_member_phone_number VARCHAR(20),
-    height INT,
-    weight INT,
     homeplace VARCHAR(100)
 );
 

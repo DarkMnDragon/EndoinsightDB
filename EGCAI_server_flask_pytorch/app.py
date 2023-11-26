@@ -1,5 +1,6 @@
 import os
 import json
+import traceback
 import psycopg2
 from flask import Flask, render_template, request, url_for, redirect, jsonify
 # import image_process
@@ -9,6 +10,22 @@ import hashlib
 
 app = Flask(__name__)
 CORS(app)
+
+app.debug = True
+
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # 获取完整的错误堆栈
+    tb = traceback.format_exc()
+
+    # 构建错误响应
+    response = {
+        "error": str(e),
+        "traceback": tb,
+        "description": "服务器端发生错误，请检查服务器日志以获取更多信息。"
+    }
+    return jsonify(response), 500
 
 
 def check(cur, table, id_name, table_id):
@@ -185,7 +202,7 @@ def getPreviousQuestion(survey_id, question_id):
 
     # 更新当前问题编号
     cur.execute('update responses '
-                'set current_question_id=%s'
+                'set current_question_id=%s '
                 'where response_id=%s', (previous_question_id, response_id)
                 )
     conn.commit()
@@ -345,7 +362,7 @@ def getNextQuestion(survey_id, question_id):
 
     # 更改当前问题编号
     cur.execute('update responses '
-                'set current_question_id=%s'
+                'set current_question_id=%s '
                 'where response_id=%s', (next_question_id, response_id)
                 )
     conn.commit()
@@ -498,6 +515,7 @@ def submit(survey_id, question_id):
             response_list.append(select_option)
             select_option_sql = json_to_sql(
                 {'selected_option': response_list})
+            print(response_list)
             cur.execute(select_option_sql)
             conn.commit()
     cur.close()
@@ -507,150 +525,50 @@ def submit(survey_id, question_id):
 
 @app.route('/api/surveys/<survey_id>/new_survey_instance', methods=['POST'])
 def createSurveyInstance(survey_id):
-    response = request.get_json()
-    survey_id = int(survey_id)
-    user_id = response.get('user_id')
-    jargon = response.get('jargon')
-    if jargon != 'DeepLeiarning':
-        return jsonify({'message': 'fail', 'error': {'type': 'InvalidAccess', 'description': '非法访问'}}), 403
-    # 删除 data 中的 jargon 键
-    if 'jargon' in response:
-        del response['jargon']
 
-    conn = get_db_connection()
-    cur = conn.cursor()
+    def jsonify_error(error_type, description):
+        return jsonify({'message': 'fail', 'error': {'type': error_type, 'description': description}}), 403
 
     def user_exists(cursor, user_id):
         cursor.execute('SELECT 1 FROM users WHERE user_id = %s', (user_id,))
         return cursor.fetchone() is not None
-    if not user_exists(cur, user_id):
-        cur.close()
-        conn.close()
-        return jsonify({'message': 'fail', 'error': {'type': 'NoUserInfo', 'description': '无该用户'}})
 
-    def response_stop(cursor, user_id):
-        cursor.execute('select * from responses '
-                       'where user_id=%s and '
-                       'current_question_id != -1 ', (user_id, ))
+    def check_response_stop(cursor, user_id):
+        cursor.execute(
+            'SELECT * FROM responses WHERE user_id=%s AND current_question_id != -1', (user_id,))
         return cursor.fetchone()
-    response_stopped = response_stop(cur, user_id)
 
-    # 生成唯一的 response_id
     def generate_response_id(user_id, timestamp):
         m = hashlib.sha256()
         m.update(user_id.encode('utf-8'))
         m.update(timestamp.encode('utf-8'))
         return m.hexdigest()
-    if response_stopped is not None:
-        response_id = response_stopped[0]
-        current_question_id = response_stopped[4]
-        cur.execute('select question_text, type_id from questions '
-                    'where questions.question_id=%s',
-                    (current_question_id, )
-                    )
-        cur_list = cur.fetchall()
-        print(cur_list)
-        question_text, type_id = cur_list[0]
-        cur.execute('select * from options '
-                    'where options.question_id=%s',
-                    (current_question_id,)
-                    )
-        question_options = cur.fetchall()
-        option_num = len(question_options)
-        options_text = []
-        for question_option in question_options:
-            options_text.append(question_option[1])
 
-        # 获取之前提交的答案，如果有的话
-        cur.execute('select * from question_responses '
-                    'where response_id=%s and question_id=%s',
-                    (response_id, current_question_id)
-                    )
-        cur_list = cur.fetchall()
-        question_response_before = ()
-        if cur_list:
-            question_response_before = cur_list[0]
-        if len(question_response_before) == 0:
-            submit_before = False
-            hist_text = ''
-            hist_options = []
-        else:
-            submit_before = True
-            hist_text = question_response_before[1]
-            cur.execute('select * from selected_option '
-                        'where question_response_id=%s',
-                        (question_response_before[0], )
-                        )
-            hist_options = []
-            options_before = cur.fetchall()
-            for option_before in options_before:
-                hist_options.append(option_before[2])
+    def handle_reconnection(cur, response_stopped, response, survey_id):
+        response_id, current_question_id = response_stopped[0], response_stopped[4]
+        print(
+            f"Reconnection, response_id={response_id}, current_question_id={current_question_id}")
 
-        # 检查是否为最后一个问题
-        cur.execute('select last_question_id from surveys '
-                    'where survey_id=%s',
-                    (survey_id, )
-                    )
-        cur_list = cur.fetchall()
-        last_question_id = cur_list[0][0]
-        if last_question_id == current_question_id:
-            is_last_question = True
-        else:
-            is_last_question = False
+        if current_question_id == 0:
+            return initialize_response(cur, response, survey_id, response_id, reconnection=True)
 
-        # 检查是否为第一个问题
-        cur.execute('select first_question_id from surveys '
-                    'where survey_id=%s',
-                    (survey_id, )
-                    )
-        first_question_id = cur.fetchall()[0][0]
-        if first_question_id == current_question_id:
-            is_first_question = True
-        else:
-            is_first_question = False
+        return retrieve_question_data(cur, survey_id, response_id, current_question_id)
 
-        # 准备返回的数据
-        data = {
-            'type': 'Reconnection',
-            'response_id': response_id,
-            'question_id': current_question_id,
-            'question_text': question_text,
-            'type_id': type_id,
-            'option_num': option_num,
-            'options_text': options_text,
-            'submit_before': submit_before,
-            'hist_text': hist_text,
-            'hist_options': hist_options,
-            'is_last_question': is_last_question,
-            'is_first_question': is_first_question
-        }
-        return jsonify({
-            'message': 'success',
-            'data': data
-        })
-    else:
-        response_id = generate_response_id(user_id, response.get('time'))
-
-        # 设置 response 的初始值
+    def initialize_response(cur, response, survey_id, response_id, reconnection=False):
         response['current_question_id'] = 0
         response['survey_id'] = survey_id
         response['response_id'] = response_id
         response_sql = json_to_sql({'responses': [response]})
-        cur.execute(response_sql)
-        conn.commit()
+        if not reconnection:
+            cur.execute(response_sql)
 
-        # 获取调查问卷的标题和描述
         cur.execute(
             'SELECT title, description FROM surveys WHERE survey_id = %s', (survey_id,))
         survey_info = cur.fetchone()
 
-        cur.close()
-        conn.close()
-
         if survey_info is None:
-            return jsonify({'message': 'fail', 'error': {'type': 'NoSurvey', 'description': '调查问卷不存在'}})
+            return jsonify_error('NoSurvey', '调查问卷不存在')
 
-        # 构建并返回成功的响应消息，返回问卷首页标题、内容
         return jsonify({
             'message': 'success',
             'data': {
@@ -660,6 +578,88 @@ def createSurveyInstance(survey_id):
                 'description': survey_info[1]
             }
         })
+
+    def handle_new_response(cur, response, user_id, survey_id):
+        response_id = generate_response_id(user_id, response.get('time'))
+        return initialize_response(cur, response, survey_id, response_id, reconnection=False)
+
+    def retrieve_question_data(cur, survey_id, response_id, current_question_id):
+        # 获取当前问题的详细信息
+        cur.execute(
+            'SELECT question_text, type_id FROM questions WHERE question_id = %s', (current_question_id, ))
+        question_info = cur.fetchone()
+        question_text, type_id = question_info
+
+        # 获取问题的所有选项
+        cur.execute(
+            'SELECT option_text FROM options WHERE question_id = %s', (current_question_id, ))
+        options = cur.fetchall()
+        options_text = [option[0] for option in options]
+
+        # 检查之前是否已经提交过答案
+        cur.execute('SELECT * FROM question_responses WHERE response_id = %s AND question_id = %s',
+                    (response_id, current_question_id))
+        previous_response = cur.fetchone()
+        submit_before, hist_text, hist_options = False, '', []
+        if previous_response:
+            submit_before = True
+            hist_text = previous_response[1]
+
+            # 获取之前选择的选项
+            cur.execute(
+                'SELECT option_id FROM selected_option WHERE question_response_id = %s', (previous_response[0], ))
+            selected_options = cur.fetchall()
+            hist_options = [option[0] for option in selected_options]
+
+        # 检查是否为最后一个问题
+        cur.execute(
+            'SELECT last_question_id FROM surveys WHERE survey_id = %s', (survey_id, ))
+        is_last_question = cur.fetchone()[0] == current_question_id
+
+        # 检查是否为第一个问题
+        cur.execute(
+            'SELECT first_question_id FROM surveys WHERE survey_id = %s', (survey_id, ))
+        is_first_question = cur.fetchone()[0] == current_question_id
+
+        # 构建返回的数据
+        data = {
+            'type': 'Reconnection',
+            'response_id': response_id,
+            'question_id': current_question_id,
+            'question_text': question_text,
+            'type_id': type_id,
+            'options_text': options_text,
+            'submit_before': submit_before,
+            'hist_text': hist_text,
+            'hist_options': hist_options,
+            'is_last_question': is_last_question,
+            'is_first_question': is_first_question
+        }
+
+        return jsonify({
+            'message': 'success',
+            'data': data
+        })
+
+    response = request.get_json()
+    survey_id = int(survey_id)
+    user_id = response.get('user_id')
+    jargon = response.get('jargon')
+    if jargon != 'DeepLeiarning':
+        return jsonify_error('InvalidAccess', '非法访问')
+    if 'jargon' in response:
+        del response['jargon']
+
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            if not user_exists(cur, user_id):
+                return jsonify_error('NoUserInfo', '无该用户')
+
+            response_stopped = check_response_stop(cur, user_id)
+            if response_stopped:
+                return handle_reconnection(cur, response_stopped, response, survey_id)
+            else:
+                return handle_new_response(cur, response, user_id, survey_id)
 
 
 @app.route('/api/update_basic_info', methods=['POST'])

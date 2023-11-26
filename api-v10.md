@@ -24,10 +24,8 @@
       | birthday                   | Date    | 生日年月日 |
       | phone_number               | integer | 用户手机号 |
       | family_member_phone_number | integer | 家属手机号 |
-      | height                     | integer | 身高（cm） |
-      | weight                     | integer | 体重（kg） |
       | homeplace                  | Text    | 出生地     |
-
+      
       ```json
       // 找到用户信息的响应
       {
@@ -43,8 +41,6 @@
               "birthday": "2002-12-23",
               "phone_number": "xxx",
               "family_member_phone_number": "xxx",
-              "height": 180,
-              "weight": 75,
               "homeplace": "四川省成都市"
           }
       }
@@ -52,16 +48,16 @@
       // 没有找到用户信息的响应
       // 添加 HTTP 响应码
       {
-          "message": "fail",
-          "error": {
-              "type": "NoUserInfo",
-              "description": "无该用户"
-          }
+          "data": {
+          "description": "新用户创建成功",
+          "type": "UserCreated"
+          },
+          "message": "success"
       }
       ```
-
+      
       基本信息的填空栏目直接写死在前端 wxml 中，服务器返回的直接是历史个人信息
-
+   
 2. 更新/提交用户基本信息 - 绑定个人基础信息页面的**提交按钮**，此时保证服务器端已经创建了 `user_id`
 
    1. api ：`POST base_url/api/update_basic_info`
@@ -79,10 +75,8 @@
       | birthday                   | Date    | 生日年月日                              |
       | phone_number               | integer | 用户手机号                              |
       | family_member_phone_number | integer | 家属手机号                              |
-      | height                     | integer | 身高（cm）                              |
-      | weight                     | integer | 体重（kg）                              |
       | homeplace                  | Text    | 出生地                                  |
-
+      
       ```json
       {
           "jargon": "DeepLeiarning",
@@ -94,36 +88,40 @@
           "birthday": "2002-12-23",
           "phone_number": "xxx",
           "family_member_phone_number": "xxx",
-          "height": 180,
-          "weight": 75,
           "homeplace": "四川省成都市"
       }
       ```
-
+      
    3. 响应体参数：
-
+   
       ```json
       {
+          "data": {
+              "jargon": "DeepLeiarning",
+              "user_id": "123456",
+              "name": "xxx",
+              "sex": "男",
+              "nation": "汉族",
+              "ID_number": "xxx",
+              "birthday": "2002-12-23",
+              "phone_number": "xxx",
+              "family_member_phone_number": "xxx",
+              "homeplace": "四川省成都市"
+          },
           "message": "success",
-          "error": {
-              "type": ""
-          }
       }
       
       {
           "message": "fail",
           "error": {
-              "type": "Error",
-            	"description": "Something went wrong"	
-          },
-          "data":{
-            	"user_id": "123456"
+          	"type": "NoUser",
+          	"description": "用户不存在"	
           }
       }
       ```
       
       
-
+   
 3. 获取预测疾病问卷首页 - 绑定引导页上某个疾病问卷按钮，创建问卷实例（数据库端），服务器端返回问卷 `response_id`，同时初始化当前问题 `current_question_id`
 
    1. api：`POST base_url/api/surveys/{survey_id}/new_survey_instance`
@@ -212,12 +210,31 @@
       | selected_options | array | 选择选项数组                   |
       
       ```json
+      // 第一题示例
       {
-          "user_id": 'xdsgasgfsa',
-          "response_id": '324dsagsg2',
-          "type_id": 2,
+          "user_id": "123456",
+          "response_id": "78683cd93019e18240413b5d3cf2b5500c80428bb9aff10f9c09f7b1beddb4cf",
+          "type_id": 0,
           "text": "xxx",
-          "selected_options": [0, 2, 3]// 注意0开始编号
+          "selected_options": []
+      }
+      
+      // 第二题示例
+      {
+          "user_id": "123456",
+          "response_id": "78683cd93019e18240413b5d3cf2b5500c80428bb9aff10f9c09f7b1beddb4cf",
+          "type_id": 1,
+          "text": "Answer_in_Selected_Option",
+          "selected_options": [1]
+      }
+      
+      // 第三题示例
+      {
+          "user_id": "123456",
+          "response_id": "78683cd93019e18240413b5d3cf2b5500c80428bb9aff10f9c09f7b1beddb4cf",
+          "type_id": 0,
+          "text": "Fuck",
+          "selected_options": []
       }
       ```
       
@@ -260,12 +277,10 @@
 
          ```json
          {
-             "user_id": "lucasqaq",
-             "response_id": "b6c275cd5575de8514918de3ede7673ef696ed35aa201df80afd1931357333e1"
+             "user_id": "123456",
+             "response_id": "78683cd93019e18240413b5d3cf2b5500c80428bb9aff10f9c09f7b1beddb4cf"
          }
          ```
-
-         
 
    3. 响应参数：
 
@@ -280,7 +295,7 @@
    | hist_text        | Text        | 历史文本回答（如果有）     |
    | hist_options     | array       | 历史选择选项数组（如果有） |
    | is_last_question | bool        | 是否为最后一个问题         |
-
+   
    ```json
    {
        "message": "success",
@@ -322,7 +337,7 @@
        }
    }
    ```
-
+   
    4. 前端判断是否最后一题：
 
       ```javascript
@@ -338,7 +353,7 @@
           }
       }
       ```
-
+   
 6. 获取上一题序号、题目和选项 - 绑定：上一题按钮 & 问卷首页的问卷开始按钮。前端逻辑上一题时，**不用**判断提交答案的 `message==success`
 
    1. api：`POST base_url/api/surveys/{survey_id}/questions/{question_id}/previous_question`
@@ -407,8 +422,8 @@
 
       ```json
       {
-          "user_id": 'afsd',
-          "response_id": '1231sfas'
+          "user_id": "afsd",
+          "response_id": "1231sfas"
       }
       ```
 

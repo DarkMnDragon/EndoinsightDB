@@ -13,6 +13,7 @@ CORS(app)
 
 app.debug = True
 
+
 @app.errorhandler(Exception)
 def handle_exception(e):
     # 获取完整的错误堆栈
@@ -25,6 +26,7 @@ def handle_exception(e):
         "description": "服务器端发生错误，请检查服务器日志以获取更多信息。"
     }
     return jsonify(response), 500
+
 
 def check(cur, table, id_name, table_id):
     s = 'select %s from %s where %s.%s=' % (id_name, table, table, id_name)
@@ -43,9 +45,9 @@ def check(cur, table, id_name, table_id):
 
 def get_db_connection():
     conn = psycopg2.connect(host='localhost',
-                            database='Endo',
+                            database='endo',
                             user='endo',
-                            password='endo')
+                            password='123456')
     return conn
 
 
@@ -523,33 +525,35 @@ def submit(survey_id, question_id):
 
 @app.route('/api/surveys/<survey_id>/new_survey_instance', methods=['POST'])
 def createSurveyInstance(survey_id):
-    
+
     def jsonify_error(error_type, description):
         return jsonify({'message': 'fail', 'error': {'type': error_type, 'description': description}}), 403
-    
+
     def user_exists(cursor, user_id):
         cursor.execute('SELECT 1 FROM users WHERE user_id = %s', (user_id,))
         return cursor.fetchone() is not None
-    
+
     def check_response_stop(cursor, user_id):
-        cursor.execute('SELECT * FROM responses WHERE user_id=%s AND current_question_id != -1', (user_id,))
+        cursor.execute(
+            'SELECT * FROM responses WHERE user_id=%s AND current_question_id != -1', (user_id,))
         return cursor.fetchone()
-    
+
     def generate_response_id(user_id, timestamp):
         m = hashlib.sha256()
         m.update(user_id.encode('utf-8'))
         m.update(timestamp.encode('utf-8'))
         return m.hexdigest()
-    
+
     def handle_reconnection(cur, response_stopped, response, survey_id):
         response_id, current_question_id = response_stopped[0], response_stopped[4]
-        print(f"Reconnection, response_id={response_id}, current_question_id={current_question_id}")
+        print(
+            f"Reconnection, response_id={response_id}, current_question_id={current_question_id}")
 
         if current_question_id == 0:
             return initialize_response(cur, response, survey_id, response_id, reconnection=True)
 
         return retrieve_question_data(cur, survey_id, response_id, current_question_id)
-    
+
     def initialize_response(cur, response, survey_id, response_id, reconnection=False):
         response['current_question_id'] = 0
         response['survey_id'] = survey_id
@@ -558,7 +562,8 @@ def createSurveyInstance(survey_id):
         if not reconnection:
             cur.execute(response_sql)
 
-        cur.execute('SELECT title, description FROM surveys WHERE survey_id = %s', (survey_id,))
+        cur.execute(
+            'SELECT title, description FROM surveys WHERE survey_id = %s', (survey_id,))
         survey_info = cur.fetchone()
 
         if survey_info is None:
@@ -577,20 +582,23 @@ def createSurveyInstance(survey_id):
     def handle_new_response(cur, response, user_id, survey_id):
         response_id = generate_response_id(user_id, response.get('time'))
         return initialize_response(cur, response, survey_id, response_id, reconnection=False)
-    
+
     def retrieve_question_data(cur, survey_id, response_id, current_question_id):
         # 获取当前问题的详细信息
-        cur.execute('SELECT question_text, type_id FROM questions WHERE question_id = %s', (current_question_id, ))
+        cur.execute(
+            'SELECT question_text, type_id FROM questions WHERE question_id = %s', (current_question_id, ))
         question_info = cur.fetchone()
         question_text, type_id = question_info
 
         # 获取问题的所有选项
-        cur.execute('SELECT option_text FROM options WHERE question_id = %s', (current_question_id, ))
+        cur.execute(
+            'SELECT option_text FROM options WHERE question_id = %s', (current_question_id, ))
         options = cur.fetchall()
         options_text = [option[0] for option in options]
 
         # 检查之前是否已经提交过答案
-        cur.execute('SELECT * FROM question_responses WHERE response_id = %s AND question_id = %s', (response_id, current_question_id))
+        cur.execute('SELECT * FROM question_responses WHERE response_id = %s AND question_id = %s',
+                    (response_id, current_question_id))
         previous_response = cur.fetchone()
         submit_before, hist_text, hist_options = False, '', []
         if previous_response:
@@ -598,16 +606,19 @@ def createSurveyInstance(survey_id):
             hist_text = previous_response[1]
 
             # 获取之前选择的选项
-            cur.execute('SELECT option_id FROM selected_option WHERE question_response_id = %s', (previous_response[0], ))
+            cur.execute(
+                'SELECT option_id FROM selected_option WHERE question_response_id = %s', (previous_response[0], ))
             selected_options = cur.fetchall()
             hist_options = [option[0] for option in selected_options]
 
         # 检查是否为最后一个问题
-        cur.execute('SELECT last_question_id FROM surveys WHERE survey_id = %s', (survey_id, ))
+        cur.execute(
+            'SELECT last_question_id FROM surveys WHERE survey_id = %s', (survey_id, ))
         is_last_question = cur.fetchone()[0] == current_question_id
 
         # 检查是否为第一个问题
-        cur.execute('SELECT first_question_id FROM surveys WHERE survey_id = %s', (survey_id, ))
+        cur.execute(
+            'SELECT first_question_id FROM surveys WHERE survey_id = %s', (survey_id, ))
         is_first_question = cur.fetchone()[0] == current_question_id
 
         # 构建返回的数据
@@ -649,6 +660,7 @@ def createSurveyInstance(survey_id):
                 return handle_reconnection(cur, response_stopped, response, survey_id)
             else:
                 return handle_new_response(cur, response, user_id, survey_id)
+
 
 @app.route('/api/update_basic_info', methods=['POST'])
 def updateBasicInfo():
@@ -746,4 +758,4 @@ def getBasicInfo():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0', port=9999)

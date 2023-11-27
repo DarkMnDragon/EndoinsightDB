@@ -53,11 +53,14 @@ void solve()
         level = x;
         if (s[x] >= '0' && s[x] <= '9') {
             totq++;
-            q[totq].id = totq;
             int num = 0, l = x, r = x;
             while (l < len && s[l] != '.')
                 num = num * 10 + s[l] - 48, l++;
-            assert(q[totq].id == num);
+            /* assert(q[totq].id == num); */
+            // 序号从1开始自增
+            q[totq].id = totq;
+            // 或序号参考survey.txt
+            /* q[totq].id = num; */
             q[totq].level = level;
             if (!st1.empty()) {
                 while (!st1.empty()) {
@@ -100,7 +103,7 @@ void solve()
             else if (s[l] == '^')
                 q[totq].input_type_id = 1, st0.push(totq);
             else if (s[l] == '#')
-                q[totq].input_type_id = 2, st2.push(totq);
+                q[totq].input_type_id = 2, st0.push(totq);
             else {
                 cout << "错误的输入类型" << endl;
                 return;
@@ -127,7 +130,7 @@ void solve()
             }
         }
     }
-    cout << "{\n  \"surveys\": [\n    {\n      \"survey_id\": 1,\n      \"title\": \"疾病预测问卷调查\",\n      \"description\": \"\",\n      \"date\": \"2023-11-03\",\n      \"first_question_id\": 1,\n      \"last_question_id\": 66\n    }\n  ],\n";
+    cout << "{\n  \"surveys\": [\n    {\n      \"survey_id\": 1,\n      \"title\": \"疾病预测问卷调查\",\n      \"description\": \"\",\n      \"date\": \"2023-11-03\",\n      \"first_question_id\": 1,\n      \"last_question_id\": " << totq << "\n    }\n  ],\n";
     cout << "  \"input_type\": [\n    {\n      \"type_id\": 0,\n      \"name\": \"填空\"\n    },\n    {\n      \"type_id\": 1,\n      \"name\": \"单选\"\n    },\n    {\n      \"type_id\": 2,\n      \"name\": \"多选\"\n    }\n  ],\n";
     cout << "  \"questions\": [" << endl;
     For(i, 1, totq)

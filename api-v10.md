@@ -210,7 +210,7 @@
       | selected_options | array | 选择选项数组                   |
       
       ```json
-      // 第一题示例
+      // 填空题示例
       {
           "user_id": "123456",
           "response_id": "78683cd93019e18240413b5d3cf2b5500c80428bb9aff10f9c09f7b1beddb4cf",
@@ -219,7 +219,7 @@
           "selected_options": []
       }
       
-      // 第二题示例
+      // 选择题示例
       {
           "user_id": "123456",
           "response_id": "78683cd93019e18240413b5d3cf2b5500c80428bb9aff10f9c09f7b1beddb4cf",
@@ -228,14 +228,7 @@
           "selected_options": [1]
       }
       
-      // 第三题示例
-      {
-          "user_id": "123456",
-          "response_id": "78683cd93019e18240413b5d3cf2b5500c80428bb9aff10f9c09f7b1beddb4cf",
-          "type_id": 0,
-          "text": "Fuck",
-          "selected_options": []
-      }
+      
       ```
       
    4. 响应参数：

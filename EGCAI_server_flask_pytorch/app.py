@@ -51,7 +51,7 @@ def get_db_connection():
     return conn
 
 
-@ app.route('/api/surveys/<survey_id>/end_survey/', methods=['POST'])
+@ app.route('/api/surveys/<survey_id>/end_survey', methods=['POST'])
 def end_survey(survey_id):
     response = request.get_json()
     survey_id = int(survey_id)  # 将survey_id转换为整数
@@ -85,7 +85,7 @@ def end_survey(survey_id):
         return jsonify({'message': 'fail', 'error': error_info})
     else:
         current_question_id = -1
-        cur.execute('update responses set current_quesion_id=-1',
+        cur.execute('update responses set current_quesion_id=-1'
                     ' where response_id=%s', (response_id, ))
         conn.commit()
 
@@ -167,14 +167,16 @@ def getPreviousQuestion(survey_id, question_id):
     hist_text = question_response_before[1]
 
     # 获取之前选择的选项
-    cur.execute('select * from selected_option '
+    cur.execute('select option_id from selected_option '
                 'where question_response_id=%s',
                 (question_response_before[0], )
                 )
     hist_options = []
     options_before = cur.fetchall()
     for option_before in options_before:
-        hist_options.append(option_before[2])
+        for i, previous_question_option in enumerate(previous_question_options):
+            if option_before[0] == previous_question_option[0]:
+                hist_options.append(i)
 
     # 检查是否为第一个问题
     if first_question_id == previous_question_id:
@@ -332,14 +334,16 @@ def getNextQuestion(survey_id, question_id):
     else:
         submit_before = True
         hist_text = question_response_before[1]
-        cur.execute('select * from selected_option '
+        cur.execute('select option_id from selected_option '
                     'where question_response_id=%s',
                     (question_response_before[0], )
                     )
         hist_options = []
         options_before = cur.fetchall()
         for option_before in options_before:
-            hist_options.append(option_before[2])
+            for i, next_question_option in enumerate(next_question_options):
+                if option_before[0] == next_question_option[0]:
+                    hist_options.append(i)
 
     # 检查是否为最后一个问题
     if last_question_id == next_question_id:
@@ -515,7 +519,6 @@ def submit(survey_id, question_id):
             response_list.append(select_option)
             select_option_sql = json_to_sql(
                 {'selected_option': response_list})
-            print(response_list)
             cur.execute(select_option_sql)
             conn.commit()
     cur.close()
@@ -546,8 +549,8 @@ def createSurveyInstance(survey_id):
 
     def handle_reconnection(cur, response_stopped, response, survey_id):
         response_id, current_question_id = response_stopped[0], response_stopped[4]
-        print(
-            f"Reconnection, response_id={response_id}, current_question_id={current_question_id}")
+        #  print(
+        #  f"Reconnection, response_id={response_id}, current_question_id={current_question_id}")
 
         if current_question_id == 0:
             return initialize_response(cur, response, survey_id, response_id, reconnection=True)

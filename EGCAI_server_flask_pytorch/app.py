@@ -127,7 +127,7 @@ def end_survey(survey_id):
         return jsonify({'message': 'fail', 'error': error_info})
     else:
         current_question_id = -1
-        cur.execute('update responses set current_quesion_id=-1'
+        cur.execute('update responses set current_question_id=-1'
                     ' where response_id=%s', (response_id, ))
         conn.commit()
 

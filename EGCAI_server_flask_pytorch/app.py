@@ -46,8 +46,8 @@ def check(cur, table, id_name, table_id):
 def get_db_connection():
     conn = psycopg2.connect(host='localhost',
                             database='endo',
-                            user='endo',
-                            password='123456')
+                            user='Endo',
+                            password='endo')
     return conn
 
 
@@ -761,4 +761,4 @@ def getBasicInfo():
 
 if __name__ == "__main__":
     app.debug = True
-    app.run(host='0.0.0.0', port=9999)
+    app.run(host='0.0.0.0', port=8080)

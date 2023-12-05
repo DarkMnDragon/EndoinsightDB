@@ -1,63 +1,122 @@
-## 项目总体说明
+# 项目报告
 
-### 项目开发动机
+**项目名称：** EndoInsightDB - 消化道疾病智慧数据库
 
-#### 医学背景
+## 项目概述
 
-消化道疾病包括了一系列疾病，如胃炎、胃溃疡、肠炎、肝病、胰腺炎等。这些疾病在全球范围内普遍存在，影响着亿万人的健康。某些消化道疾病可能会发展为严重的健康问题，如胃癌、肝硬化、胰腺癌等，它们对患者的生命构成了重大威胁。适时的预防和治疗对于控制和治愈消化道疾病至关重要，可以减少疾病带来的并发症和死亡率。
+**开发背景：**
 
-消化内镜是一种重要的诊断工具，可以直观地查看消化道内部，发现炎症、溃疡、肿瘤等病变。通过内镜检查，医生能够在早期发现潜在的严重疾病，如早期胃癌或结肠癌，从而及时进行治疗，提高治愈率。
+- **医学需求：** 鉴于消化道疾病（如胃炎、胃溃疡、肠炎等）对全球人口健康的普遍影响，本项目旨在提高这些疾病的早期发现和治疗效率。
+- **技术驱动：** 利用深度学习技术，特别是生成对抗网络（GAN）和扩散模型，进行消化道内镜图像的风格迁移，以提高诊断准确性和疾病认知。
 
-消化道疾病问卷在医学和研究领域具有重要意义。问卷是收集大量患者数据的有效手段，对于临床研究和流行病学研究非常重要。通过分析这些数据，研究人员可以更好地理解消化道疾病的流行趋势、病因和治疗效果。
+**项目目的**：
 
-#### 项目前身
-
-我们根据华西医院提供的患病和健康数据，训练了一个生成对抗模型进行消化道内镜图像的风格迁移，将一张健康的内镜图像转化为患病图像，可以供医生学习或对患者进行警示。扩散模型是一种深度学习技术，通常用于图像生成和风格迁移。在这种应用场景中，该模型可以接收健康的消化道内镜图像，并将其转换为展示特定病变（如炎症、溃疡或肿瘤）的图像。这种转换的目的是向患者展示疾病的严重性，增加他们对健康状况的认识和警觉性。
-
-本项目会将图像处理板块也融合进来，使用数据库进行存储。
+- **疾病预警与诊断：** 构建一个智慧数据库，EndoInsightDB，用于存储、处理并分析与消化道疾病相关的数据，以便于进行疾病预警和辅助诊断。
+- **教育与科普：** 通过图像风格迁移技术，将健康消化道内镜图像转换为展示特定病变的图像，以提升公众对消化道疾病的认识。
 
 ### 技术架构
 
-本项目源于华西医院消化内科的实际需求，立足于华西医院实际应用场景，针对消化道疾病开发了疾病预警和诊断的智慧数据库：EndoInsightDB。
+**1. 前端应用：**
+   - **微信小程序：** 用户界面设计，提供问卷填写、图像上传和健康科普信息查阅功能。
+   - **用户识别：** 使用微信小程序提供的 UserID 进行用户识别。
 
-本项目使用微信小程序作为前端和用户交互，使用微信小程序提供的用户唯一的UserID在EndoInsightDB中识别用户。用户可以通过微信小程序填写问卷、上传消化道内镜图片、查看健康科普。微信小程序与我们的Flask后端进行交互，Flask后端直接与数据库连接。对于小程序端的请求，Flask后端在完成安全验证和对请求进行解析后再与数据库进行交互，完成问卷信息和图像在数据库的增删查改。此外我们的项目支持疾病风险评估和疾病图像预测。我们从数据库中提取某一用户的问卷填写信息，使用一个机器学习模型，根据用户填写的答案给出疾病风险评估分数。我们的数据库还可以和一个生成扩散模型进行交互，提供患者的胃镜图像并保存预测后的图像。
+**2. 后端服务：**
+   - **Flask 服务器：** 作为微信小程序与数据库之间的中介，处理安全验证、请求解析和数据库交互。
+   - **数据库管理：** 存储用户问卷信息、消化道内镜图片及相关处理后的数据。
 
-在本项目的医疗应用场景中，我们需要收集、存储和利用大量多源异构的患者信息。例如疾病问卷题型多样，包含单选、多选、填空等，由此导致数据库需要存储的答案也是多样的。我们还需要在数据库内保存相应用户的胃镜图像及对应转换后的图像。由于该项目的应用场景特殊，我们对数据库内信息的处理需要保证高效、稳定、安全和保密。
+**3. 深度学习模型：**
+   - **疾病风险评估：** 从数据库提取用户问卷数据，使用机器学习模型进行疾病风险评估。
+   - **图像预测与转换：** 利用生成扩散模型对胃镜图像进行处理，生成病变图像。
+
+**4. 数据安全与隐私：**
+   - **高效处理：** 数据库设计需保证高效性，以适应大量多源异构数据的处理需求。
+   - **安全保密：** 鉴于医疗数据的敏感性，确保所有数据的安全和保密性。
+
+### 项目开发动机
+
+**医学背景：**
+- **普遍性与严重性：** 消化道疾病广泛影响全球人口健康，某些疾病可能发展为严重健康问题，如胃癌、肝硬化等。
+- **早期诊断的重要性：** 消化内镜作为关键的诊断工具，其早期使用可大大提高治愈率。
+
+**项目前身：**
+- **初始应用：** 以华西医院提供的数据为基础，开发了用于消化道内镜图像风格迁移的生成对抗模型。
+
+### 项目应用场景
+
+**华西医院消化内科需求：**
+- **数据多样性：** 问卷题型包括单选、多选、填空等，需要数据库能够灵活处理各种数据类型。
+- **图像处理：** 存储和处理用户上传的消化道内镜图像及其变换后的图像。
 
 ## 数据库设计
 
 ### 概念设计
 
-我们采用了基于 E-R 模型的数据库设计方法。为EndoInsightDB设计的ER图如下：
+我们采用了基于 E-R 模型的数据库设计方法。为 EndoInsightDB 设计的 ER 图如下：
 
 ![ER](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031150789.jpg)
 
-我们对每一实体逐一进行解释：
+下面是 EndoInsightDB 的 ER 图概述及实体解释：
 
-- surveys是问卷实体型，它的属性包含问卷的题目、描述、创建日期以及第一个和最后一个问题的id以判定问卷是否开始和结束。
-- question_type是问题类型和其类型id的映射实体型。例如：type_id为0、1、2分别代表问题类型为填空、单选、多选。question_type实体方便了对问题的类型这个属性的管理，方便用户更清晰明了地获取题目的所有类型和type_id的对应关系并且便于不断拓展问题类型。
-- questions是问卷里每个问题的实体型，它的属性指明了问题的文本、问题的类型和问题所归属的问卷。
-- options是选项实体型，它存储该属性的内容以及该选项所归属的问题。目前的版本中，每个选项所归属的问题都必定为单选或多选。
-- question_logic为跳转逻辑实体型。提供了问卷中问题的跳转逻辑。根据本题的编号和用户选择的答案，给出下一个问题的编号应当是什么。
--  users为用户实体型，它储存了用户的基本信息，如姓名、性别、体重等。user_id使用微信所提供的用户id，可以可以唯一地识别用户。
--  image_responses为消化道图像响应实体型。用户上传一张消化道图像，我们会调用提前训练好的生成对抗网络来生成一张对应的病变图像以警示患者。每一个响应都会存储一对对应的图像，并且记录图片上传时间和所属用户。
-- responses为问卷响应实体型。当一个用户开始回答一个新问卷的时候，就会创建一个新的实体。该实体除了记录了用户、问卷、响应时间以外还记录了用户当前正处于哪个题目。也就是说一个responses实体记录了一个用户对一个问卷的答题状态。通过与对应问卷实体的属性做对比来判定是否允许用户提交问卷和继续跳转上一题。此外一个responses实体可能和多个question_responses实体对应，表示用户对该问卷已回答问题的答案。
-- question_answers是答案表实体型，记录了用户对每个问题提交的答案。其中若题目类型为填空，则answer属性为用户所填写答案。若为单选或多选，则用户的选择保存在selected_option里，answer里不存答案。
-- selected_option为选择题答案实体型，存放单条选择题答案，粒度为单个题目。
-- lists为答题链表实体型。记录了每个response的实际答题顺序，便于用户回退到上一题。动态更新，用户答完问卷后即可情况对应response_id的记录。
+**实体类型**
 
+- **Surveys（问卷）**: 
+  - 属性包括问卷题目、描述、创建日期及首尾问题的 `ID`，用于判断问卷的开始和结束。
 
+- **Question_Type（问题类型）**: 
+  - 映射问题类型及其 `ID`，如 `type_id` 为 `0`、`1`、`2`分别代表填空、单选、多选类型。便于用户了解问题类型及其 `ID` 对应关系，同时方便类型的拓展。
 
-结合ER图，对实体型之间的联系进行解释：
+- **Questions（问题）**: 
+  - 表示问卷中的每个问题，包括问题文本、类型和所属问卷信息。
 
-- 一个survey可以有多个question，但一个question只能归属于一个survey。是一对多联系。
-- 一个question只能是一种question_type（填空、单选、多选），但可能多种问题都可能属于一个question_type。是一对多联系。
-- 一个question可能有多个option（选择题），也可以一个option也没有（填空题）。所以是非强制参与联系。但每个option都一定属于某个问题，是强制参与联系。question和option构成一对多联系。
-- 一个survey可能有来自多个用户或者一个用户的response或者没有response。一个response只能是对一个问卷的响应并且必须和一个问卷对应，是强制参与联系。survey和response构成一对多联系。 
-- 一个user可能产生多个response，一个response必须也只能由一个user产生。是一对多联系，且response强制参与。
-- 一个response可能有多个question_answers及多个问题答案对。一个question_answer一定且只属于一个response。是一对多联系，question_answer强制参与。
-- 一个question_answer不一定和某个selected_option有联系（填空题不会存选项答案），但一个selected_option必然和一个question_answer建立联系。是一对一联系，selected_option强制参与，question_answer非强制参与。
-- 一个user可以上传多张图像从而生成多个image_response，一个image_response必定属于某个user。是一对多联系且image_responses强制参与。
+- **Options（选项）**: 
+  - 存储选项内容及其所属问题。适用于单选或多选类型的问题。
+
+- **Question_Logic（跳转逻辑）**: 
+  - 管理问卷中的问题跳转逻辑，基于用户的答案和当前问题编号，指定下一个问题的编号。
+
+- **Users（用户）**: 
+  - 存储用户基本信息（如姓名、性别、体重等）。`user_id` 使用微信提供的唯一 `ID` 进行识别。
+
+- **Image_Responses（图像响应）**: 
+  - 用户上传消化道图像后，系统使用预训练的生成对抗网络生成对应的病变图像。每个响应存储一对图像及其上传时间和用户信息。
+
+- **Responses（问卷响应）**: 
+  - 当用户开始回答新问卷时创建。记录用户、问卷、响应时间及当前问题编号。与 `question_answers` 实体关联，记录用户对问卷的答案。
+
+- **Question_Answers（答案表）**: 
+  - 记录用户对每个问题的答案。填空题的答案直接存储，选择题的答案存储在 `selected_option` 中。
+
+- **Selected_Option（选择题答案）**: 
+  - 存储单选或多选题的答案，每条记录对应单个问题。
+
+- **Lists（答题链表）**: 
+  - 记录每个 `response` 的答题顺序，用于后端实现回退到上一题。答完问卷后清空对应记录。
+
+以下为实体间关系的阐述：
+
+1. **Survey 与 Question的关系**：
+   - 每个 Survey（问卷）可以包含多个 Question（问题），而每个  Question 只能属于一个 Survey。这是典型的一对多关系。
+
+2. **Question 与 Question_Type的关系**：
+   - 每个 Question 只能对应一种 Question_Type（问题类型，如填空、单选、多选），而一个 Question_Type 可以被多个 Question采用。这同样是一对多的关系。
+
+3. **Question 与 Option的关系**：
+   - Question 可能有多个 Option（选项），如在单选或多选题中；或者没有 Option，如在填空题中。因此，这是一对多的关系，其中 Question 与 Option 之间的参与是不对等的：每个 Option 必须属于一个 Question（强制参与），但 Question 可以没有Option（非强制参与）。
+
+4. **Survey 与 Response的关系**：
+   - 一个 Survey 可能收到来自多个或单个 User 的 Response（响应），或者没有 Response。每个 Response 只对应一个 Survey，形成一对多的强制参与关系。
+
+5. **User 与 Response的关系**：
+   - 一个 User 可能产生多个 Response ，但每个 Response 必定由一个特定的 User 产生。这也是一对多的关系，其中 Response 的参与是强制的。
+
+6. **Response 与 Question_Answer的关系**：
+   - 一个 Response 可以关联多个 Question_Answers（问题答案），而每个 Question_Answer  只能属于一个Response。这是一对多关系，Question_Answer 在此关系中强制参与。
+
+7. **Question_Answer 与  Selected_Option 的关系**：
+   - Question_Answer 可能与 Selected_Option（选择题答案）有关联，也可能没有（如在填空题中）。而每个 Selected_Option 必定与一个 Question_Answer 有关。这构成一对一的关系，其中Selected_Option 的参与是强制的，而 Question_Answer 是非强制参与。
+
+8. **User 与 Image_Response的关系**：
+   - 一个 User 可能上传多张图像，生成多个 Image_Response（图像响应），每个 Image_Response 必定与一个 User 关联。这是一对多的关系，其中 Image_Response 的参与是强制的。、
 
 ### 逻辑设计
 
@@ -65,91 +124,61 @@
 
 按照理论课程上学习的构造方法，共建立 12 个表，其中下划线是主码，加粗是外码。
 
-surveys($\underline{survey\_id}$, title, description, date, first_question_id, last_question_id)
-
-question_type($\underline{question\_type\_id}$, name)
-
-questions($\underline{question\_id}$, question_text,  **question_type_id**, **survey\_id**)
-
-options($\underline{option\_id}$, option_text, **question_id**)
-
-question_logic($\underline{logic\_id}$, parent_question_id, **parent_option_id**, **child_question_id**)
-
-users($\underline{user\_id}$, name, sex, nation, ID_number, birthday, phone_number, family_member_phone_number, height, weight, homeplace, last_login_time)
-
-image_responses($\underline{image\_response\_id}$, time, input_image, predict_image, **user_id**)
-
-responses($\underline{response\_id}$, time, **user_id**, **survey_id**, current_question_id)
-
-question_answers($\underline{question\_answer\_id}$, answer, **response_id**, **question_id**)
-
-selected_option($\underline{selected\_option\_id}$,  **question_answer_id**, **option_id**)
-
-lists($\underline{list\_id}$, **parent_question_id**, **child_question_id**, **response_id**)
-
-
+- surveys($\underline{survey\_id}$, title, description, date, first_question_id, last_question_id)
+- question_type($\underline{question\_type\_id}$, name)
+- questions($\underline{question\_id}$, question_text,  **question_type_id**, **survey\_id**)
+- options($\underline{option\_id}$, option_text, **question_id**)
+- question_logic($\underline{logic\_id}$, parent_question_id, **parent_option_id**, **child_question_id**)
+- users($\underline{user\_id}$, name, sex, nation, ID_number, birthday, phone_number, family_member_phone_number, height, weight, homeplace, last_login_time)
+- image_responses($\underline{image\_response\_id}$, time, input_image, predict_image, **user_id**)
+- responses($\underline{response\_id}$, time, **user_id**, **survey_id**, current_question_id)
+- question_answers($\underline{question\_answer\_id}$, answer, **response_id**, **question_id**)
+- selected_option($\underline{selected\_option\_id}$,  **question_answer_id**, **option_id**)
+- lists($\underline{list\_id}$, **parent_question_id**, **child_question_id**, **response_id**)
 
 #### 完整性说明
 
-1. 问卷（surveys）
+1. **问卷（Surveys）**:
+   - 系统为每个问卷分配唯一的 `survey_id` 作为主键。
 
-系统为每一问卷分配独一无二的survey_id作为主码。
+2. **问题类型（Question_Type）**:
+   - 系统为每种问题类型分配唯一的 `question_type_id` 作为主键。
 
-2. 问题类型（question_type)
+3. **问题（Questions）**:
+   - 系统为每个问题分配唯一的 `question_id` 作为主键。
+   - `question_type_id` 和 `survey_id` 作为外键，分别引用 `Question_Type` 和 `Surveys` 表中的 `question_type_id` 和 `survey_id`。
 
-系统为每一类型问题分配独一无二的question_type_id作为主码。
+4. **选项（Options）**:
+   - 系统为每个选项分配唯一的 `option_id` 作为主键。
+   - `question_id` 作为外键，引用 `Questions` 表中的 `question_id`。
 
-3. 问题（questions）
+5. **问题逻辑（Question_Logic）**:
+   - 系统为每个问题逻辑分配唯一的 `logic_id` 作为主键。
+   - `parent_question_id`、`child_question_id` 和 `parent_option_id` 作为外键，分别引用 `Questions` 表中的 `question_id` 和 `Options` 表中的 `option_id`。
 
-系统为每一问题分配独一无二的question_id作为主码。
+6. **用户（Users）**:
+   - 微信小程序为每个用户分配唯一的 `user_id` 作为主键。
 
-question_type_id和survey_id均为外码，分别参照question_type和surveys表中的question_type_id和survey_id。
+7. **图像响应（Image_Responses）**:
+   - 系统为每个图像响应分配唯一的 `image_response_id` 作为主键。
+   - `user_id` 作为外键，引用 `Users` 表中的 `user_id`。
 
-4. 选项（options）
+8. **问卷响应（Responses）**:
+   - 系统为每个问卷响应分配唯一的 `response_id` 作为主键。
+   - `user_id` 和 `survey_id` 作为外键，分别引用 `Users` 表和 `Surveys` 表中的 `user_id` 和 `survey_id`。
 
-系统为每一选项分配独一无二的option_id作为主码。
+9. **问题答案（Question_Answers）**:
+   - 系统为每个问题的答案分配唯一的 `question_answer_id` 作为主键。
+   - `response_id` 和 `question_id` 作为外键，分别引用 `Responses` 表和 `Questions` 表中的 `response_id` 和 `question_id`。
 
-question_id作为外码，参照questions表中的question_id。
+10. **选择题选项答案（Selected_Option）**:
+    - 系统为每个选择题的选项答案分配唯一的 `selected_option_id` 作为主键。
+    - `question_answer_id` 和 `option_id` 作为外键，分别引用 `Question_Answers` 表和 `Options` 表中的 `question_answer_id` 和 `option_id`。
 
-5. 问题逻辑（question_logic)
-
-系统为每一问题逻辑分配独一无二的logic_id作为主码。
-
-parent_question_id和child_question_id均为外码，参照questions表中的question_id。parent_option_id也做外码，参照options表中的option_id。
-
-6. 用户（users）
-
-微信小程序为每个用户分配独一无二的user_id作为主码。
-
-7. 图像响应（image_responses)
-
-系统为每一图像响应分配独一无二的image_response_id作为主码。
-
-User_id作为外码，参照users表中的user_id。
-
-8. 问卷响应（responses）
-
-系统为每一问卷响应分配独一无二的response_id作为主码。
-
-user_id 和 survey_id均为外码，分别参照user表和surveys表中的user_id和survey_id。
-
-9. 问题答案（question_answers）
-
-系统为每一问题的答案分配独一无二的question_answer_id作为主码。
-
-response_id 和 question_id 均作为外码分别参照responses表和questions表中的response_id 和 question_id。
-
-10. 选择题选项答案（selected_option）
-
-系统为每一选择题的选项答案分配独一无二的selected_option_id作为主码。
-
-question_answer_id 和 option_id 均作为外码分别参照question_answers表和options表中的question_answer_id 和 option_id。
-
-11. 答题记录链表（lists）
-
-系统为每一答题记录分配独一无二的lists_id作为主码。Parent_question_id和child_question_id都作为外码参照questions表中的question_id。
-
-response_id也作为外码参照responses表中的response_id。
+11. **答题记录链表（Lists）**:
+    - 系统为每个答题记录分配唯一的 `lists_id` 作为主键。
+    - `parent_question_id` 和 `child_question_id` 作为外键，引用 `Questions` 表中的 `question_id`。
+    - `response_id` 也作为外键，引用 `Responses` 表中的 `response_id`。
 
 ## 功能实现与界面设计
 

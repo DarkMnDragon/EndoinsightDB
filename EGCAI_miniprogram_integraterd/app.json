@@ -1,0 +1,54 @@
+{
+  "pages":[
+    "pages/yugu/yugu",
+    "pages/survey/survey",
+    "pages/xinxi/xinxi",
+    "pages/wenone/wenone",
+    "pages/index/index",
+    "pages/shengcheng/shengcheng",
+    "pages/zhishi/zhishi",
+    "pages/xiaohua/xiaohua",
+    "pages/youmen/youmen",
+    "pages/shiguan/shiguan",
+    "pages/weishi/weishi",
+    "pages/weisuo/weisuo",
+    "pages/weiai/weiai",
+    "pages/jiezhi/jiezhi",
+    "pages/yanzheng/yanzheng",
+    
+    
+    "pages/logs/logs"
+   
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "消化疾病预测",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/yugu/yugu",
+        "text": "疾病风险预估",
+        "iconPath": "images/yugu.png",
+        "selectedIconPath": "images/yugu-active.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "一键生成",
+        "iconPath": "images/shengcheng.png",
+        "selectedIconPath": "images/shengcheng-active.png"
+      },
+      {
+        "pagePath": "pages/zhishi/zhishi",
+        "text": "健康知识",
+        "iconPath": "images/zhishi.png",
+        "selectedIconPath": "images/zhishi-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+  
+}

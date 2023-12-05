@@ -1,0 +1,43 @@
+<!--pages/wenone/wenone.wxml-->           
+<!--相关协议-->
+<view hidden="{{isquestion}}">{{description}}</view>
+<view hidden="{{isquestion}}">
+    <checkbox-group bindchange="bindAgreeChange">
+        <label for="weuiAgree" >
+            <view >
+                <checkbox id="weuiAgree" value="agree" checked="{{}}"  />
+                我已阅读并同意《相关条款》
+            </view>
+        </label>
+    </checkbox-group>
+</view>
+<!-- 提交按钮 -->
+<view hidden="{{isquestion}}" >
+    <button class="weui-btn" type="primary" bindtap="beginquestion" disabled="{{btn_disabled}}">开始作答</button>
+</view>
+<view  wx:if="{{isquestion}}" class="question">
+  <text>{{question}}</text>
+  <view wx:if="{{type_id==1}}" >
+    <radio-group style="display: flex; flex-direction: column; align-items: flex-start;" value="{{select_options}}">
+  <block wx:for="{{options}}" wx:key="index" style="width: 100%;">
+    <radio wx:if="{{type_id}}" type="primary" data-index="{{index}}" class="rad" data-value="{{item}}" bindtap="handleButtonClick">{{item}}</radio>
+  </block>
+</radio-group>
+  </view>
+  <view wx:if="{{type_id==0}}">
+    <input class="btn2" type="text" bindinput="inputChange"  value="{{text}}"placeholder="请在此作答"/>
+  </view>
+  <view wx:if="{{type_id==2}}">
+  <checkbox-group bindchange="handleCheckboxChange" value="{{selected_options}}">
+    <block wx:for="{{options}}" wx:key="index" style="width: 100%;">
+      <checkbox  type="primary" data-index="{{index}}" class="rad" value="{{item}}"  style="display: block; margin-bottom: 8px;">{{item}}</checkbox>
+    </block>
+  </checkbox-group>
+</view>
+</view>
+<view wx:if="{{isquestion&&isshow}}" style="margin-top: 200rpx;">
+<!-- hidden="{{is_first_question}}" -->
+<button  hidden="{{is_first_question}}" type="primary" class="btn1" bindtap="lastquestion">上一题</button>
+<button type="primary" class="btn2" hidden="{{is_last_question}}" bindtap="nextquestion">下一题</button>
+<button   wx:if="{{is_last_question}}" bindtap="submit" class="btn2" type="primary" >提交 </button>
+</view>

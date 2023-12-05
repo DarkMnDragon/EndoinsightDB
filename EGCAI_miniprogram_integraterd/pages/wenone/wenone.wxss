@@ -1,0 +1,20 @@
+/* pages/wenone/wenone.wxss */
+.question {
+  margin: 20px;
+}
+.radio-group {
+  margin-top: 10px;
+}
+.btn1{
+  margin-top: 500rpx;
+  border: 1px solid #ccc; /* 添加边框，1像素宽，颜色为灰色 */
+  padding: 8px; 
+}
+.btn2{
+  margin-top: 40rpx;
+  border: 1px solid #ccc; /* 添加边框，1像素宽，颜色为灰色 */
+  padding: 8px; 
+}
+.rad{
+  margin-top: 40rpx;
+}

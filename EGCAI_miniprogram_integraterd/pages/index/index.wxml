@@ -1,0 +1,43 @@
+<view id="container">
+
+<view class="barTitle">
+  <text class="txtTitle">胃镜图像病变染色系统</text>
+</view>
+
+
+<view class="imgPreviewView">
+  <!-- 已有图片预览 -->
+  <image wx:if="{{image_url!=''}}" src="{{image_url}}" bindtap="previewOriginalImage" class="previewImage">
+    <image wx:if="{{image_url!=''}}" class="closeImage" catchtap='deleteImage' hover-stop-propagation='true' src="/images/close.png"></image>
+  </image>
+
+  <!-- 添加图片 -->
+  <image wx:if="{{image_url==''}}" src="{{image_url}}" class="previewImage">
+  </image>
+  <image wx:if="{{image_url==''}}" class="addImage" bindtap="addImage" src="/images/add.png"></image>
+
+</view>
+
+
+<view class="buttonView">
+  <button class="btnUpload" hover-class="hover" bindtap="uploadImage">
+    <image class="searchIcon" src="/images/search.png"></image>
+    <text class="searchTxt">癌变预测</text>
+  </button>
+
+</view>
+
+<!-- Result Image -->
+<view class="resultsView">
+  <!-- Add a bindtap attribute to the image tag, so that when the user clicks on the image, the previewImage function is called -->
+  <image wx:if="{{stained_image_url!=''}}" src="{{stained_image_url}}" class="resultImage" bindtap="previewStainedImage"></image>
+  <!-- Placeholder Text -->
+  <text wx:if="{{stained_image_url==''}}" class="placeholderTxt">染色结果将在此显示</text>
+</view>
+
+
+<view class="copyrightView">
+  <text class="txtCopyright">Copyright © 四川大学 </text>
+</view>
+
+</view>

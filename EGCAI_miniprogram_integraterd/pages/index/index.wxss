@@ -1,0 +1,143 @@
+.barTitle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #889df1; 
+  padding: 10px 0;
+}
+
+.barTitle .txtTitle{
+  color: #FFFFFF;
+  font-size: 60rpx;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.imgPreviewView{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10% 0;
+  position: relative;
+}
+
+.imgPreviewView .previewImage{
+  width: 450rpx;
+  height: 450rpx;
+  border: 12rpx solid #5F687E;
+  border-radius: 10%;
+  box-shadow: 0px 0px 10px;
+  position: relative;
+}
+
+.imgPreviewView .addImage{
+  position: absolute;
+  width: 250rpx;
+  height: 250rpx;
+  margin-top: 0rpx;
+  cursor: pointer;
+}
+
+.imgPreviewView .closeImage{
+  position: absolute;
+  top:0;
+  right:0;
+  width:80rpx;
+  height:80rpx;
+  cursor: pointer;
+}
+
+
+.buttonView{  
+  /* 筛查按钮 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.buttonView .btnUpload{
+  width: 36%;
+  background-color: #bbc7f7;
+  border-radius: 45rpx;
+  color: #FFFFFF;
+  font-weight: 400;
+  padding: 0px 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.buttonView .hover{
+  background-color: #7F8CE9;
+}
+
+.buttonView .searchIcon{
+  width: 32rpx;
+  height:32rpx;
+  margin-right: 8px;
+}
+
+.buttonView .searchTxt{
+  font-weight: bold;
+  font-family: 'Helvetica Neue';
+  color: #033033;
+  font-size: 40rpx;
+}
+
+.resultsView{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10% 0;
+  position: relative;
+}
+
+.resultsView .resultImage{
+  width: 450rpx;
+  height: 450rpx;
+  border: 12rpx solid #5F687E;
+  border-radius: 10%;
+  box-shadow: 0px 0px 10px;
+  position: relative;
+}
+
+.resultsView .placeholderTxt{
+  font-weight: bold;
+  font-family: 'Helvetica Neue';
+  color: #033033;
+  font-size: 30rpx;
+  margin-top: 20px;
+}
+
+.resultsView .closeImage{
+  position: absolute;
+  top:0;
+  right:0;
+  width:80rpx;
+  height:80rpx;
+  cursor: pointer;
+}
+
+
+.copyrightView{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 5%;
+  width: 100%;
+  text-align: center;
+}
+
+.copyrightView .txtCopyright{
+  bottom: 0;
+  position: fixed;
+  margin-bottom: 5%;
+  font-weight: bold;
+  font-size:30rpx;
+  font-family: FangSong;
+  color:darkslateblue;
+}

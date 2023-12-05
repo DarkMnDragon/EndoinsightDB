@@ -2,8 +2,11 @@ import os
 import json
 import traceback
 import psycopg2
-from flask import Flask, render_template, request, url_for, redirect, jsonify
-# import image_process
+import numpy as np
+from PIL import Image
+from flask import Flask, render_template, request, url_for, redirect, jsonify, send_from_directory
+from werkzeug.utils import secure_filename
+from model_utils import ImagePredictor
 from flask_cors import CORS
 from utils.json_to_sql import json_to_sql
 import hashlib
@@ -13,6 +16,45 @@ CORS(app)
 
 app.debug = True
 
+# 文件上传的文件夹和允许的文件格式
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'upload')
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+# 实例化图像预测器
+image_predictor = ImagePredictor('./nn/params.pt')
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/upload_image', methods=['POST'])
+def upload_image():
+    file = request.files['file']
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        uploadedFile = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(uploadedFile)
+
+        try:
+            output_image = image_predictor.predict(uploadedFile)
+            output_image_pil = Image.fromarray((output_image * 255).astype(np.uint8))
+            output_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'output')
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+            output_image_path = os.path.join(output_dir, 'output_' + filename)
+            output_image_pil.save(output_image_path)
+            output_image_url = request.url_root + os.path.relpath(output_image_path, start=os.getcwd())
+            return jsonify({"msg": "success", "image_url": output_image_url})
+        except Exception as e:
+            print(e)
+            return jsonify({"msg": "error"})
+    return jsonify({"msg": "Invalid file. Please upload a valid image file."})
+
+@app.route('/upload/output/<filename>')
+def send_image(filename):
+    return send_from_directory('upload/output', filename)
 
 @app.errorhandler(Exception)
 def handle_exception(e):
@@ -45,8 +87,8 @@ def check(cur, table, id_name, table_id):
 
 def get_db_connection():
     conn = psycopg2.connect(host='localhost',
-                            database='endo',
-                            user='Endo',
+                            database='Endo',
+                            user='endo',
                             password='endo')
     return conn
 

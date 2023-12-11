@@ -21,8 +21,16 @@ To deploy the application, follow these steps:
 
 ## Contributions
 
+- **QR model Design, Implementation and Visualization:**
+  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
+
+  - [Wangyibo](https://github.com/Wangyibo321)
+  
+  - [Liaorl](https://github.com/KINGLRL)
+  
 - **Frontend Survey Interface Design and Logic:** 
   - [Liaorl](https://github.com/KINGLRL)
+  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
 
 - **Image Generation Interface and Neural Network Implementation:** 
   - [Liaorl](https://github.com/KINGLRL)
@@ -31,7 +39,7 @@ To deploy the application, follow these steps:
   - [Lisa](https://github.com/lisaaaa0415)
   - [Wangyibo](https://github.com/Wangyibo321)
 
-- **Backend Survey Logic Implementation:** 
+- **Backend Survey Logic Design and Implementation:** 
   - [Zhangpeng-Hu](https://github.com/LucasQAQ)
   - [Liaorl](https://github.com/KINGLRL)
 

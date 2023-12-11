@@ -25,6 +25,48 @@ Page({
     isshow:false,
     selectvalue:''
   },
+
+  
+  handleRadioChange: function(e) {
+     var selected_option = Number(e.detail.value);
+     let newArray = [];
+    console.log('用户选择的选项索引是：', e.detail.value);
+    newArray.push(selected_option);
+    this.setData({
+      selected_options: newArray
+    });
+  },
+
+  handleCheckboxChange: function(e) {
+    // e.detail.value 是所有选中的复选框的 value 数组
+    var selectedIndices = e.detail.value.map(Number);
+    console.log('用户选择的选项索引是：', selectedIndices);
+
+    this.setData({
+      selected_options: selectedIndices
+    });
+  },
+
+  // handleButtonClick: function(e) {
+  //   const index = e.currentTarget.dataset.index;
+  //   let newArray = this.data.selected_options;
+
+  //   if (newArray.includes(index)) {
+  //     // 如果数组中已经有这个索引，就移除它（类似于取消选择）
+  //     newArray = newArray.filter(i => i !== index);
+  //   } else {
+  //     // 如果数组中没有这个索引，就添加它（类似于选择）
+  //     newArray.push(index);
+  //   }
+
+  //   this.setData({
+  //     selected_options: newArray
+  //   });
+  // }
+
+
+
+
   onLoad: function (options) {
    this.setData({
       question_id:0,
@@ -41,7 +83,8 @@ Page({
     new Date().getSeconds()
     dataTime = `${yy}-${mm}-${dd} ${hh}:${mf}:${ss}`;
    const app = getApp();
-  const user_id = app.globalData.openid;
+  // const user_id = app.globalData.openid;
+  const user_id = "wyb1";
   const jargon="DeepLeiarning";
   console.log('目前时间为：',dataTime)
   wx.request({
@@ -117,7 +160,8 @@ submit:function (e) {
 },
 end_survey:function (e){
   const app = getApp();
-  const user_id = app.globalData.openid;
+  // const user_id = app.globalData.openid;
+  const user_id = "wyb1";
   console.log(user_id,this.data.respond_id)
   wx.request({
     url:'https://ecgai.machineilab.org/api/surveys/1/end_survey', // 替换为您的服务器 URL
@@ -187,7 +231,8 @@ end_survey:function (e){
      console.log('提交号：',this.data.question_id)
      console.log('提交内容：',this.data.text,this.data.selected_options)
     const app = getApp();
-    const user_id = app.globalData.openid;
+    // const user_id = app.globalData.openid;
+    const user_id = "wyb1";
     var question_id=this.data.question_id;
       wx.request({
       url:'https://ecgai.machineilab.org/api/surveys/1/questions/' + question_id + '/submit', // 替换为您的服务器 URL
@@ -197,7 +242,7 @@ end_survey:function (e){
         "user_id":user_id,
         "response_id":this.data.respond_id,
         "type_id": this.data.type_id,
-        "text": this.data.text,
+        "text": this.data.type_id === 0 ? this.data.text : "select_text",
         "selected_options": this.data.selected_options
       },
       
@@ -274,7 +319,8 @@ end_survey:function (e){
   
     nextone:function() {
       const app = getApp();
-      const user_id = app.globalData.openid;
+      // const user_id = app.globalData.openid;
+      const user_id = "wyb1";
       
       wx.request({
         url:'https://ecgai.machineilab.org/api/surveys/1/questions/'+this.data.question_id+'/next_question', // 替换为您的服务器 URL
@@ -304,6 +350,7 @@ end_survey:function (e){
           options: options,
           is_last_question:is_last_question,
           selected_options:hist_options,
+          select_options:hist_options,
           text:hist_text
         })
        
@@ -316,7 +363,8 @@ end_survey:function (e){
     },
     lastone:function() {
       const app = getApp();
-      const user_id = app.globalData.openid;
+      // const user_id = app.globalData.openid;
+      const user_id = "wyb1";
       wx.request({
         url:'https://ecgai.machineilab.org/api/surveys/1/questions/'+this.data.question_id+'/previous_question', // 替换为您的服务器 URL
         method: 'POST',
@@ -344,6 +392,7 @@ end_survey:function (e){
           is_first_question:is_first_question,
           options: options,
           selected_options:hist_options,
+          select_options:hist_options,
           text:hist_text
         })
     
@@ -393,32 +442,30 @@ end_survey:function (e){
        
       },
      
-      handleCheckboxChange: function(e) {
-        const selectedValues = e.detail.value; // 获取选中的值
-        var answertext="Answer_in_Selected_Option";
-        const selectedIndexes = this.data.options.reduce((acc, option, index) => {
-          if (selectedValues.includes(option)) {
-            acc.push(index);
-          }
-          return acc;
-        }, []);
+      // handleCheckboxChange: function(e) {
+      //   const selectedValues = e.detail.value; // 获取选中的值
+      //   var answertext="Answer_in_Selected_Option";
+      //   const selectedIndexes = this.data.options.reduce((acc, option, index) => {
+      //     if (selectedValues.includes(option)) {
+      //       acc.push(index);
+      //     }
+      //     return acc;
+      //   }, []);
         
-        // 对相对索引进行排序
-        selectedIndexes.sort((a, b) => a - b);
+      //   // 对相对索引进行排序
+      //   selectedIndexes.sort((a, b) => a - b);
         
-        this.setData({
-          text:answertext,
-          selected_options:selectedIndexes
-        })
-        const { value } = e.detail;
-        this.setData({
-          select_options: value
-        });
+      //   this.setData({
+      //     text:answertext,
+      //     selected_options:selectedIndexes,
+      //     // select_options:selectedIndexes
+      //   })
+      //   // const { value } = e.detail;
+      //   // this.setData({
+      //   //   select_options: value
+      //   // });
       
-        
-       
-      
-      }  ,
+      // }  ,
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

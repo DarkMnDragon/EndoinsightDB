@@ -10,17 +10,14 @@ Page({
     userSexVal:"",
     userNationVal:"",
     userIdnumberVal:"",
-    userBirthdayVal:'2001-01-01',
+    userBirthdayVal: "",
     userPhonenumberVal:"",
     userFamilymemberPhonenumberVal:"",
-   // userHeightVal:"",
-    //userWeightVal:"",
     userHomeplaceVal:"",
-    
   },
   loginFormData:function(e){
     
-  //console.log(e.detail.value);//表单数据
+  console.log(e.detail.value);//表单数据
     var formData=e.detail.value;//获取表单数据
     var userNameVal=formData.name;//姓名
     var userSexVal=formData.sex;//性别
@@ -28,26 +25,25 @@ Page({
     var  userIdnumberVal=formData.id_number;//身份证号
     var   userPhonenumberVal=formData.phone_number;//手机号码
     var   userFamilymemberPhonenumberVal=formData.family_member_phone_number;//联系人手机号码
-    //var userHeightVal=formData.height;//身高
-   // var userWeightVal=formData.weight;//体重
+    var userBirthdayVal=this.data.userBirthdayVal;
     var userHomeplaceVal=formData.homeplace;//家庭住址
     this.setData({
     
-      userNationVal:userNationVal,
+        userNationVal:userNationVal,
         userSexVal:userSexVal,
         userNameVal:userNameVal,
         userIdnumberVal: userIdnumberVal,
         userPhonenumberVal: userPhonenumberVal,
+        userBirthdayVal: userBirthdayVal,
         userFamilymemberPhonenumberVal:userFamilymemberPhonenumberVal,
-        //userHeightVal:userHeightVal,
-        //userWeightVal: userWeightVal,
         userHomeplaceVal:userHomeplaceVal
         
       })
    
    
     const app = getApp();
-  const user_id = app.globalData.openid;
+  // const user_id = app.globalData.openid;
+  const user_id = "wyb1";
   const jargon="DeepLeiarning"
   wx.request({
     url: 'https://ecgai.machineilab.org/api/update_basic_info', // 替换为您的服务器 URL
@@ -60,13 +56,12 @@ Page({
       "sex": userSexVal,
       "nation":userNationVal,
       "id_number":userIdnumberVal,
-      "birthday":"2022-01-01",
+      "birthday":userBirthdayVal,
       "phone_number":userPhonenumberVal,
       "family_member_phone_number":userFamilymemberPhonenumberVal,
       //"height":userHeightVal,
       //"weight":userWeightVal,
       "homeplace":userHomeplaceVal
-      
     },
     header: {
       'content-type': 'application/json' // 设置请求的 header
@@ -123,8 +118,9 @@ Page({
         userNameVal:dataArray[0].name,
         userIdnumberVal:dataArray[0].id_number,
         userPhonenumberVal: dataArray[0].phone_number,
-        userFamilymemberPhonenumberVal:dataArray[0].family_member_phone_number,
-        userHomeplaceVal:dataArray[0].homeplace
+        userBirthdayVal: dataArray[0].birthday,
+        userFamilymemberPhonenumberVal: dataArray[0].family_member_phone_number,
+        userHomeplaceVal: dataArray[0].homeplace
   })
   // 在这里可以使用传递过来的数组进行相应的操作
 } 

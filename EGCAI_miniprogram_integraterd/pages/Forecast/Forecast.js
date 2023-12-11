@@ -11,8 +11,10 @@ Page({
  
  goto:function(){
     const app = getApp();
-    const user_id = "wyb1";
+    const user_id = app.globalData.openid;
     const jargon="DeepLeiarning"
+    console.log(user_id)
+    console.log("SSSSS")
     wx.request({
       url: 'https://ecgai.machineilab.org/api/get_basic_info', // 替换为您的服务器 URL
       method: 'POST',
@@ -34,12 +36,12 @@ Page({
       var dataArray = res.data.data;// 将数组转换为字符串
   var dataString = JSON.stringify(dataArray); // 使用 wx.navigateTo 跳转页面并携带数组数据
   wx.navigateTo({
-    url: '/pages/xinxi/xinxi?data=' + encodeURIComponent(dataString),
+    url: '/pages/Information/Information?data=' + encodeURIComponent(dataString),
   });
 }
 else{
   wx.navigateTo({
-    url: '/pages/xinxi/xinxi',
+    url: '/pages/Information/Information',
   });
 }
       },
@@ -56,7 +58,7 @@ else{
     
   goto1:function(){
     wx.navigateTo({
-      url: '/pages/wenone/wenone',
+      url: '/pages/Survey/Survey',
     })
   },
   /**

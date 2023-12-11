@@ -1,12 +1,2 @@
 <!--pages/shengcheng/shengcheng.wxml-->
-<view>如果我的胃得了这个疾病的话</view>
-   
-<navigator open-type="switchTab" url="../zhishi/zhishi">
-    <button  class="btn1">食道癌</button>
-</navigator>
-<navigator open-type="switchTab" url="../zhishi/zhishi">
-    <button  class="btn1">胃癌</button>
-</navigator>
-<navigator open-type="switchTab" url="../zhishi/zhishi">
-    <button class="btn1">XX</button>
-</navigator>
+<text>pages/shengcheng/shengcheng.wxml</text>

@@ -239,13 +239,11 @@
          "type": "UserCreated"
          },
          "message": "success"
-     }
      ```
-
-
-   （2）界面设计：
-
-   ![image-20231203110927571](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031109604.png)
+     
+     （2）界面设计：   
+     
+     ![image-20231203110927571](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031109604.png)
 
 2. 更新/提交用户基本信息 - 绑定个人基础信息页面的**提交按钮**
 
@@ -310,11 +308,8 @@
          }
      }
      ```
-
-
-   （2）界面设计：
-
-   ![image-20231203111145631](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031111661.png)
+     
+        （2）界面设计：![image-20231203111145631](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031111661.png)
 
 ### 问卷部分
 
@@ -546,11 +541,10 @@
          }
      }
      ```
-
-
+   
    （2）界面设计：
-
-   ![image-20231203113200503](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031132531.png)
+   
+   ![image-20231203113200503](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031132531.png
 
 4. 获取上一题序号、题目和选项 - 绑定：上一题按钮 & 问卷首页的问卷开始按钮。
 
@@ -656,11 +650,10 @@
          }
      }
      ```
-
-
+   
    （2）界面设计：
-
-   ![image-20231203113755618](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031137648.png)
+   
+      ![image-20231203113755618](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031137648.png)
 
 #### 问卷解析系统
 
@@ -670,13 +663,32 @@
 
 ![](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031144908.png)
 
-2. 使用C++读取txt文件信息，通过多个堆栈获得条件问题逻辑，并生成数据库表question_logic($\underline{logic\_id}$, parent_question_id, **parent_option_id**, **child_question_id**)，输出为json文件。
+2. 使用C++读取txt文件信息，通过多个堆栈获得条件问题逻辑，并生成数据库表question_logic($\underline{logic\_id}$, parent_question_id, **parent_option_id**, **child_question_id**)，输出为 `json` 文件
 
-3. 通过python脚本，将json文件转换为需要的sql代码，并更新数据库。
+3. 通过 Python 脚本，将 `json` 文件转换为需要的 `sql` 代码，并更新数据库
 
 ### 生图部分
 
+「胃癌图像预测生成」是一款基于深度学习技术的医学辅助诊断工具。该系统能够让用户上传自己的胃镜图像，并迅速通过后端的深度学习模型进行分析处理，生成图像中可能患癌的区域预测。此功能的设计初衷是为了给予用户一个直观的警示，提醒他们关注胃部健康，并在必要时寻求专业医生的帮助。
+
+#### 功能流程
+
+1. **图像上传**：用户通过系统界面上传自己的胃镜图像。系统支持常见的图像格式，如 JPG、PNG 等。该图片可在华西医院的诊断报告中获得。
+
+2. **预测处理**：上传的图像会被发送到服务器端，深度学习模型会对图像进行详尽的分析，识别出潜在的异常区域。
+
+3. **结果展示**：处理完成后，系统会在界面上展示原始图像与预测图像。预测图像中可能的癌变区域将以高亮或标记的形式显示，便于用户识别和理解。
+
+4. **警示作用**（主要）：通过对比原始图像和预测图像，用户能够直观地了解到潜在的风险区域。系统的这一功能，不仅能够提高用户对胃癌风险的认识，也鼓励他们进行进一步的医学检查。
+
+#### 提醒声明
+
+- 本系统生成的预测结果仅供参考，不能替代专业医生的诊断。
+- 用户应保持定期的胃部健康检查，早发现、早治疗。
+
 ### 科普部分
+
+我们的健康知识科普功能致力于为用户提供准确、实用的医疗健康信息。通过此功能，用户可以轻松获取到各种医学科普知识，内容涵盖疾病预防、身体健康、心理调适、生活方式调整等多个方面。用户仅需简单点击感兴趣的主题，即可阅读相关的科普文章，学习如何保持健康的生活习惯，以及如何识别和应对常见的健康问题。这一功能不仅能够增强用户的健康意识，还能帮助他们在必要时作出明智的健康决策。
 
 ## 系统性能优化
 

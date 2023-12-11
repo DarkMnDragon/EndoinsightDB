@@ -42,8 +42,8 @@ Page({
    
    
     const app = getApp();
-  // const user_id = app.globalData.openid;
-  const user_id = "wyb1";
+
+    const user_id = app.globalData.openid;
   const jargon="DeepLeiarning"
   wx.request({
     url: 'https://ecgai.machineilab.org/api/update_basic_info', // 替换为您的服务器 URL
@@ -88,7 +88,7 @@ Page({
   },
    goback:function (e) {
     wx.switchTab({
-      url: '../yugu/yugu'
+      url: '../Forecast/Forecast'
     })
    },
   bindDateChange: function(e) {

@@ -19,9 +19,32 @@ To deploy the application, follow these steps:
    - Access the [Mini Program](./EGCAI_miniprogram_integraterd/) folder.
    - Update the server address within this directory to point to your own server environment. This adjustment allows the mini program to interact seamlessly with your deployed server.
 
-## Contribution
+## Contributions
 
-前端问卷界面设计、逻辑 @[Liaorl](https://github.com/KINGLRL)，图像生成界面、神经网络实现 @[Liaorl](https://github.com/KINGLRL)；前端问卷界面实现 @[Lisa](https://github.com/lisaaaa0415)、@[Wangyibo](https://github.com/Wangyibo321)；后端问卷逻辑实现 @[Zhangpeng-Hu](https://github.com/LucasQAQ)、@[Liaorl](https://github.com/KINGLRL)；问卷预处理 @[Zhangpeng-Hu](https://github.com/LucasQAQ)；后端服务器部署、维护 @[Liaorl](https://github.com/KINGLRL)；后端逻辑测试 @[Zhangpeng-Hu](https://github.com/LucasQAQ)、@[Liaorl](https://github.com/KINGLRL)、@[Wangyibo](https://github.com/Wangyibo321)；
+- **Frontend Survey Interface Design and Logic:** 
+  - [Liaorl](https://github.com/KINGLRL)
+
+- **Image Generation Interface and Neural Network Implementation:** 
+  - [Liaorl](https://github.com/KINGLRL)
+
+- **Frontend Survey Interface Implementation:** 
+  - [Lisa](https://github.com/lisaaaa0415)
+  - [Wangyibo](https://github.com/Wangyibo321)
+
+- **Backend Survey Logic Implementation:** 
+  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
+  - [Liaorl](https://github.com/KINGLRL)
+
+- **Survey Preprocessing:** 
+  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
+
+- **Backend Server Deployment and Maintenance:** 
+  - [Liaorl](https://github.com/KINGLRL)
+
+- **Backend Logic Testing:** 
+  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
+  - [Liaorl](https://github.com/KINGLRL)
+  - [Wangyibo](https://github.com/Wangyibo321)
 
 ## Contact
 

@@ -21,7 +21,7 @@ To deploy the application, follow these steps:
 
 ## Contribution
 
-前端问卷界面设计、逻辑 @[Liaorl](https://github.com/KINGLRL)，图像生成界面、神经网络实现 @[Liaorl](https://github.com/KINGLRL)；前端问卷界面实现 @[Lisa](https://github.com/lisaaaa0415)、@[Wangyibo](https://github.com/Wangyibo321)；后端问卷逻辑实现 @[Zhangpeng-Hu](https://github.com/LucasQAQ)、@[Liaorl](https://github.com/KINGLRL)；后端逻辑测试 @[Zhangpeng-Hu](https://github.com/LucasQAQ)、@[Liaorl](https://github.com/KINGLRL)、@[Wangyibo](https://github.com/Wangyibo321)；
+前端问卷界面设计、逻辑 @[Liaorl](https://github.com/KINGLRL)，图像生成界面、神经网络实现 @[Liaorl](https://github.com/KINGLRL)；前端问卷界面实现 @[Lisa](https://github.com/lisaaaa0415)、@[Wangyibo](https://github.com/Wangyibo321)；后端问卷逻辑实现 @[Zhangpeng-Hu](https://github.com/LucasQAQ)、@[Liaorl](https://github.com/KINGLRL)；问卷预处理 @[Zhangpeng-Hu](https://github.com/LucasQAQ)；后端服务器部署、维护 @[Liaorl](https://github.com/KINGLRL)；后端逻辑测试 @[Zhangpeng-Hu](https://github.com/LucasQAQ)、@[Liaorl](https://github.com/KINGLRL)、@[Wangyibo](https://github.com/Wangyibo321)；
 
 ## Contact
 

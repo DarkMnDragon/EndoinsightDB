@@ -11,7 +11,7 @@ Page({
  
  goto:function(){
     const app = getApp();
-    const user_id = app.globalData.openid;
+    const user_id = "wyb1";
     const jargon="DeepLeiarning"
     wx.request({
       url: 'https://ecgai.machineilab.org/api/get_basic_info', // 替换为您的服务器 URL
@@ -19,8 +19,7 @@ Page({
       data: {
         // 这里是您想要发送的 JSON 数据
         "jargon": "DeepLeiarning",
-        "user_id": "li10"
-        //"user_id": user_id
+        "user_id": user_id
      
         
       },

@@ -6,8 +6,8 @@
   <view class="put">
     <view >性别</view>
     <radio-group type="text" name='sex' id="sex" value="{{userSexVal}}">
-      <label><radio value="男"/>男</label>
-      <label><radio value="女"/>女</label>
+      <label><radio value="男" checked="{{userSexVal == '男'}}"/>男</label>
+      <label><radio value="女" checked="{{userSexVal == '女'}}"/>女</label>
     </radio-group>
   </view>
   <view class="put">
@@ -19,7 +19,7 @@
     <input type="number" name='id_number' class="btn" id="id_number" value="{{userIdnumberVal}}"  placeholder="请在此输入身份证号"/>
   </view>
   
-  <picker mode="date" header-text="选择时间"  value="{{date}}" bindchange="bindDateChange">
+  <picker mode="date" header-text="选择时间"  value="{{userBirthdayVal}}" bindchange="bindDateChange">
   <view class="put">
     <view class="color3">出生年月日：</view>
     <view class="btn">
@@ -36,14 +36,7 @@
     <span >联系人手机号码</span>
     <input class="btn" type="number" name='family_member_phone_number' id="family_member_phone_number" value="{{userFamilymemberPhonenumberVal}}"  placeholder="请在此输入联系人手机号码"/>
   </view>
-  <!-- <view class="put">
-    <span >身高</span>
-    <input class="btn" type="number" name='height' id="height" value="{{userHeightVal}}"  placeholder="请在此输入身高"/>
-  </view>
-  <view class="put">
-    <span >体重</span>
-  <input class="btn" type="number" name='weight' id="weight" value="{{userWeightVal}}"  placeholder="请在此输入体重"/>
-  </view> -->
+
   <view class="put">
     <span >家庭住址</span>
   <input class="btn" type="text" name='homeplace' id="homeplace" value="{{userHomeplaceVal}}"  placeholder="请在此输入家庭住址，格式为：四川省成都市"/>

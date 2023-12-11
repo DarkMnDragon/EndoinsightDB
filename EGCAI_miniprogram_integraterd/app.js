@@ -3,8 +3,8 @@ App({
   globalData: {
     upload_url: 'https://ecgai.machineilab.org',
     // upload_url: 'http://172.20.10.2:9999'
-    //appid:'wxc33860481c9c5c69',
-    //wxspSecret:'845a44fe14022f6b0d64a3b25ea5687f'
+    //appid:'xxx',
+    //wxspSecret:'xxx'
     openid:'0',
   },
   onLaunch() {

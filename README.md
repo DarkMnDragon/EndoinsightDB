@@ -16,7 +16,7 @@ To deploy the application, follow these steps:
    - Modify the port number in the `app.py` file to suit your environment. This step is crucial for customizing the deployment to fit your specific server settings.
 
 2. **Mini Program Configuration:**
-   - Access the [Mini Program](./EGCAI_miniprogram_integrated/) folder.
+   - Access the [Mini Program](./EGCAI_miniprogram_integraterd/) folder.
    - Update the server address within this directory to point to your own server environment. This adjustment allows the mini program to interact seamlessly with your deployed server.
 
 ## Contribution

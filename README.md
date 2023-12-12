@@ -48,11 +48,15 @@ To deploy the application, follow these steps:
 
 - **Backend Server Deployment and Maintenance:** 
   - [Liaorl](https://github.com/KINGLRL)
-
-- **Backend Logic Testing:** 
+  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
+  
+- **Backend Logic Testing & Bug Fixing:** 
   - [Zhangpeng-Hu](https://github.com/LucasQAQ)
   - [Liaorl](https://github.com/KINGLRL)
   - [Wangyibo](https://github.com/Wangyibo321)
+- **Query & Database Configuration Optimization:** 
+  - [Wangyibo](https://github.com/Wangyibo321)
+
 
 ## Contact
 

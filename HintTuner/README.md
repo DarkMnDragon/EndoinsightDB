@@ -1,0 +1,1 @@
+PYTHONPATH=src python3 src/run.py -seed=129

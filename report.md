@@ -544,7 +544,7 @@
    
    （2）界面设计：
    
-   ![image-20231203113200503](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031132531.png
+   ![image-20231203113200503](https://cdn.jsdelivr.net/gh//LucasQAQ/PicGo@master/images/202312121040695.png)
 
 4. 获取上一题序号、题目和选项 - 绑定：上一题按钮 & 问卷首页的问卷开始按钮。
 

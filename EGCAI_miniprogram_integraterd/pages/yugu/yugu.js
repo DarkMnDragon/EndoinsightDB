@@ -11,7 +11,7 @@ Page({
  
  goto:function(){
     const app = getApp();
-    const user_id = "wyb1";
+    const user_id = "hzp";
     const jargon="DeepLeiarning"
     wx.request({
       url: 'https://ecgai.machineilab.org/api/get_basic_info', // 替换为您的服务器 URL

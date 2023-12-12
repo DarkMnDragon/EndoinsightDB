@@ -84,7 +84,7 @@ Page({
     dataTime = `${yy}-${mm}-${dd} ${hh}:${mf}:${ss}`;
    const app = getApp();
   // const user_id = app.globalData.openid;
-  const user_id = "wyb1";
+  const user_id = "hzp";
   const jargon="DeepLeiarning";
   console.log('目前时间为：',dataTime)
   wx.request({
@@ -161,7 +161,7 @@ submit:function (e) {
 end_survey:function (e){
   const app = getApp();
   // const user_id = app.globalData.openid;
-  const user_id = "wyb1";
+  const user_id = "hzp";
   console.log(user_id,this.data.respond_id)
   wx.request({
     url:'https://ecgai.machineilab.org/api/surveys/1/end_survey', // 替换为您的服务器 URL
@@ -232,7 +232,7 @@ end_survey:function (e){
      console.log('提交内容：',this.data.text,this.data.selected_options)
     const app = getApp();
     // const user_id = app.globalData.openid;
-    const user_id = "wyb1";
+    const user_id = "hzp";
     var question_id=this.data.question_id;
       wx.request({
       url:'https://ecgai.machineilab.org/api/surveys/1/questions/' + question_id + '/submit', // 替换为您的服务器 URL
@@ -320,7 +320,7 @@ end_survey:function (e){
     nextone:function() {
       const app = getApp();
       // const user_id = app.globalData.openid;
-      const user_id = "wyb1";
+      const user_id = "hzp";
       
       wx.request({
         url:'https://ecgai.machineilab.org/api/surveys/1/questions/'+this.data.question_id+'/next_question', // 替换为您的服务器 URL
@@ -364,7 +364,7 @@ end_survey:function (e){
     lastone:function() {
       const app = getApp();
       // const user_id = app.globalData.openid;
-      const user_id = "wyb1";
+      const user_id = "hzp";
       wx.request({
         url:'https://ecgai.machineilab.org/api/surveys/1/questions/'+this.data.question_id+'/previous_question', // 替换为您的服务器 URL
         method: 'POST',

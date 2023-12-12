@@ -1,0 +1,76 @@
+{
+  "stats": {
+    "submitted": 3,
+    "finished": 2,
+    "running": 1
+  },
+  "data": [
+    [
+      1,
+      null,
+      302931039,
+      null,
+      1.3774356842041016,
+      1.3782637119293213,
+      1,
+      1702390290.960726,
+      1702390292.340921,
+      {}
+    ],
+    [
+      2,
+      null,
+      302931039,
+      null,
+      0.9839322566986084,
+      0.9849345684051514,
+      1,
+      1702390292.3472936,
+      1702390293.3357878,
+      {}
+    ],
+    [
+      3,
+      null,
+      302931039,
+      null,
+      2147483647.0,
+      0.0,
+      0,
+      0.0,
+      0.0,
+      {}
+    ]
+  ],
+  "configs": {
+    "1": {
+      "enable_hashjoin": "on",
+      "enable_indexonlyscan": "on",
+      "enable_indexscan": "on",
+      "enable_mergejoin": "on",
+      "enable_nestloop": "on",
+      "enable_seqscan": "off"
+    },
+    "2": {
+      "enable_hashjoin": "off",
+      "enable_indexonlyscan": "off",
+      "enable_indexscan": "off",
+      "enable_mergejoin": "off",
+      "enable_nestloop": "off",
+      "enable_seqscan": "off"
+    },
+    "3": {
+      "enable_hashjoin": "off",
+      "enable_indexonlyscan": "on",
+      "enable_indexscan": "off",
+      "enable_mergejoin": "on",
+      "enable_nestloop": "off",
+      "enable_seqscan": "on"
+    }
+  },
+  "config_origins": {
+    "1": "Initial Design: Latin Hypercube",
+    "2": "Initial Design: Latin Hypercube",
+    "3": "Initial Design: Latin Hypercube"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "hyperparameters": [
+    {
+      "name": "enable_hashjoin",
+      "type": "categorical",
+      "choices": [
+        "on",
+        "off"
+      ],
+      "default": "on",
+      "weights": null
+    },
+    {
+      "name": "enable_indexonlyscan",
+      "type": "categorical",
+      "choices": [
+        "on",
+        "off"
+      ],
+      "default": "on",
+      "weights": null
+    },
+    {
+      "name": "enable_indexscan",
+      "type": "categorical",
+      "choices": [
+        "on",
+        "off"
+      ],
+      "default": "on",
+      "weights": null
+    },
+    {
+      "name": "enable_mergejoin",
+      "type": "categorical",
+      "choices": [
+        "on",
+        "off"
+      ],
+      "default": "on",
+      "weights": null
+    },
+    {
+      "name": "enable_nestloop",
+      "type": "categorical",
+      "choices": [
+        "on",
+        "off"
+      ],
+      "default": "on",
+      "weights": null
+    },
+    {
+      "name": "enable_seqscan",
+      "type": "categorical",
+      "choices": [
+        "on",
+        "off"
+      ],
+      "default": "on",
+      "weights": null
+    }
+  ],
+  "conditions": [],
+  "forbiddens": [],
+  "python_module_version": "0.6.1",
+  "json_format_version": 0.4
+}

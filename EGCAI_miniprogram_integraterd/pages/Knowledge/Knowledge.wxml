@@ -1,0 +1,26 @@
+<!--pages/zhishi/zhishi.wxml-->
+
+<navigator open-type="navigate" url="../ERCP/ERCP" class="navigator-style">
+    <button  class="btn1">消化内镜检查介绍</button>
+</navigator>
+<navigator open-type="navigate" url="../HP/HP" class="navigator-style">
+    <button  class="btn1">幽门螺旋杆菌介绍</button>
+</navigator>
+<navigator open-type="navigate" url="../EC/EC" class="navigator-style">
+    <button  class="btn1">食管癌介绍</button>
+</navigator>
+<navigator open-type="navigate" url="../GRED/GRED" class="navigator-style">
+    <button  class="btn1">胃食管反流病介绍</button>
+</navigator>
+<navigator open-type="navigate" url="../CAG/CAG" class="navigator-style">
+    <button  class="btn1">萎缩性胃炎介绍</button>
+</navigator>
+<navigator open-type="navigate" url="../CA/CA" class="navigator-style">
+    <button  class="btn1">胃癌介绍</button>
+</navigator>
+<navigator open-type="navigate" url="../CRC/CRC" class="navigator-style">
+    <button  class="btn1">结直肠癌介绍</button>
+</navigator>
+<navigator open-type="navigate" url="../IBD/IBD" class="navigator-style">
+    <button  class="btn1">炎症性肠病介绍</button>
+</navigator>

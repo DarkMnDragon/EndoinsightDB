@@ -1,7 +1,0 @@
-<!--pages/yugu/yugu.wxml-->
-<button  class="btn" bindtap="goto" type="primary">个人基本信息</button>
-<button  class="btn" bindtap="goto1"type="primary">疾病预测问卷</button>
-<view   class="container">
-<navigator  class="menu"  nurl="/pages/xinxi/xinxi"></navigator>
-<navigator  class="menu"  nurl="/pages/wenone/wenone"></navigator>
-</view>

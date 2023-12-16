@@ -1,0 +1,4 @@
+/* pages/yugu/yugu.wxss */
+.btn{
+  margin-top: 40rpx;
+}

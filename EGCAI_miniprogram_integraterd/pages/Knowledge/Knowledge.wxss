@@ -1,0 +1,19 @@
+/* pages/zhishi/zhishi.wxss */
+.btn1 {
+  width: auto;
+  display: block;
+  text-align: center; /* 确保内容居中 */
+  margin-top: 10rpx;
+  margin-left:40rpx;
+  background-color: rgb(62, 197, 118);
+  color: rgb(20, 13, 13);
+  border-radius: 98rpx; 
+}
+
+.navigator-style {
+  width: 50%;
+  margin: 0 auto; /* 水平居中 */
+  margin-top: 10rpx;
+  margin-left:160rpx;
+  display: inline-block; /* 使 margin:auto 生效 */
+}

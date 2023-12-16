@@ -1,0 +1,30 @@
+.put{
+  margin-top: 40rpx;
+}
+.font30{
+  font-size: 30rpx;
+}
+
+.color3{
+  color: #333;
+}
+
+.color6{
+  margin-top: 40rpx;
+  color: #666;
+}
+
+.timeIcon{
+  color:#666;
+  font-size:18rpx;
+  margin-left: 5rpx;
+}
+.btn{
+  margin-top: 20rpx;
+  border-top: 1px solid #ccc; /* 上边框 */
+  border-bottom: 1px solid #ccc; /* 下边框 */
+  border-left: 1px solid #ccc; /* 左边框 */
+  border-right: 1px solid #ccc; /* 右边框 */
+  padding: 8px; /* 增加一些内边距，使输入框内容不贴近边框 */
+  width: 650rpx; /* 设置输入框宽度，可以根据需要进行调整 */
+}

@@ -1,9 +1,0 @@
-/* pages/shengcheng/shengcheng.wxss */
-
-  .btn1 {
-    width: 100%;
-    margin-top: 20rpx;
-    background-color: rgb(69, 206, 211);
-    color: rgb(20, 13, 13);
-    border-radius: 98rpx; 
-  }

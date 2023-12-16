@@ -1,20 +1,19 @@
 {
   "pages":[
-    "pages/yugu/yugu",
-    "pages/survey/survey",
-    "pages/xinxi/xinxi",
-    "pages/wenone/wenone",
-    "pages/index/index",
-    "pages/shengcheng/shengcheng",
-    "pages/zhishi/zhishi",
-    "pages/xiaohua/xiaohua",
-    "pages/youmen/youmen",
-    "pages/shiguan/shiguan",
-    "pages/weishi/weishi",
-    "pages/weisuo/weisuo",
-    "pages/weiai/weiai",
-    "pages/jiezhi/jiezhi",
-    "pages/yanzheng/yanzheng",
+    "pages/Forecast/Forecast",
+    "pages/Information/Information",
+    "pages/Survey/Survey",
+    "pages/One_Click/One_Click",
+    "pages/Generate/Generate",
+    "pages/Knowledge/Knowledge",
+    "pages/ERCP/ERCP",
+    "pages/HP/HP",
+    "pages/EC/EC",
+    "pages/GRED/GRED",
+    "pages/CAG/CAG",
+    "pages/CA/CA",
+    "pages/CRC/CRC",
+    "pages/IBD/IBD",
     
     
     "pages/logs/logs"
@@ -29,22 +28,22 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/yugu/yugu",
+        "pagePath": "pages/Forecast/Forecast",
         "text": "疾病风险预估",
-        "iconPath": "images/yugu.png",
-        "selectedIconPath": "images/yugu-active.png"
+        "iconPath": "images/Forecast.png",
+        "selectedIconPath": "images/Forecast-active.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/One_Click/One_Click",
         "text": "一键生成",
-        "iconPath": "images/shengcheng.png",
-        "selectedIconPath": "images/shengcheng-active.png"
+        "iconPath": "images/One_Click.png",
+        "selectedIconPath": "images/One_Click-active.png"
       },
       {
-        "pagePath": "pages/zhishi/zhishi",
+        "pagePath": "pages/Knowledge/Knowledge",
         "text": "健康知识",
-        "iconPath": "images/zhishi.png",
-        "selectedIconPath": "images/zhishi-active.png"
+        "iconPath": "images/Knowledge.png",
+        "selectedIconPath": "images/Knowledge-active.png"
       }
     ]
   },

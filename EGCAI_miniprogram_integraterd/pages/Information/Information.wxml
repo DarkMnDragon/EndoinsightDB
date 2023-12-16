@@ -1,0 +1,47 @@
+<form bindsubmit="loginFormData" >
+<view class="put">
+    <span >姓名</span>
+    <input type="text" class="btn" name='name' id="name" value="{{userNameVal}}"  placeholder="请在此输入姓名"/>
+  </view>
+  <view class="put">
+    <view >性别</view>
+    <radio-group type="text" name='sex' id="sex" value="{{userSexVal}}">
+      <label><radio value="男" checked="{{userSexVal == '男'}}"/>男</label>
+      <label><radio value="女" checked="{{userSexVal == '女'}}"/>女</label>
+    </radio-group>
+  </view>
+  <view class="put">
+    <span >民族</span>
+    <input type="text" name='nation' class="btn" id="nation" value="{{userNationVal}}"  placeholder="请在此输入民族"/>
+  </view>
+  <view class="put">
+    <span >身份证号</span>
+    <input type="number" name='id_number' class="btn" id="id_number" value="{{userIdnumberVal}}"  placeholder="请在此输入身份证号"/>
+  </view>
+  
+  <picker mode="date" header-text="选择时间"  value="{{userBirthdayVal}}" bindchange="bindDateChange">
+  <view class="put">
+    <view class="color3">出生年月日：</view>
+    <view class="btn">
+    <text class="color6" >{{userBirthdayVal}}</text>
+    <text class="timeIcon">▼</text>
+  </view>
+  </view>
+</picker>
+  <view class="put">
+    <span >手机号码</span>
+    <input class="btn" type="number" name='phone_number' id="phone_number" value="{{userPhonenumberVal}}"  placeholder="请在此输入手机号码"/>
+  </view>
+  <view class="put">
+    <span >联系人手机号码</span>
+    <input class="btn" type="number" name='family_member_phone_number' id="family_member_phone_number" value="{{userFamilymemberPhonenumberVal}}"  placeholder="请在此输入联系人手机号码"/>
+  </view>
+
+  <view class="put">
+    <span >家庭住址</span>
+  <input class="btn" type="text" name='homeplace' id="homeplace" value="{{userHomeplaceVal}}"  placeholder="请在此输入家庭住址，格式为：四川省成都市"/>
+  </view>
+  
+  <button  class="put" type="primary" bindtap="goback">返回</button>
+  <button  class="put" type="primary" form-type="submit">提交</button>
+</form>

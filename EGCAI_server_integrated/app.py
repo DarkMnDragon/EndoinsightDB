@@ -10,6 +10,7 @@ from model_utils import ImagePredictor
 from flask_cors import CORS
 from utils.json_to_sql import json_to_sql
 import hashlib
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -91,6 +92,28 @@ def get_db_connection():
                             user='endo',
                             password='endo')
     return conn
+
+
+@app.route('/api/login', methods=['POST'])
+def login():
+    response = request.get_json()
+    code = response.get('code')
+    appid = 'wx074393c2a541fc34'
+    secret = '6b1c7d27cdcfa3da0981c2c324c96375'
+    url = f'https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={code}&grant_type=authorization_code'
+
+    response = requests.get(url)
+    data = response.json()
+
+    openid = data.get('openid')
+
+    m = hashlib.sha256()
+    openid_encode = str(openid).encode('utf-8')
+    m.update(openid_encode)
+    user_id = m.hexdigest()
+  
+    # 返回给前端的数据
+    return jsonify({'message': 'success', 'data': {'user_id': user_id}})
 
 
 @ app.route('/api/surveys/<survey_id>/end_survey', methods=['POST'])
@@ -766,6 +789,7 @@ def updateBasicInfo():
 def getBasicInfo():
     data = request.get_json()
     user_id = data.get('user_id')
+    print(user_id)
     jargon = data.get('jargon')
     # 验证 jargon
     if jargon != 'DeepLeiarning':

@@ -3,52 +3,43 @@ App({
   globalData: {
     upload_url: 'https://ecgai.machineilab.org',
     // upload_url: 'http://172.20.10.2:9999'
-    //appid:'xxx',
-    //wxspSecret:'xxx'
-    openid:'0',
+    user_id:'0',
   },
   onLaunch() {
     // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    const logs = wx.getStorageSync('logs') || [];
+    logs.unshift(Date.now());
+    wx.setStorageSync('logs', logs);
 
     // 登录
+    // 微信小程序登录示例代码
     wx.login({
-      success(res) {
+      success: res => {
         if (res.code) {
-          //发起网络请求
-    
+          console.log(res.code);
+          // 将获取到的code发送到后端服务器
           wx.request({
-
-          //这里填你自己的appid 和 wxspSecret 
-            url: "https://api.weixin.qq.com/sns/jscode2session?appid=wxc33860481c9c5c69" +"&secret=845a44fe14022f6b0d64a3b25ea5687f"+ "&js_code=" + res.code + "&grant_type=authorization_code" ,
-            method: "POST",
-            success(res){//获取成功要执行的动作
-              const app = getApp();
-          if (app) {
-           
-              const globalData = app.globalData;
-              console.log(globalData.openid)
-              globalData.openid=res.data.openid;
-            
-                   // 在这里可以使用 globalData
-                
-                } else {
-                console.error('未能获取到 App 实例');
-            }
-         
-              
+            url: 'https://ecgai.machineilab.org/api/login', // 替换为你的后端接口地址
+            method: 'POST',
+            data: {
+              code: res.code
             },
-            fail(data){//失败要执行的动作
-             }
-          })
-        } else {console.log('登录失败！' + res.errMsg)}
+            success: function(response) {
+              const app = getApp();
+              if (app) {
+                const globalData = app.globalData;
+                globalData.user_id = response.data.data.user_id;
+                console.log(globalData);
+              } 
+              else {
+                console.error('未能获取到 App 实例');
+              }
+            }
+          });
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
       }
-   })
-
+    });
   }
-   
-      
- 
-})
+});

@@ -116,7 +116,7 @@
    - Question_Answer 可能与 Selected_Option（选择题答案）有关联，也可能没有（如在填空题中）。而每个 Selected_Option 必定与一个 Question_Answer 有关。这构成一对一的关系，其中Selected_Option 的参与是强制的，而 Question_Answer 是非强制参与。
 
 8. **User 与 Image_Response的关系**：
-   - 一个 User 可能上传多张图像，生成多个 Image_Response（图像响应），每个 Image_Response 必定与一个 User 关联。这是一对多的关系，其中 Image_Response 的参与是强制的。、
+   - 一个 User 可能上传多张图像，生成多个 Image_Response（图像响应），每个 Image_Response 必定与一个 User 关联。这是一对多的关系，其中 Image_Response 的参与是强制的。
 
 ### 逻辑设计
 
@@ -404,9 +404,9 @@
 
    | 参数名           | 类型  | 描述                           |
    | ---------------- | ----- | ------------------------------ |
-   | user_id          | Text  | 用户id                         |
-   | response_id      | Text  | 响应id                         |
-   | type_id          | int   | 题目类型id                     |
+   | user_id          | Text  | 用户 id                        |
+   | response_id      | Text  | 响应 id                        |
+   | type_id          | int   | 题目类型 id                    |
    | text             | Text  | 把数字、日期统一为文本传给后端 |
    | selected_options | array | 选择选项数组                   |
 
@@ -659,11 +659,11 @@
 
 后端实现了添加新问卷的半自动化系统。
 
-1. 用户手动填写包含问卷各个问题题面和选项的txt文件，并用提示符`+`标记条件问题逻辑，提示符`^*#`等标记问题类型。
+1. 用户手动填写包含问卷各个问题题面和选项的 txt 文件，并用提示符 `+` 标记条件问题逻辑，提示符 `^*#` 等标记问题类型。
 
 ![](https://cdn.jsdelivr.net/gh/LucasQAQ/PicGo@master/images/202312031144908.png)
 
-2. 使用C++读取txt文件信息，通过多个堆栈获得条件问题逻辑，并生成数据库表question_logic($\underline{logic\_id}$, parent_question_id, **parent_option_id**, **child_question_id**)，输出为 `json` 文件
+2. 使用 C++ 读取 txt 文件信息，通过多个堆栈获得条件问题逻辑，并生成数据库表 question_logic($\underline{logic\_id}$, parent_question_id, **parent_option_id**, **child_question_id**)，输出为 `json` 文件
 
 3. 通过 Python 脚本，将 `json` 文件转换为需要的 `sql` 代码，并更新数据库
 
@@ -692,3 +692,114 @@
 
 ## 系统性能优化
 
+我们根据 EndoInsightDB 的应用场景，在数据库端进行了性能调优，期望在资源受限的情况下让数据库发挥出最大的性能。
+
+我们发现，EndoInsightDB 的部署资源相当有限，其应用场景比较单一，涉及到的 SQL 查询也比较固定，查询比较简单。符合 OLTP 任务特征。
+
+我们针对该任务设计了一个两阶段的调优流程。大体上讲，第一阶段是对整个  DBMS 软件进行系统层面的调优，粒度是整个 workload，这里我们直接使用 TPC-C 的 benchmark，以吞吐量作为优化目标。第二阶段是针对具体 query 进行调优,粒度是单条 SQL 语句。在我们的应用场景中，SQL 语句的模板是固定的，只有谓词会不断变化。我们针对单个 SQL 模板，探索最适合它的执行计划来优化其查询执行时间。
+
+总的来说，我们的两阶段优化粒度是从粗到细，优化目标是从吞吐量到查询延迟，全部采用离线调优，之后再实际部署。值得注意的是，第一阶段给出的配置需要数据库系统重启才能生效，所以一旦实际部署，就不再轻易更改。第二阶段的配置可以针对单个 query 生效，在运行时随时改变。
+
+### DBMS 系统参数调优（第一阶段）
+
+本阶段对整个 DBMS 软件进行系统层面的调优。我们介绍了该领域目前的研究情况，和相关工作，选取 $5$ 种方法进行 $100$ 轮迭代实验，挑选搜索到的最优配置部署到 EndoInsightDB  。
+
+#### DBMS 调优背景
+
+数据库管理系统有很多配置参数，被叫做旋钮。配置旋钮（knobs）控制着数据库系统的许多方面（如查询优化器、内存管理、日志和缓存设置等），旋钮值的不同组合会显著影响系统的健壮性、性能和资源使用。
+
+从广义上讲，“配置旋钮（configuration knobs）”表示数据库中值可以调整并可能对数据库性能产生影响的的旋钮，具体可以分为 $7$ 类：Access Control、Query Optimizer、Query Executor、Background Processes、Resource (CPU)、Resource (Memory)以及Resource (Disk)
+
+一般来说，旋钮调优的目的是通过有效地调整旋钮的值，以满足某些调优目标。调优的目标有两个方面，一方面用户需要配置数据库以获得高性能（如吞吐量、延迟）；另一方面数据库供应商要求在不牺牲性能的前提下，提高资源利用率（如I/O和内存使用）或降低维护成本。
+
+我们根据时间整理了这个领域的代表性工作，如图所示，主要有三类。最开始是人类专家手动调优。之后逐渐总结出一些规则经验，结合领域知识，发明了基于规则的调优方法。而近几年出现的最强的调优系统大多是基于机器学习的方法，主要是贝叶斯优化和强化学习。  
+
+![avatar](/Users/darkmoonbook/Downloads/works.png)
+
+我们从中选取最近的五个有代表性的基于机器学习的方法进行自动调优。
+
+#### 实验
+
+我们使用 [SMAC](https://github.com/automl/SMAC3) 实现了基于随机森林和高斯过程的贝叶斯优化，DDPG和DB-BERT的代码来自[itrummer](https://github.com/itrummer/dbbert)， GPTuner也使用 [开源代码](https://github.com/SolidLao/GPTuner)。TPCC使用 [benchbase](****)版本。我们将 TPCC 的 `scale factor` 设为 $200$，将 `arrival rate` 设为 `unlimited` 以便于充分测试吞吐量。调优参数的选择来自 `GPTuner`，由 `GPT` 进行选取。我们对每一种方法都进行了 $100$ 轮迭代，发现找到的最好的配置能将吞吐量提升约 $14\%$。我们给出对应的配置:
+
+```json
+{
+​     "archive_mode": "always",
+
+​      "autovacuum_analyze_scale_factor": 0.1,
+
+​      "autovacuum_freeze_max_age": 200000000,
+
+​      "autovacuum_max_workers": 18,
+
+​      "autovacuum_vacuum_scale_factor": 25.15,
+
+​      "bgwriter_delay": 2507,
+
+​      "bgwriter_lru_multiplier": 2.0,
+
+​      "checkpoint_completion_target": 0.9,
+
+​      "checkpoint_timeout": 465,
+
+​      "commit_delay": 0,
+
+​      "commit_siblings": 5,
+
+​      "deadlock_timeout": 1000,
+
+​      "default_statistics_target": 100,
+
+​      "max_parallel_workers": 8,
+
+​      "max_replication_slots": 10,
+
+​      "max_wal_size": 12250,
+
+​      "max_worker_processes": 14,
+
+​      "min_wal_size": 80,
+
+​      "random_page_cost": 4.0,
+
+​      "seq_page_cost": 1.0,
+
+​      "shared_buffers": 2578129,
+
+​      "track_activity_query_size": 1024,
+
+​      "vacuum_cost_limit": 200,
+
+​      "wal_sync_method": "open_datasync",
+
+​      "wal_writer_delay": 5100,
+
+​      "work_mem": 4096,
+
+​      "effective_io_concurrency": 1,
+
+​      "join_collapse_limit": 8,
+
+​      "log_rotation_size": 10240,
+
+​      "max_standby_streaming_delay": 30000,
+
+​      "max_wal_senders": 10
+}
+```
+
+### Query plan 优化（第二阶段）
+
+目前很多 DBSM 支持为每条 SQL 都提供「hint」，如 SQL Server。不同的 hint 会导致执行优化器对同一个 query 产生不同的执行计划，从而导致 query 不同的执行效率。基于这个观察，我们希望为每个具体的 query 都能找到好的 hint 来修改其执行计划，进而缩短其查询时间。
+
+在这里我们将 hint 定义为是否启用某个算子。我们将问题建模为多臂老虎机问题，我们针对是否禁用 $6$ 个算子进行组合（有 $2^6$ 种组合方式）以此定义了搜索空间。我们假设查询的模板一定的情况下，谓词的改变不会显著影响查询时间，我们希望对于每个查询模板找到最好的那个 hint 组合。 我们选取的六个算子对应的hint分别是：
+
+```python
+["enable_nestloop", "enable_hashjoin", "enable_mergejoin", "enable_seqscan", "enable_indexscan", "enable_indexonlyscan"]
+```
+
+它们均为布尔类型的参数，将它们设为"on"和"off"来分别启用和禁用对应的算子。
+
+我们用贝叶斯优化来对每个 query 模板进行 $16$ 轮探索，选取其中最优的 hint 组合存储下来。EndoInsightDB 将利用 query 模板和 hint 的对应信息，在实际部署时，根据query匹配模板，进而改变默认的执行计划来提升查询性能。
+
+代码提供在``./HintTuner``目录下，修改``./configs/postgres.ini``来连接到你的数据库实例。要优化的query请放到``./sql``目录下。优化过程会保存在``./BO_test``目录下。可使用该指令运行：`PYTHONPATH=src python3 src/run.py -seed=1` 。

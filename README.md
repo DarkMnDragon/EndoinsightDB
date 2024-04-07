@@ -20,42 +20,9 @@ To deploy the application, follow these steps:
    - Update the server address within this directory to point to your own server environment. This adjustment allows the mini program to interact seamlessly with your deployed server.
 
 ## Contributions
-
-- **QR model Design, Implementation and Visualization:**
-  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
-
-  - [Wangyibo](https://github.com/Wangyibo321)
-  
-  - [Liaorl](https://github.com/KINGLRL)
-  
-- **Frontend Survey Interface Design and Logic:** 
-  - [Liaorl](https://github.com/KINGLRL)
-  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
-
-- **Image Generation Interface and Neural Network Implementation:** 
-  - [Liaorl](https://github.com/KINGLRL)
-
-- **Frontend Survey Interface Implementation:** 
-  - [Lisa](https://github.com/lisaaaa0415)
-  - [Wangyibo](https://github.com/Wangyibo321)
-
-- **Backend Survey Logic Design and Implementation:** 
-  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
-  - [Liaorl](https://github.com/KINGLRL)
-
-- **Survey Preprocessing:** 
-  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
-
-- **Backend Server Deployment and Maintenance:** 
-  - [Liaorl](https://github.com/KINGLRL)
-  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
-  
-- **Backend Logic Testing & Bug Fixing:** 
-  - [Zhangpeng-Hu](https://github.com/LucasQAQ)
-  - [Liaorl](https://github.com/KINGLRL)
-  - [Wangyibo](https://github.com/Wangyibo321)
-- **Query & Database Configuration Optimization:** 
-  - [Wangyibo](https://github.com/Wangyibo321)
+- [Zhangpeng-Hu](https://github.com/LucasQAQ)
+- [Wangyibo](https://github.com/Wangyibo321)
+- [Liaorl](https://github.com/KINGLRL)
 
 
 ## Contact

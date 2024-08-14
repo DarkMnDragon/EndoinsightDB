@@ -1,7 +1,7 @@
 # EndoinsightDB
 
 ## Overview
-EndoinsightDB is a custom-developed database management system tailored for the Gastrointestinal Endoscopy Center at WestChina Hospital. This project is an integral part of the SCU Database curriculum for the year 2023.
+EndoinsightDB is a custom-developed database management system tailored for the Gastrointestinal Endoscopy Center.
 
 ## Purpose
 EndoinsightDB's main goal is to efficiently collect and process questionnaires, while enabling effective and real-time machine learning data analysis. It is specifically designed to optimize data processing in clinical settings, enhancing patient care and facilitating medical research. Additionally, the system is equipped to generate educational and warning images, thereby providing a more comprehensive data interpretation experience.
@@ -18,13 +18,3 @@ To deploy the application, follow these steps:
 2. **Mini Program Configuration:**
    - Access the [Mini Program](./EGCAI_miniprogram_integraterd/) folder.
    - Update the server address within this directory to point to your own server environment. This adjustment allows the mini program to interact seamlessly with your deployed server.
-
-## Contributions
-- [Zhangpeng-Hu](https://github.com/LucasQAQ)
-- [Wangyibo](https://github.com/Wangyibo321)
-- [Liaorl](https://github.com/KINGLRL)
-
-
-## Contact
-
-For more details or queries regarding EndoinsightDB, please contact [1598744255@qq.com](mailto:1598744255@qq.com).

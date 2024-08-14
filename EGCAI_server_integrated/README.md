@@ -12,7 +12,7 @@ Refer to `app.py` for initial setup and configuration details. Make sure to adju
 - **`./prework`**: Contains the QR model for the survey database and the preprocessing c++ scripts for survey text.
 - **`./utils`**: Includes various SQL utility scripts for database interactions and implementation details.
 - **`./model_utils.py`**: Implements the CycleGAN model used for generating images that highlight potential cancer risks.
-- **`·./nn/params.pt`**: Contact 1598744255@qq.com for the model checkpoint.
+- **`·./nn/params.pt`**: [Download model checkpoint](https://pan.baidu.com/s/1-NLA6iiswOfZ3kSAFpGBJA?pwd=aq72), rename it as params.pt.
 
 ## Requirements
 
